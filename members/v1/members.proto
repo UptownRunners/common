@@ -1,0 +1,101 @@
+syntax = "proto3";
+
+package uptown.runners.internal.members.grpc.v1;
+
+import "google/protobuf/timestamp.proto";
+import "validate/validate.proto";
+
+option go_package = "./members_service";
+
+message GetMemberByIdRequest {
+    int64 Id = 1;
+}
+
+message GetMemberByEmailRequest {
+    string Email = 1;
+}
+
+message GetMemberByNationalIdentifierRequest {
+    string NationalIdentifier = 1;
+}
+
+message GetMembersRequest {
+    int64 Skip = 1;
+    int64 Take = 2;
+}
+
+message CreateMemberRequest {
+    string NationalIdentifier = 1 [(validate.rules).string.min_len = 1];
+    string Email = 2 [(validate.rules).string.email = true];
+    string FirstName = 3 [(validate.rules).string.min_len = 1];
+    string LastName = 4 [(validate.rules).string.min_len = 1];
+    string PhoneNumber = 5 [(validate.rules).string.min_len = 1];
+    string Address = 6 [(validate.rules).string.min_len = 1];
+    MemberShipType MemberShipType = 7  [(validate.rules).enum.defined_only = true];
+    google.protobuf.Timestamp RenewedDate = 8;
+    google.protobuf.Timestamp OverrideExpirationDate = 9;
+}
+
+message UpdateMemberRequest {
+    int64 Id = 1;
+    string Email = 2 [(validate.rules).string.email = true];
+    string FirstName = 3 [(validate.rules).string.min_len = 1];
+    string LastName = 4 [(validate.rules).string.min_len = 1];
+    string PhoneNumber = 5 [(validate.rules).string.min_len = 1];
+    string Address = 6 [(validate.rules).string.min_len = 1];
+    MemberShipType MemberShipType = 7  [(validate.rules).enum.defined_only = true];
+    google.protobuf.Timestamp RenewedDate = 8;
+    google.protobuf.Timestamp OverrideExpirationDate = 9;
+}
+
+message DeleteMemberRequest {
+    int64 MemberId = 1;
+}
+
+enum MemberShipType {
+    FULL = 0;
+    SUPPORT = 1;
+}
+
+message Member {
+    int64 Id = 1;
+    string NationalIdentifier = 2;
+    string Email = 3;
+    string FirstName = 4;
+    string LastName = 5;
+    string PhoneNumber = 6;
+    string Address = 7;
+    MemberShipType MemberShipType = 8;
+    google.protobuf.Timestamp RenewedDate = 9;
+    google.protobuf.Timestamp OverrideExpirationDate = 10;
+}
+
+message GetMemberResponse {
+    Member Member = 1;
+}
+
+message UpdateMemberResponse {
+    Member Member = 1;
+}
+
+message CreateMemberResponse {
+    Member Member = 1;
+}
+
+message DeleteMemberResponse {
+    Member Member = 1;
+}
+
+message GetMembersResponse {
+    repeated Member Members = 1;
+}
+
+service MembersService {
+    rpc GetById(GetMemberByIdRequest) returns (GetMemberResponse);
+    rpc GetByEmail(GetMemberByEmailRequest) returns (GetMemberResponse);
+    rpc GetByNationalIdentifier(GetMemberByNationalIdentifierRequest) returns (GetMemberResponse);
+    rpc List(GetMembersRequest) returns (GetMembersResponse);
+    rpc Create(CreateMemberRequest) returns (CreateMemberResponse);
+    rpc Update(UpdateMemberRequest) returns (UpdateMemberResponse);
+    rpc Delete(DeleteMemberRequest) returns (DeleteMemberResponse);
+}
