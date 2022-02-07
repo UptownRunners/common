@@ -1,1 +1,1 @@
-# uptown-runners-common-protos
+# common
