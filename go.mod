@@ -1,4 +1,4 @@
-module uptown-runners-common-protos
+module github.com/UptownRunners/uptown-runners-common-protos
 
 go 1.17
 
