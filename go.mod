@@ -1,4 +1,4 @@
-module uptown-runners-common-protos/members/v1/go/members_service
+module uptown-runners-common-protos
 
 go 1.17
 
