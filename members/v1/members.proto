@@ -57,6 +57,11 @@ enum MemberShipType {
     SUPPORT = 1;
 }
 
+enum MembershipStatus {
+    Active = 0;
+    Inactive = 1;
+}
+
 message Member {
     int64 Id = 1;
     string NationalIdentifier = 2;
@@ -68,6 +73,7 @@ message Member {
     MemberShipType MemberShipType = 8;
     google.protobuf.Timestamp RenewedDate = 9;
     google.protobuf.Timestamp OverrideExpirationDate = 10;
+    MembershipStatus Status = 11;
 }
 
 message GetMemberResponse {
