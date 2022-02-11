@@ -25,6 +25,7 @@ type MembersServiceClient interface {
 	Create(ctx context.Context, in *CreateMemberRequest, opts ...grpc.CallOption) (*CreateMemberResponse, error)
 	Update(ctx context.Context, in *UpdateMemberRequest, opts ...grpc.CallOption) (*UpdateMemberResponse, error)
 	Delete(ctx context.Context, in *DeleteMemberRequest, opts ...grpc.CallOption) (*DeleteMemberResponse, error)
+	UpdateStatuses(ctx context.Context, in *UpdateStatusesRequest, opts ...grpc.CallOption) (*UpdateStatusesResponse, error)
 }
 
 type membersServiceClient struct {
@@ -37,7 +38,7 @@ func NewMembersServiceClient(cc grpc.ClientConnInterface) MembersServiceClient {
 
 func (c *membersServiceClient) GetById(ctx context.Context, in *GetMemberByIdRequest, opts ...grpc.CallOption) (*GetMemberResponse, error) {
 	out := new(GetMemberResponse)
-	err := c.cc.Invoke(ctx, "/uptown_runners.members.v1.MembersService/GetById", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/uptown_runners.members.v2.MembersService/GetById", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -46,7 +47,7 @@ func (c *membersServiceClient) GetById(ctx context.Context, in *GetMemberByIdReq
 
 func (c *membersServiceClient) GetByEmail(ctx context.Context, in *GetMemberByEmailRequest, opts ...grpc.CallOption) (*GetMemberResponse, error) {
 	out := new(GetMemberResponse)
-	err := c.cc.Invoke(ctx, "/uptown_runners.members.v1.MembersService/GetByEmail", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/uptown_runners.members.v2.MembersService/GetByEmail", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -55,7 +56,7 @@ func (c *membersServiceClient) GetByEmail(ctx context.Context, in *GetMemberByEm
 
 func (c *membersServiceClient) GetByNationalIdentifier(ctx context.Context, in *GetMemberByNationalIdentifierRequest, opts ...grpc.CallOption) (*GetMemberResponse, error) {
 	out := new(GetMemberResponse)
-	err := c.cc.Invoke(ctx, "/uptown_runners.members.v1.MembersService/GetByNationalIdentifier", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/uptown_runners.members.v2.MembersService/GetByNationalIdentifier", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -64,7 +65,7 @@ func (c *membersServiceClient) GetByNationalIdentifier(ctx context.Context, in *
 
 func (c *membersServiceClient) List(ctx context.Context, in *GetMembersRequest, opts ...grpc.CallOption) (*GetMembersResponse, error) {
 	out := new(GetMembersResponse)
-	err := c.cc.Invoke(ctx, "/uptown_runners.members.v1.MembersService/List", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/uptown_runners.members.v2.MembersService/List", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -73,7 +74,7 @@ func (c *membersServiceClient) List(ctx context.Context, in *GetMembersRequest, 
 
 func (c *membersServiceClient) Create(ctx context.Context, in *CreateMemberRequest, opts ...grpc.CallOption) (*CreateMemberResponse, error) {
 	out := new(CreateMemberResponse)
-	err := c.cc.Invoke(ctx, "/uptown_runners.members.v1.MembersService/Create", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/uptown_runners.members.v2.MembersService/Create", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -82,7 +83,7 @@ func (c *membersServiceClient) Create(ctx context.Context, in *CreateMemberReque
 
 func (c *membersServiceClient) Update(ctx context.Context, in *UpdateMemberRequest, opts ...grpc.CallOption) (*UpdateMemberResponse, error) {
 	out := new(UpdateMemberResponse)
-	err := c.cc.Invoke(ctx, "/uptown_runners.members.v1.MembersService/Update", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/uptown_runners.members.v2.MembersService/Update", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -91,7 +92,16 @@ func (c *membersServiceClient) Update(ctx context.Context, in *UpdateMemberReque
 
 func (c *membersServiceClient) Delete(ctx context.Context, in *DeleteMemberRequest, opts ...grpc.CallOption) (*DeleteMemberResponse, error) {
 	out := new(DeleteMemberResponse)
-	err := c.cc.Invoke(ctx, "/uptown_runners.members.v1.MembersService/Delete", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/uptown_runners.members.v2.MembersService/Delete", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *membersServiceClient) UpdateStatuses(ctx context.Context, in *UpdateStatusesRequest, opts ...grpc.CallOption) (*UpdateStatusesResponse, error) {
+	out := new(UpdateStatusesResponse)
+	err := c.cc.Invoke(ctx, "/uptown_runners.members.v2.MembersService/UpdateStatuses", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -109,6 +119,7 @@ type MembersServiceServer interface {
 	Create(context.Context, *CreateMemberRequest) (*CreateMemberResponse, error)
 	Update(context.Context, *UpdateMemberRequest) (*UpdateMemberResponse, error)
 	Delete(context.Context, *DeleteMemberRequest) (*DeleteMemberResponse, error)
+	UpdateStatuses(context.Context, *UpdateStatusesRequest) (*UpdateStatusesResponse, error)
 	mustEmbedUnimplementedMembersServiceServer()
 }
 
@@ -137,6 +148,9 @@ func (UnimplementedMembersServiceServer) Update(context.Context, *UpdateMemberRe
 func (UnimplementedMembersServiceServer) Delete(context.Context, *DeleteMemberRequest) (*DeleteMemberResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
+func (UnimplementedMembersServiceServer) UpdateStatuses(context.Context, *UpdateStatusesRequest) (*UpdateStatusesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateStatuses not implemented")
+}
 func (UnimplementedMembersServiceServer) mustEmbedUnimplementedMembersServiceServer() {}
 
 // UnsafeMembersServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -160,7 +174,7 @@ func _MembersService_GetById_Handler(srv interface{}, ctx context.Context, dec f
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/uptown_runners.members.v1.MembersService/GetById",
+		FullMethod: "/uptown_runners.members.v2.MembersService/GetById",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(MembersServiceServer).GetById(ctx, req.(*GetMemberByIdRequest))
@@ -178,7 +192,7 @@ func _MembersService_GetByEmail_Handler(srv interface{}, ctx context.Context, de
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/uptown_runners.members.v1.MembersService/GetByEmail",
+		FullMethod: "/uptown_runners.members.v2.MembersService/GetByEmail",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(MembersServiceServer).GetByEmail(ctx, req.(*GetMemberByEmailRequest))
@@ -196,7 +210,7 @@ func _MembersService_GetByNationalIdentifier_Handler(srv interface{}, ctx contex
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/uptown_runners.members.v1.MembersService/GetByNationalIdentifier",
+		FullMethod: "/uptown_runners.members.v2.MembersService/GetByNationalIdentifier",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(MembersServiceServer).GetByNationalIdentifier(ctx, req.(*GetMemberByNationalIdentifierRequest))
@@ -214,7 +228,7 @@ func _MembersService_List_Handler(srv interface{}, ctx context.Context, dec func
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/uptown_runners.members.v1.MembersService/List",
+		FullMethod: "/uptown_runners.members.v2.MembersService/List",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(MembersServiceServer).List(ctx, req.(*GetMembersRequest))
@@ -232,7 +246,7 @@ func _MembersService_Create_Handler(srv interface{}, ctx context.Context, dec fu
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/uptown_runners.members.v1.MembersService/Create",
+		FullMethod: "/uptown_runners.members.v2.MembersService/Create",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(MembersServiceServer).Create(ctx, req.(*CreateMemberRequest))
@@ -250,7 +264,7 @@ func _MembersService_Update_Handler(srv interface{}, ctx context.Context, dec fu
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/uptown_runners.members.v1.MembersService/Update",
+		FullMethod: "/uptown_runners.members.v2.MembersService/Update",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(MembersServiceServer).Update(ctx, req.(*UpdateMemberRequest))
@@ -268,10 +282,28 @@ func _MembersService_Delete_Handler(srv interface{}, ctx context.Context, dec fu
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/uptown_runners.members.v1.MembersService/Delete",
+		FullMethod: "/uptown_runners.members.v2.MembersService/Delete",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(MembersServiceServer).Delete(ctx, req.(*DeleteMemberRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _MembersService_UpdateStatuses_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateStatusesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MembersServiceServer).UpdateStatuses(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/uptown_runners.members.v2.MembersService/UpdateStatuses",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MembersServiceServer).UpdateStatuses(ctx, req.(*UpdateStatusesRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -280,7 +312,7 @@ func _MembersService_Delete_Handler(srv interface{}, ctx context.Context, dec fu
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var MembersService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "uptown_runners.members.v1.MembersService",
+	ServiceName: "uptown_runners.members.v2.MembersService",
 	HandlerType: (*MembersServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -311,7 +343,11 @@ var MembersService_ServiceDesc = grpc.ServiceDesc{
 			MethodName: "Delete",
 			Handler:    _MembersService_Delete_Handler,
 		},
+		{
+			MethodName: "UpdateStatuses",
+			Handler:    _MembersService_UpdateStatuses_Handler,
+		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "members/v1/members.proto",
+	Metadata: "v2/members.proto",
 }
