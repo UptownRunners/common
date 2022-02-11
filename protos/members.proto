@@ -4,7 +4,7 @@ package uptown_runners.members.v1;
 
 import "google/protobuf/timestamp.proto";
 
-option go_package = "github.com/UptownRunners/common/go/v1/members";
+option go_package = "github.com/UptownRunners/common/go/members";
 
 message GetMemberByIdRequest {
     int64 Id = 1;

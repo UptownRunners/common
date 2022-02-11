@@ -3,9 +3,9 @@ syntax = "proto3";
 package uptown_runners.events.v1;
 
 import "google/protobuf/timestamp.proto";
-import "v1/members.proto";
+import "members.proto";
 
-option go_package = "github.com/UptownRunners/common/go/v1/events";
+option go_package = "github.com/UptownRunners/common/go/events";
 
 message Member {
     int64 member_id = 1;
