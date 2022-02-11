@@ -7,7 +7,7 @@ import "members/v1/members.proto";
 
 option go_package = "github.com/UptownRunners/common/events/v1/go/events";
 
-message UpdatedMemberEvent {
+message Member {
     int64 member_id = 1;
     string user_id = 2;
     string first_name = 3;
@@ -20,4 +20,9 @@ message UpdatedMemberEvent {
     google.protobuf.Timestamp override_expiration_date = 10;
     uptown_runners.members.v1.MemberShipType membership_type = 11;
     uptown_runners.members.v1.MembershipStatus status = 12;
+}
+
+message UpdateMemberEvent {
+    Member before = 1;
+    Member after = 2;
 }

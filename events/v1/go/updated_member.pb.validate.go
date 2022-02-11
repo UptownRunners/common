@@ -41,22 +41,21 @@ var (
 	_ = members.MembershipStatus(0)
 )
 
-// Validate checks the field values on UpdatedMemberEvent with the rules
-// defined in the proto definition for this message. If any rules are
-// violated, the first error encountered is returned, or nil if there are no violations.
-func (m *UpdatedMemberEvent) Validate() error {
+// Validate checks the field values on Member with the rules defined in the
+// proto definition for this message. If any rules are violated, the first
+// error encountered is returned, or nil if there are no violations.
+func (m *Member) Validate() error {
 	return m.validate(false)
 }
 
-// ValidateAll checks the field values on UpdatedMemberEvent with the rules
-// defined in the proto definition for this message. If any rules are
-// violated, the result is a list of violation errors wrapped in
-// UpdatedMemberEventMultiError, or nil if none found.
-func (m *UpdatedMemberEvent) ValidateAll() error {
+// ValidateAll checks the field values on Member with the rules defined in the
+// proto definition for this message. If any rules are violated, the result is
+// a list of violation errors wrapped in MemberMultiError, or nil if none found.
+func (m *Member) ValidateAll() error {
 	return m.validate(true)
 }
 
-func (m *UpdatedMemberEvent) validate(all bool) error {
+func (m *Member) validate(all bool) error {
 	if m == nil {
 		return nil
 	}
@@ -83,7 +82,7 @@ func (m *UpdatedMemberEvent) validate(all bool) error {
 		switch v := interface{}(m.GetRenewedDate()).(type) {
 		case interface{ ValidateAll() error }:
 			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, UpdatedMemberEventValidationError{
+				errors = append(errors, MemberValidationError{
 					field:  "RenewedDate",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -91,7 +90,7 @@ func (m *UpdatedMemberEvent) validate(all bool) error {
 			}
 		case interface{ Validate() error }:
 			if err := v.Validate(); err != nil {
-				errors = append(errors, UpdatedMemberEventValidationError{
+				errors = append(errors, MemberValidationError{
 					field:  "RenewedDate",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -100,7 +99,7 @@ func (m *UpdatedMemberEvent) validate(all bool) error {
 		}
 	} else if v, ok := interface{}(m.GetRenewedDate()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return UpdatedMemberEventValidationError{
+			return MemberValidationError{
 				field:  "RenewedDate",
 				reason: "embedded message failed validation",
 				cause:  err,
@@ -112,7 +111,7 @@ func (m *UpdatedMemberEvent) validate(all bool) error {
 		switch v := interface{}(m.GetOverrideExpirationDate()).(type) {
 		case interface{ ValidateAll() error }:
 			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, UpdatedMemberEventValidationError{
+				errors = append(errors, MemberValidationError{
 					field:  "OverrideExpirationDate",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -120,7 +119,7 @@ func (m *UpdatedMemberEvent) validate(all bool) error {
 			}
 		case interface{ Validate() error }:
 			if err := v.Validate(); err != nil {
-				errors = append(errors, UpdatedMemberEventValidationError{
+				errors = append(errors, MemberValidationError{
 					field:  "OverrideExpirationDate",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -129,7 +128,7 @@ func (m *UpdatedMemberEvent) validate(all bool) error {
 		}
 	} else if v, ok := interface{}(m.GetOverrideExpirationDate()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return UpdatedMemberEventValidationError{
+			return MemberValidationError{
 				field:  "OverrideExpirationDate",
 				reason: "embedded message failed validation",
 				cause:  err,
@@ -142,18 +141,17 @@ func (m *UpdatedMemberEvent) validate(all bool) error {
 	// no validation rules for Status
 
 	if len(errors) > 0 {
-		return UpdatedMemberEventMultiError(errors)
+		return MemberMultiError(errors)
 	}
 	return nil
 }
 
-// UpdatedMemberEventMultiError is an error wrapping multiple validation errors
-// returned by UpdatedMemberEvent.ValidateAll() if the designated constraints
-// aren't met.
-type UpdatedMemberEventMultiError []error
+// MemberMultiError is an error wrapping multiple validation errors returned by
+// Member.ValidateAll() if the designated constraints aren't met.
+type MemberMultiError []error
 
 // Error returns a concatenation of all the error messages it wraps.
-func (m UpdatedMemberEventMultiError) Error() string {
+func (m MemberMultiError) Error() string {
 	var msgs []string
 	for _, err := range m {
 		msgs = append(msgs, err.Error())
@@ -162,11 +160,11 @@ func (m UpdatedMemberEventMultiError) Error() string {
 }
 
 // AllErrors returns a list of validation violation errors.
-func (m UpdatedMemberEventMultiError) AllErrors() []error { return m }
+func (m MemberMultiError) AllErrors() []error { return m }
 
-// UpdatedMemberEventValidationError is the validation error returned by
-// UpdatedMemberEvent.Validate if the designated constraints aren't met.
-type UpdatedMemberEventValidationError struct {
+// MemberValidationError is the validation error returned by Member.Validate if
+// the designated constraints aren't met.
+type MemberValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -174,24 +172,22 @@ type UpdatedMemberEventValidationError struct {
 }
 
 // Field function returns field value.
-func (e UpdatedMemberEventValidationError) Field() string { return e.field }
+func (e MemberValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e UpdatedMemberEventValidationError) Reason() string { return e.reason }
+func (e MemberValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e UpdatedMemberEventValidationError) Cause() error { return e.cause }
+func (e MemberValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e UpdatedMemberEventValidationError) Key() bool { return e.key }
+func (e MemberValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e UpdatedMemberEventValidationError) ErrorName() string {
-	return "UpdatedMemberEventValidationError"
-}
+func (e MemberValidationError) ErrorName() string { return "MemberValidationError" }
 
 // Error satisfies the builtin error interface
-func (e UpdatedMemberEventValidationError) Error() string {
+func (e MemberValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -203,14 +199,14 @@ func (e UpdatedMemberEventValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sUpdatedMemberEvent.%s: %s%s",
+		"invalid %sMember.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = UpdatedMemberEventValidationError{}
+var _ error = MemberValidationError{}
 
 var _ interface {
 	Field() string
@@ -218,4 +214,163 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = UpdatedMemberEventValidationError{}
+} = MemberValidationError{}
+
+// Validate checks the field values on UpdateMemberEvent with the rules defined
+// in the proto definition for this message. If any rules are violated, the
+// first error encountered is returned, or nil if there are no violations.
+func (m *UpdateMemberEvent) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on UpdateMemberEvent with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// UpdateMemberEventMultiError, or nil if none found.
+func (m *UpdateMemberEvent) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *UpdateMemberEvent) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	if all {
+		switch v := interface{}(m.GetBefore()).(type) {
+		case interface{ ValidateAll() error }:
+			if err := v.ValidateAll(); err != nil {
+				errors = append(errors, UpdateMemberEventValidationError{
+					field:  "Before",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		case interface{ Validate() error }:
+			if err := v.Validate(); err != nil {
+				errors = append(errors, UpdateMemberEventValidationError{
+					field:  "Before",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		}
+	} else if v, ok := interface{}(m.GetBefore()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return UpdateMemberEventValidationError{
+				field:  "Before",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if all {
+		switch v := interface{}(m.GetAfter()).(type) {
+		case interface{ ValidateAll() error }:
+			if err := v.ValidateAll(); err != nil {
+				errors = append(errors, UpdateMemberEventValidationError{
+					field:  "After",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		case interface{ Validate() error }:
+			if err := v.Validate(); err != nil {
+				errors = append(errors, UpdateMemberEventValidationError{
+					field:  "After",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		}
+	} else if v, ok := interface{}(m.GetAfter()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return UpdateMemberEventValidationError{
+				field:  "After",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if len(errors) > 0 {
+		return UpdateMemberEventMultiError(errors)
+	}
+	return nil
+}
+
+// UpdateMemberEventMultiError is an error wrapping multiple validation errors
+// returned by UpdateMemberEvent.ValidateAll() if the designated constraints
+// aren't met.
+type UpdateMemberEventMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m UpdateMemberEventMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m UpdateMemberEventMultiError) AllErrors() []error { return m }
+
+// UpdateMemberEventValidationError is the validation error returned by
+// UpdateMemberEvent.Validate if the designated constraints aren't met.
+type UpdateMemberEventValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e UpdateMemberEventValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e UpdateMemberEventValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e UpdateMemberEventValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e UpdateMemberEventValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e UpdateMemberEventValidationError) ErrorName() string {
+	return "UpdateMemberEventValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e UpdateMemberEventValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sUpdateMemberEvent.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = UpdateMemberEventValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = UpdateMemberEventValidationError{}
