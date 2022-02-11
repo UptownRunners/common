@@ -1,10 +1,13 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.MembersServiceClient = exports.MembersServiceService = exports.GetMembersResponse = exports.DeleteMemberResponse = exports.CreateMemberResponse = exports.UpdateMemberResponse = exports.GetMemberResponse = exports.Member = exports.DeleteMemberRequest = exports.UpdateMemberRequest = exports.CreateMemberRequest = exports.GetMembersRequest = exports.GetMemberByNationalIdentifierRequest = exports.GetMemberByEmailRequest = exports.GetMemberByIdRequest = exports.membershipStatusToJSON = exports.membershipStatusFromJSON = exports.MembershipStatus = exports.memberShipTypeToJSON = exports.memberShipTypeFromJSON = exports.MemberShipType = exports.protobufPackage = void 0;
 /* eslint-disable */
-const minimal_1 = require("protobufjs/minimal");
-const Long = require("long");
+const long_1 = __importDefault(require("long"));
 const grpc_js_1 = require("@grpc/grpc-js");
+const minimal_1 = __importDefault(require("protobufjs/minimal"));
 const timestamp_1 = require("./google/protobuf/timestamp");
 exports.protobufPackage = "uptown_runners.members.v1";
 var MemberShipType;
@@ -75,14 +78,14 @@ function createBaseGetMemberByIdRequest() {
     return { Id: 0 };
 }
 exports.GetMemberByIdRequest = {
-    encode(message, writer = minimal_1.Writer.create()) {
+    encode(message, writer = minimal_1.default.Writer.create()) {
         if (message.Id !== 0) {
             writer.uint32(8).int64(message.Id);
         }
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof minimal_1.Reader ? input : new minimal_1.Reader(input);
+        const reader = input instanceof minimal_1.default.Reader ? input : new minimal_1.default.Reader(input);
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = createBaseGetMemberByIdRequest();
         while (reader.pos < end) {
@@ -118,14 +121,14 @@ function createBaseGetMemberByEmailRequest() {
     return { Email: "" };
 }
 exports.GetMemberByEmailRequest = {
-    encode(message, writer = minimal_1.Writer.create()) {
+    encode(message, writer = minimal_1.default.Writer.create()) {
         if (message.Email !== "") {
             writer.uint32(10).string(message.Email);
         }
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof minimal_1.Reader ? input : new minimal_1.Reader(input);
+        const reader = input instanceof minimal_1.default.Reader ? input : new minimal_1.default.Reader(input);
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = createBaseGetMemberByEmailRequest();
         while (reader.pos < end) {
@@ -161,14 +164,14 @@ function createBaseGetMemberByNationalIdentifierRequest() {
     return { NationalIdentifier: "" };
 }
 exports.GetMemberByNationalIdentifierRequest = {
-    encode(message, writer = minimal_1.Writer.create()) {
+    encode(message, writer = minimal_1.default.Writer.create()) {
         if (message.NationalIdentifier !== "") {
             writer.uint32(10).string(message.NationalIdentifier);
         }
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof minimal_1.Reader ? input : new minimal_1.Reader(input);
+        const reader = input instanceof minimal_1.default.Reader ? input : new minimal_1.default.Reader(input);
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = createBaseGetMemberByNationalIdentifierRequest();
         while (reader.pos < end) {
@@ -207,7 +210,7 @@ function createBaseGetMembersRequest() {
     return { Skip: 0, Take: 0 };
 }
 exports.GetMembersRequest = {
-    encode(message, writer = minimal_1.Writer.create()) {
+    encode(message, writer = minimal_1.default.Writer.create()) {
         if (message.Skip !== 0) {
             writer.uint32(8).int64(message.Skip);
         }
@@ -217,7 +220,7 @@ exports.GetMembersRequest = {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof minimal_1.Reader ? input : new minimal_1.Reader(input);
+        const reader = input instanceof minimal_1.default.Reader ? input : new minimal_1.default.Reader(input);
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = createBaseGetMembersRequest();
         while (reader.pos < end) {
@@ -269,7 +272,7 @@ function createBaseCreateMemberRequest() {
     };
 }
 exports.CreateMemberRequest = {
-    encode(message, writer = minimal_1.Writer.create()) {
+    encode(message, writer = minimal_1.default.Writer.create()) {
         if (message.NationalIdentifier !== "") {
             writer.uint32(10).string(message.NationalIdentifier);
         }
@@ -300,7 +303,7 @@ exports.CreateMemberRequest = {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof minimal_1.Reader ? input : new minimal_1.Reader(input);
+        const reader = input instanceof minimal_1.default.Reader ? input : new minimal_1.default.Reader(input);
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = createBaseCreateMemberRequest();
         while (reader.pos < end) {
@@ -408,7 +411,7 @@ function createBaseUpdateMemberRequest() {
     };
 }
 exports.UpdateMemberRequest = {
-    encode(message, writer = minimal_1.Writer.create()) {
+    encode(message, writer = minimal_1.default.Writer.create()) {
         if (message.Id !== 0) {
             writer.uint32(8).int64(message.Id);
         }
@@ -439,7 +442,7 @@ exports.UpdateMemberRequest = {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof minimal_1.Reader ? input : new minimal_1.Reader(input);
+        const reader = input instanceof minimal_1.default.Reader ? input : new minimal_1.default.Reader(input);
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = createBaseUpdateMemberRequest();
         while (reader.pos < end) {
@@ -534,14 +537,14 @@ function createBaseDeleteMemberRequest() {
     return { MemberId: 0 };
 }
 exports.DeleteMemberRequest = {
-    encode(message, writer = minimal_1.Writer.create()) {
+    encode(message, writer = minimal_1.default.Writer.create()) {
         if (message.MemberId !== 0) {
             writer.uint32(8).int64(message.MemberId);
         }
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof minimal_1.Reader ? input : new minimal_1.Reader(input);
+        const reader = input instanceof minimal_1.default.Reader ? input : new minimal_1.default.Reader(input);
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = createBaseDeleteMemberRequest();
         while (reader.pos < end) {
@@ -590,7 +593,7 @@ function createBaseMember() {
     };
 }
 exports.Member = {
-    encode(message, writer = minimal_1.Writer.create()) {
+    encode(message, writer = minimal_1.default.Writer.create()) {
         if (message.Id !== 0) {
             writer.uint32(8).int64(message.Id);
         }
@@ -627,7 +630,7 @@ exports.Member = {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof minimal_1.Reader ? input : new minimal_1.Reader(input);
+        const reader = input instanceof minimal_1.default.Reader ? input : new minimal_1.default.Reader(input);
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = createBaseMember();
         while (reader.pos < end) {
@@ -740,14 +743,14 @@ function createBaseGetMemberResponse() {
     return { Member: undefined };
 }
 exports.GetMemberResponse = {
-    encode(message, writer = minimal_1.Writer.create()) {
+    encode(message, writer = minimal_1.default.Writer.create()) {
         if (message.Member !== undefined) {
             exports.Member.encode(message.Member, writer.uint32(10).fork()).ldelim();
         }
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof minimal_1.Reader ? input : new minimal_1.Reader(input);
+        const reader = input instanceof minimal_1.default.Reader ? input : new minimal_1.default.Reader(input);
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = createBaseGetMemberResponse();
         while (reader.pos < end) {
@@ -787,14 +790,14 @@ function createBaseUpdateMemberResponse() {
     return { Member: undefined };
 }
 exports.UpdateMemberResponse = {
-    encode(message, writer = minimal_1.Writer.create()) {
+    encode(message, writer = minimal_1.default.Writer.create()) {
         if (message.Member !== undefined) {
             exports.Member.encode(message.Member, writer.uint32(10).fork()).ldelim();
         }
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof minimal_1.Reader ? input : new minimal_1.Reader(input);
+        const reader = input instanceof minimal_1.default.Reader ? input : new minimal_1.default.Reader(input);
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = createBaseUpdateMemberResponse();
         while (reader.pos < end) {
@@ -834,14 +837,14 @@ function createBaseCreateMemberResponse() {
     return { Member: undefined };
 }
 exports.CreateMemberResponse = {
-    encode(message, writer = minimal_1.Writer.create()) {
+    encode(message, writer = minimal_1.default.Writer.create()) {
         if (message.Member !== undefined) {
             exports.Member.encode(message.Member, writer.uint32(10).fork()).ldelim();
         }
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof minimal_1.Reader ? input : new minimal_1.Reader(input);
+        const reader = input instanceof minimal_1.default.Reader ? input : new minimal_1.default.Reader(input);
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = createBaseCreateMemberResponse();
         while (reader.pos < end) {
@@ -881,14 +884,14 @@ function createBaseDeleteMemberResponse() {
     return { Member: undefined };
 }
 exports.DeleteMemberResponse = {
-    encode(message, writer = minimal_1.Writer.create()) {
+    encode(message, writer = minimal_1.default.Writer.create()) {
         if (message.Member !== undefined) {
             exports.Member.encode(message.Member, writer.uint32(10).fork()).ldelim();
         }
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof minimal_1.Reader ? input : new minimal_1.Reader(input);
+        const reader = input instanceof minimal_1.default.Reader ? input : new minimal_1.default.Reader(input);
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = createBaseDeleteMemberResponse();
         while (reader.pos < end) {
@@ -928,14 +931,14 @@ function createBaseGetMembersResponse() {
     return { Members: [] };
 }
 exports.GetMembersResponse = {
-    encode(message, writer = minimal_1.Writer.create()) {
+    encode(message, writer = minimal_1.default.Writer.create()) {
         for (const v of message.Members) {
             exports.Member.encode(v, writer.uint32(10).fork()).ldelim();
         }
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof minimal_1.Reader ? input : new minimal_1.Reader(input);
+        const reader = input instanceof minimal_1.default.Reader ? input : new minimal_1.default.Reader(input);
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = createBaseGetMembersResponse();
         while (reader.pos < end) {
@@ -1078,11 +1081,9 @@ function longToNumber(long) {
     }
     return long.toNumber();
 }
-// If you get a compile-error about 'Constructor<Long> and ... have no overlap',
-// add '--ts_proto_opt=esModuleInterop=true' as a flag when calling 'protoc'.
-if (minimal_1.util.Long !== Long) {
-    minimal_1.util.Long = Long;
-    (0, minimal_1.configure)();
+if (minimal_1.default.util.Long !== long_1.default) {
+    minimal_1.default.util.Long = long_1.default;
+    minimal_1.default.configure();
 }
 function isSet(value) {
     return value !== null && value !== undefined;

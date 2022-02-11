@@ -1,9 +1,12 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UpdateMemberEvent = exports.Member = exports.protobufPackage = void 0;
 /* eslint-disable */
-const minimal_1 = require("protobufjs/minimal");
-const Long = require("long");
+const long_1 = __importDefault(require("long"));
+const minimal_1 = __importDefault(require("protobufjs/minimal"));
 const members_1 = require("./members/v1/members");
 const timestamp_1 = require("./google/protobuf/timestamp");
 exports.protobufPackage = "uptown_runners.events.v1";
@@ -24,7 +27,7 @@ function createBaseMember() {
     };
 }
 exports.Member = {
-    encode(message, writer = minimal_1.Writer.create()) {
+    encode(message, writer = minimal_1.default.Writer.create()) {
         if (message.memberId !== 0) {
             writer.uint32(8).int64(message.memberId);
         }
@@ -64,7 +67,7 @@ exports.Member = {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof minimal_1.Reader ? input : new minimal_1.Reader(input);
+        const reader = input instanceof minimal_1.default.Reader ? input : new minimal_1.default.Reader(input);
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = createBaseMember();
         while (reader.pos < end) {
@@ -184,7 +187,7 @@ function createBaseUpdateMemberEvent() {
     return { before: undefined, after: undefined };
 }
 exports.UpdateMemberEvent = {
-    encode(message, writer = minimal_1.Writer.create()) {
+    encode(message, writer = minimal_1.default.Writer.create()) {
         if (message.before !== undefined) {
             exports.Member.encode(message.before, writer.uint32(10).fork()).ldelim();
         }
@@ -194,7 +197,7 @@ exports.UpdateMemberEvent = {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof minimal_1.Reader ? input : new minimal_1.Reader(input);
+        const reader = input instanceof minimal_1.default.Reader ? input : new minimal_1.default.Reader(input);
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = createBaseUpdateMemberEvent();
         while (reader.pos < end) {
@@ -278,11 +281,9 @@ function longToNumber(long) {
     }
     return long.toNumber();
 }
-// If you get a compile-error about 'Constructor<Long> and ... have no overlap',
-// add '--ts_proto_opt=esModuleInterop=true' as a flag when calling 'protoc'.
-if (minimal_1.util.Long !== Long) {
-    minimal_1.util.Long = Long;
-    (0, minimal_1.configure)();
+if (minimal_1.default.util.Long !== long_1.default) {
+    minimal_1.default.util.Long = long_1.default;
+    minimal_1.default.configure();
 }
 function isSet(value) {
     return value !== null && value !== undefined;

@@ -1,6 +1,5 @@
 /* eslint-disable */
-import { util, configure, Writer, Reader } from "protobufjs/minimal";
-import * as Long from "long";
+import Long from "long";
 import {
   makeGenericClientConstructor,
   ChannelCredentials,
@@ -13,6 +12,7 @@ import {
   CallOptions,
   ServiceError,
 } from "@grpc/grpc-js";
+import _m0 from "protobufjs/minimal";
 import { Timestamp } from "./google/protobuf/timestamp";
 
 export const protobufPackage = "uptown_runners.members.v1";
@@ -167,16 +167,19 @@ function createBaseGetMemberByIdRequest(): GetMemberByIdRequest {
 export const GetMemberByIdRequest = {
   encode(
     message: GetMemberByIdRequest,
-    writer: Writer = Writer.create()
-  ): Writer {
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
     if (message.Id !== 0) {
       writer.uint32(8).int64(message.Id);
     }
     return writer;
   },
 
-  decode(input: Reader | Uint8Array, length?: number): GetMemberByIdRequest {
-    const reader = input instanceof Reader ? input : new Reader(input);
+  decode(
+    input: _m0.Reader | Uint8Array,
+    length?: number
+  ): GetMemberByIdRequest {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseGetMemberByIdRequest();
     while (reader.pos < end) {
@@ -221,16 +224,19 @@ function createBaseGetMemberByEmailRequest(): GetMemberByEmailRequest {
 export const GetMemberByEmailRequest = {
   encode(
     message: GetMemberByEmailRequest,
-    writer: Writer = Writer.create()
-  ): Writer {
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
     if (message.Email !== "") {
       writer.uint32(10).string(message.Email);
     }
     return writer;
   },
 
-  decode(input: Reader | Uint8Array, length?: number): GetMemberByEmailRequest {
-    const reader = input instanceof Reader ? input : new Reader(input);
+  decode(
+    input: _m0.Reader | Uint8Array,
+    length?: number
+  ): GetMemberByEmailRequest {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseGetMemberByEmailRequest();
     while (reader.pos < end) {
@@ -275,8 +281,8 @@ function createBaseGetMemberByNationalIdentifierRequest(): GetMemberByNationalId
 export const GetMemberByNationalIdentifierRequest = {
   encode(
     message: GetMemberByNationalIdentifierRequest,
-    writer: Writer = Writer.create()
-  ): Writer {
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
     if (message.NationalIdentifier !== "") {
       writer.uint32(10).string(message.NationalIdentifier);
     }
@@ -284,10 +290,10 @@ export const GetMemberByNationalIdentifierRequest = {
   },
 
   decode(
-    input: Reader | Uint8Array,
+    input: _m0.Reader | Uint8Array,
     length?: number
   ): GetMemberByNationalIdentifierRequest {
-    const reader = input instanceof Reader ? input : new Reader(input);
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseGetMemberByNationalIdentifierRequest();
     while (reader.pos < end) {
@@ -333,7 +339,10 @@ function createBaseGetMembersRequest(): GetMembersRequest {
 }
 
 export const GetMembersRequest = {
-  encode(message: GetMembersRequest, writer: Writer = Writer.create()): Writer {
+  encode(
+    message: GetMembersRequest,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
     if (message.Skip !== 0) {
       writer.uint32(8).int64(message.Skip);
     }
@@ -343,8 +352,8 @@ export const GetMembersRequest = {
     return writer;
   },
 
-  decode(input: Reader | Uint8Array, length?: number): GetMembersRequest {
-    const reader = input instanceof Reader ? input : new Reader(input);
+  decode(input: _m0.Reader | Uint8Array, length?: number): GetMembersRequest {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseGetMembersRequest();
     while (reader.pos < end) {
@@ -405,8 +414,8 @@ function createBaseCreateMemberRequest(): CreateMemberRequest {
 export const CreateMemberRequest = {
   encode(
     message: CreateMemberRequest,
-    writer: Writer = Writer.create()
-  ): Writer {
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
     if (message.NationalIdentifier !== "") {
       writer.uint32(10).string(message.NationalIdentifier);
     }
@@ -443,8 +452,8 @@ export const CreateMemberRequest = {
     return writer;
   },
 
-  decode(input: Reader | Uint8Array, length?: number): CreateMemberRequest {
-    const reader = input instanceof Reader ? input : new Reader(input);
+  decode(input: _m0.Reader | Uint8Array, length?: number): CreateMemberRequest {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseCreateMemberRequest();
     while (reader.pos < end) {
@@ -565,8 +574,8 @@ function createBaseUpdateMemberRequest(): UpdateMemberRequest {
 export const UpdateMemberRequest = {
   encode(
     message: UpdateMemberRequest,
-    writer: Writer = Writer.create()
-  ): Writer {
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
     if (message.Id !== 0) {
       writer.uint32(8).int64(message.Id);
     }
@@ -603,8 +612,8 @@ export const UpdateMemberRequest = {
     return writer;
   },
 
-  decode(input: Reader | Uint8Array, length?: number): UpdateMemberRequest {
-    const reader = input instanceof Reader ? input : new Reader(input);
+  decode(input: _m0.Reader | Uint8Array, length?: number): UpdateMemberRequest {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseUpdateMemberRequest();
     while (reader.pos < end) {
@@ -712,16 +721,16 @@ function createBaseDeleteMemberRequest(): DeleteMemberRequest {
 export const DeleteMemberRequest = {
   encode(
     message: DeleteMemberRequest,
-    writer: Writer = Writer.create()
-  ): Writer {
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
     if (message.MemberId !== 0) {
       writer.uint32(8).int64(message.MemberId);
     }
     return writer;
   },
 
-  decode(input: Reader | Uint8Array, length?: number): DeleteMemberRequest {
-    const reader = input instanceof Reader ? input : new Reader(input);
+  decode(input: _m0.Reader | Uint8Array, length?: number): DeleteMemberRequest {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseDeleteMemberRequest();
     while (reader.pos < end) {
@@ -777,7 +786,10 @@ function createBaseMember(): Member {
 }
 
 export const Member = {
-  encode(message: Member, writer: Writer = Writer.create()): Writer {
+  encode(
+    message: Member,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
     if (message.Id !== 0) {
       writer.uint32(8).int64(message.Id);
     }
@@ -820,8 +832,8 @@ export const Member = {
     return writer;
   },
 
-  decode(input: Reader | Uint8Array, length?: number): Member {
-    const reader = input instanceof Reader ? input : new Reader(input);
+  decode(input: _m0.Reader | Uint8Array, length?: number): Member {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseMember();
     while (reader.pos < end) {
@@ -943,15 +955,18 @@ function createBaseGetMemberResponse(): GetMemberResponse {
 }
 
 export const GetMemberResponse = {
-  encode(message: GetMemberResponse, writer: Writer = Writer.create()): Writer {
+  encode(
+    message: GetMemberResponse,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
     if (message.Member !== undefined) {
       Member.encode(message.Member, writer.uint32(10).fork()).ldelim();
     }
     return writer;
   },
 
-  decode(input: Reader | Uint8Array, length?: number): GetMemberResponse {
-    const reader = input instanceof Reader ? input : new Reader(input);
+  decode(input: _m0.Reader | Uint8Array, length?: number): GetMemberResponse {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseGetMemberResponse();
     while (reader.pos < end) {
@@ -1000,16 +1015,19 @@ function createBaseUpdateMemberResponse(): UpdateMemberResponse {
 export const UpdateMemberResponse = {
   encode(
     message: UpdateMemberResponse,
-    writer: Writer = Writer.create()
-  ): Writer {
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
     if (message.Member !== undefined) {
       Member.encode(message.Member, writer.uint32(10).fork()).ldelim();
     }
     return writer;
   },
 
-  decode(input: Reader | Uint8Array, length?: number): UpdateMemberResponse {
-    const reader = input instanceof Reader ? input : new Reader(input);
+  decode(
+    input: _m0.Reader | Uint8Array,
+    length?: number
+  ): UpdateMemberResponse {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseUpdateMemberResponse();
     while (reader.pos < end) {
@@ -1058,16 +1076,19 @@ function createBaseCreateMemberResponse(): CreateMemberResponse {
 export const CreateMemberResponse = {
   encode(
     message: CreateMemberResponse,
-    writer: Writer = Writer.create()
-  ): Writer {
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
     if (message.Member !== undefined) {
       Member.encode(message.Member, writer.uint32(10).fork()).ldelim();
     }
     return writer;
   },
 
-  decode(input: Reader | Uint8Array, length?: number): CreateMemberResponse {
-    const reader = input instanceof Reader ? input : new Reader(input);
+  decode(
+    input: _m0.Reader | Uint8Array,
+    length?: number
+  ): CreateMemberResponse {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseCreateMemberResponse();
     while (reader.pos < end) {
@@ -1116,16 +1137,19 @@ function createBaseDeleteMemberResponse(): DeleteMemberResponse {
 export const DeleteMemberResponse = {
   encode(
     message: DeleteMemberResponse,
-    writer: Writer = Writer.create()
-  ): Writer {
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
     if (message.Member !== undefined) {
       Member.encode(message.Member, writer.uint32(10).fork()).ldelim();
     }
     return writer;
   },
 
-  decode(input: Reader | Uint8Array, length?: number): DeleteMemberResponse {
-    const reader = input instanceof Reader ? input : new Reader(input);
+  decode(
+    input: _m0.Reader | Uint8Array,
+    length?: number
+  ): DeleteMemberResponse {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseDeleteMemberResponse();
     while (reader.pos < end) {
@@ -1174,16 +1198,16 @@ function createBaseGetMembersResponse(): GetMembersResponse {
 export const GetMembersResponse = {
   encode(
     message: GetMembersResponse,
-    writer: Writer = Writer.create()
-  ): Writer {
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
     for (const v of message.Members) {
       Member.encode(v!, writer.uint32(10).fork()).ldelim();
     }
     return writer;
   },
 
-  decode(input: Reader | Uint8Array, length?: number): GetMembersResponse {
-    const reader = input instanceof Reader ? input : new Reader(input);
+  decode(input: _m0.Reader | Uint8Array, length?: number): GetMembersResponse {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseGetMembersResponse();
     while (reader.pos < end) {
@@ -1538,11 +1562,9 @@ function longToNumber(long: Long): number {
   return long.toNumber();
 }
 
-// If you get a compile-error about 'Constructor<Long> and ... have no overlap',
-// add '--ts_proto_opt=esModuleInterop=true' as a flag when calling 'protoc'.
-if (util.Long !== Long) {
-  util.Long = Long as any;
-  configure();
+if (_m0.util.Long !== Long) {
+  _m0.util.Long = Long as any;
+  _m0.configure();
 }
 
 function isSet(value: any): boolean {

@@ -1,15 +1,18 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Timestamp = exports.protobufPackage = void 0;
 /* eslint-disable */
-const minimal_1 = require("protobufjs/minimal");
-const Long = require("long");
+const long_1 = __importDefault(require("long"));
+const minimal_1 = __importDefault(require("protobufjs/minimal"));
 exports.protobufPackage = "google.protobuf";
 function createBaseTimestamp() {
     return { seconds: 0, nanos: 0 };
 }
 exports.Timestamp = {
-    encode(message, writer = minimal_1.Writer.create()) {
+    encode(message, writer = minimal_1.default.Writer.create()) {
         if (message.seconds !== 0) {
             writer.uint32(8).int64(message.seconds);
         }
@@ -19,7 +22,7 @@ exports.Timestamp = {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof minimal_1.Reader ? input : new minimal_1.Reader(input);
+        const reader = input instanceof minimal_1.default.Reader ? input : new minimal_1.default.Reader(input);
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = createBaseTimestamp();
         while (reader.pos < end) {
@@ -75,11 +78,9 @@ function longToNumber(long) {
     }
     return long.toNumber();
 }
-// If you get a compile-error about 'Constructor<Long> and ... have no overlap',
-// add '--ts_proto_opt=esModuleInterop=true' as a flag when calling 'protoc'.
-if (minimal_1.util.Long !== Long) {
-    minimal_1.util.Long = Long;
-    (0, minimal_1.configure)();
+if (minimal_1.default.util.Long !== long_1.default) {
+    minimal_1.default.util.Long = long_1.default;
+    minimal_1.default.configure();
 }
 function isSet(value) {
     return value !== null && value !== undefined;

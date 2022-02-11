@@ -1,6 +1,6 @@
 /* eslint-disable */
-import { util, configure, Writer, Reader } from "protobufjs/minimal";
-import * as Long from "long";
+import Long from "long";
+import _m0 from "protobufjs/minimal";
 import {
   MemberShipType,
   MembershipStatus,
@@ -51,7 +51,10 @@ function createBaseMember(): Member {
 }
 
 export const Member = {
-  encode(message: Member, writer: Writer = Writer.create()): Writer {
+  encode(
+    message: Member,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
     if (message.memberId !== 0) {
       writer.uint32(8).int64(message.memberId);
     }
@@ -97,8 +100,8 @@ export const Member = {
     return writer;
   },
 
-  decode(input: Reader | Uint8Array, length?: number): Member {
-    const reader = input instanceof Reader ? input : new Reader(input);
+  decode(input: _m0.Reader | Uint8Array, length?: number): Member {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseMember();
     while (reader.pos < end) {
@@ -227,7 +230,10 @@ function createBaseUpdateMemberEvent(): UpdateMemberEvent {
 }
 
 export const UpdateMemberEvent = {
-  encode(message: UpdateMemberEvent, writer: Writer = Writer.create()): Writer {
+  encode(
+    message: UpdateMemberEvent,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
     if (message.before !== undefined) {
       Member.encode(message.before, writer.uint32(10).fork()).ldelim();
     }
@@ -237,8 +243,8 @@ export const UpdateMemberEvent = {
     return writer;
   },
 
-  decode(input: Reader | Uint8Array, length?: number): UpdateMemberEvent {
-    const reader = input instanceof Reader ? input : new Reader(input);
+  decode(input: _m0.Reader | Uint8Array, length?: number): UpdateMemberEvent {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseUpdateMemberEvent();
     while (reader.pos < end) {
@@ -357,11 +363,9 @@ function longToNumber(long: Long): number {
   return long.toNumber();
 }
 
-// If you get a compile-error about 'Constructor<Long> and ... have no overlap',
-// add '--ts_proto_opt=esModuleInterop=true' as a flag when calling 'protoc'.
-if (util.Long !== Long) {
-  util.Long = Long as any;
-  configure();
+if (_m0.util.Long !== Long) {
+  _m0.util.Long = Long as any;
+  _m0.configure();
 }
 
 function isSet(value: any): boolean {

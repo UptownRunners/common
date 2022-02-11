@@ -1,6 +1,6 @@
 /* eslint-disable */
-import { util, configure, Writer, Reader } from "protobufjs/minimal";
-import * as Long from "long";
+import Long from "long";
+import _m0 from "protobufjs/minimal";
 import { Timestamp } from "../google/protobuf/timestamp";
 import { Duration } from "../google/protobuf/duration";
 
@@ -1037,7 +1037,10 @@ function createBaseFieldRules(): FieldRules {
 }
 
 export const FieldRules = {
-  encode(message: FieldRules, writer: Writer = Writer.create()): Writer {
+  encode(
+    message: FieldRules,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
     if (message.message !== undefined) {
       MessageRules.encode(message.message, writer.uint32(138).fork()).ldelim();
     }
@@ -1116,8 +1119,8 @@ export const FieldRules = {
     return writer;
   },
 
-  decode(input: Reader | Uint8Array, length?: number): FieldRules {
-    const reader = input instanceof Reader ? input : new Reader(input);
+  decode(input: _m0.Reader | Uint8Array, length?: number): FieldRules {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseFieldRules();
     while (reader.pos < end) {
@@ -1455,7 +1458,10 @@ function createBaseFloatRules(): FloatRules {
 }
 
 export const FloatRules = {
-  encode(message: FloatRules, writer: Writer = Writer.create()): Writer {
+  encode(
+    message: FloatRules,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
     if (message.const !== 0) {
       writer.uint32(13).float(message.const);
     }
@@ -1487,8 +1493,8 @@ export const FloatRules = {
     return writer;
   },
 
-  decode(input: Reader | Uint8Array, length?: number): FloatRules {
-    const reader = input instanceof Reader ? input : new Reader(input);
+  decode(input: _m0.Reader | Uint8Array, length?: number): FloatRules {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseFloatRules();
     while (reader.pos < end) {
@@ -1609,7 +1615,10 @@ function createBaseDoubleRules(): DoubleRules {
 }
 
 export const DoubleRules = {
-  encode(message: DoubleRules, writer: Writer = Writer.create()): Writer {
+  encode(
+    message: DoubleRules,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
     if (message.const !== 0) {
       writer.uint32(9).double(message.const);
     }
@@ -1641,8 +1650,8 @@ export const DoubleRules = {
     return writer;
   },
 
-  decode(input: Reader | Uint8Array, length?: number): DoubleRules {
-    const reader = input instanceof Reader ? input : new Reader(input);
+  decode(input: _m0.Reader | Uint8Array, length?: number): DoubleRules {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseDoubleRules();
     while (reader.pos < end) {
@@ -1763,7 +1772,10 @@ function createBaseInt32Rules(): Int32Rules {
 }
 
 export const Int32Rules = {
-  encode(message: Int32Rules, writer: Writer = Writer.create()): Writer {
+  encode(
+    message: Int32Rules,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
     if (message.const !== 0) {
       writer.uint32(8).int32(message.const);
     }
@@ -1795,8 +1807,8 @@ export const Int32Rules = {
     return writer;
   },
 
-  decode(input: Reader | Uint8Array, length?: number): Int32Rules {
-    const reader = input instanceof Reader ? input : new Reader(input);
+  decode(input: _m0.Reader | Uint8Array, length?: number): Int32Rules {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseInt32Rules();
     while (reader.pos < end) {
@@ -1917,7 +1929,10 @@ function createBaseInt64Rules(): Int64Rules {
 }
 
 export const Int64Rules = {
-  encode(message: Int64Rules, writer: Writer = Writer.create()): Writer {
+  encode(
+    message: Int64Rules,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
     if (message.const !== 0) {
       writer.uint32(8).int64(message.const);
     }
@@ -1949,8 +1964,8 @@ export const Int64Rules = {
     return writer;
   },
 
-  decode(input: Reader | Uint8Array, length?: number): Int64Rules {
-    const reader = input instanceof Reader ? input : new Reader(input);
+  decode(input: _m0.Reader | Uint8Array, length?: number): Int64Rules {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseInt64Rules();
     while (reader.pos < end) {
@@ -2071,7 +2086,10 @@ function createBaseUInt32Rules(): UInt32Rules {
 }
 
 export const UInt32Rules = {
-  encode(message: UInt32Rules, writer: Writer = Writer.create()): Writer {
+  encode(
+    message: UInt32Rules,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
     if (message.const !== 0) {
       writer.uint32(8).uint32(message.const);
     }
@@ -2103,8 +2121,8 @@ export const UInt32Rules = {
     return writer;
   },
 
-  decode(input: Reader | Uint8Array, length?: number): UInt32Rules {
-    const reader = input instanceof Reader ? input : new Reader(input);
+  decode(input: _m0.Reader | Uint8Array, length?: number): UInt32Rules {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseUInt32Rules();
     while (reader.pos < end) {
@@ -2225,7 +2243,10 @@ function createBaseUInt64Rules(): UInt64Rules {
 }
 
 export const UInt64Rules = {
-  encode(message: UInt64Rules, writer: Writer = Writer.create()): Writer {
+  encode(
+    message: UInt64Rules,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
     if (message.const !== 0) {
       writer.uint32(8).uint64(message.const);
     }
@@ -2257,8 +2278,8 @@ export const UInt64Rules = {
     return writer;
   },
 
-  decode(input: Reader | Uint8Array, length?: number): UInt64Rules {
-    const reader = input instanceof Reader ? input : new Reader(input);
+  decode(input: _m0.Reader | Uint8Array, length?: number): UInt64Rules {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseUInt64Rules();
     while (reader.pos < end) {
@@ -2379,7 +2400,10 @@ function createBaseSInt32Rules(): SInt32Rules {
 }
 
 export const SInt32Rules = {
-  encode(message: SInt32Rules, writer: Writer = Writer.create()): Writer {
+  encode(
+    message: SInt32Rules,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
     if (message.const !== 0) {
       writer.uint32(8).sint32(message.const);
     }
@@ -2411,8 +2435,8 @@ export const SInt32Rules = {
     return writer;
   },
 
-  decode(input: Reader | Uint8Array, length?: number): SInt32Rules {
-    const reader = input instanceof Reader ? input : new Reader(input);
+  decode(input: _m0.Reader | Uint8Array, length?: number): SInt32Rules {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseSInt32Rules();
     while (reader.pos < end) {
@@ -2533,7 +2557,10 @@ function createBaseSInt64Rules(): SInt64Rules {
 }
 
 export const SInt64Rules = {
-  encode(message: SInt64Rules, writer: Writer = Writer.create()): Writer {
+  encode(
+    message: SInt64Rules,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
     if (message.const !== 0) {
       writer.uint32(8).sint64(message.const);
     }
@@ -2565,8 +2592,8 @@ export const SInt64Rules = {
     return writer;
   },
 
-  decode(input: Reader | Uint8Array, length?: number): SInt64Rules {
-    const reader = input instanceof Reader ? input : new Reader(input);
+  decode(input: _m0.Reader | Uint8Array, length?: number): SInt64Rules {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseSInt64Rules();
     while (reader.pos < end) {
@@ -2687,7 +2714,10 @@ function createBaseFixed32Rules(): Fixed32Rules {
 }
 
 export const Fixed32Rules = {
-  encode(message: Fixed32Rules, writer: Writer = Writer.create()): Writer {
+  encode(
+    message: Fixed32Rules,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
     if (message.const !== 0) {
       writer.uint32(13).fixed32(message.const);
     }
@@ -2719,8 +2749,8 @@ export const Fixed32Rules = {
     return writer;
   },
 
-  decode(input: Reader | Uint8Array, length?: number): Fixed32Rules {
-    const reader = input instanceof Reader ? input : new Reader(input);
+  decode(input: _m0.Reader | Uint8Array, length?: number): Fixed32Rules {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseFixed32Rules();
     while (reader.pos < end) {
@@ -2841,7 +2871,10 @@ function createBaseFixed64Rules(): Fixed64Rules {
 }
 
 export const Fixed64Rules = {
-  encode(message: Fixed64Rules, writer: Writer = Writer.create()): Writer {
+  encode(
+    message: Fixed64Rules,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
     if (message.const !== 0) {
       writer.uint32(9).fixed64(message.const);
     }
@@ -2873,8 +2906,8 @@ export const Fixed64Rules = {
     return writer;
   },
 
-  decode(input: Reader | Uint8Array, length?: number): Fixed64Rules {
-    const reader = input instanceof Reader ? input : new Reader(input);
+  decode(input: _m0.Reader | Uint8Array, length?: number): Fixed64Rules {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseFixed64Rules();
     while (reader.pos < end) {
@@ -2995,7 +3028,10 @@ function createBaseSFixed32Rules(): SFixed32Rules {
 }
 
 export const SFixed32Rules = {
-  encode(message: SFixed32Rules, writer: Writer = Writer.create()): Writer {
+  encode(
+    message: SFixed32Rules,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
     if (message.const !== 0) {
       writer.uint32(13).sfixed32(message.const);
     }
@@ -3027,8 +3063,8 @@ export const SFixed32Rules = {
     return writer;
   },
 
-  decode(input: Reader | Uint8Array, length?: number): SFixed32Rules {
-    const reader = input instanceof Reader ? input : new Reader(input);
+  decode(input: _m0.Reader | Uint8Array, length?: number): SFixed32Rules {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseSFixed32Rules();
     while (reader.pos < end) {
@@ -3149,7 +3185,10 @@ function createBaseSFixed64Rules(): SFixed64Rules {
 }
 
 export const SFixed64Rules = {
-  encode(message: SFixed64Rules, writer: Writer = Writer.create()): Writer {
+  encode(
+    message: SFixed64Rules,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
     if (message.const !== 0) {
       writer.uint32(9).sfixed64(message.const);
     }
@@ -3181,8 +3220,8 @@ export const SFixed64Rules = {
     return writer;
   },
 
-  decode(input: Reader | Uint8Array, length?: number): SFixed64Rules {
-    const reader = input instanceof Reader ? input : new Reader(input);
+  decode(input: _m0.Reader | Uint8Array, length?: number): SFixed64Rules {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseSFixed64Rules();
     while (reader.pos < end) {
@@ -3294,15 +3333,18 @@ function createBaseBoolRules(): BoolRules {
 }
 
 export const BoolRules = {
-  encode(message: BoolRules, writer: Writer = Writer.create()): Writer {
+  encode(
+    message: BoolRules,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
     if (message.const === true) {
       writer.uint32(8).bool(message.const);
     }
     return writer;
   },
 
-  decode(input: Reader | Uint8Array, length?: number): BoolRules {
-    const reader = input instanceof Reader ? input : new Reader(input);
+  decode(input: _m0.Reader | Uint8Array, length?: number): BoolRules {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseBoolRules();
     while (reader.pos < end) {
@@ -3372,7 +3414,10 @@ function createBaseStringRules(): StringRules {
 }
 
 export const StringRules = {
-  encode(message: StringRules, writer: Writer = Writer.create()): Writer {
+  encode(
+    message: StringRules,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
     if (message.const !== "") {
       writer.uint32(10).string(message.const);
     }
@@ -3454,8 +3499,8 @@ export const StringRules = {
     return writer;
   },
 
-  decode(input: Reader | Uint8Array, length?: number): StringRules {
-    const reader = input instanceof Reader ? input : new Reader(input);
+  decode(input: _m0.Reader | Uint8Array, length?: number): StringRules {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseStringRules();
     while (reader.pos < end) {
@@ -3686,7 +3731,10 @@ function createBaseBytesRules(): BytesRules {
 }
 
 export const BytesRules = {
-  encode(message: BytesRules, writer: Writer = Writer.create()): Writer {
+  encode(
+    message: BytesRules,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
     if (message.const.length !== 0) {
       writer.uint32(10).bytes(message.const);
     }
@@ -3732,8 +3780,8 @@ export const BytesRules = {
     return writer;
   },
 
-  decode(input: Reader | Uint8Array, length?: number): BytesRules {
-    const reader = input instanceof Reader ? input : new Reader(input);
+  decode(input: _m0.Reader | Uint8Array, length?: number): BytesRules {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseBytesRules();
     while (reader.pos < end) {
@@ -3893,7 +3941,10 @@ function createBaseEnumRules(): EnumRules {
 }
 
 export const EnumRules = {
-  encode(message: EnumRules, writer: Writer = Writer.create()): Writer {
+  encode(
+    message: EnumRules,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
     if (message.const !== 0) {
       writer.uint32(8).int32(message.const);
     }
@@ -3913,8 +3964,8 @@ export const EnumRules = {
     return writer;
   },
 
-  decode(input: Reader | Uint8Array, length?: number): EnumRules {
-    const reader = input instanceof Reader ? input : new Reader(input);
+  decode(input: _m0.Reader | Uint8Array, length?: number): EnumRules {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseEnumRules();
     while (reader.pos < end) {
@@ -4002,7 +4053,10 @@ function createBaseMessageRules(): MessageRules {
 }
 
 export const MessageRules = {
-  encode(message: MessageRules, writer: Writer = Writer.create()): Writer {
+  encode(
+    message: MessageRules,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
     if (message.skip === true) {
       writer.uint32(8).bool(message.skip);
     }
@@ -4012,8 +4066,8 @@ export const MessageRules = {
     return writer;
   },
 
-  decode(input: Reader | Uint8Array, length?: number): MessageRules {
-    const reader = input instanceof Reader ? input : new Reader(input);
+  decode(input: _m0.Reader | Uint8Array, length?: number): MessageRules {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseMessageRules();
     while (reader.pos < end) {
@@ -4068,7 +4122,10 @@ function createBaseRepeatedRules(): RepeatedRules {
 }
 
 export const RepeatedRules = {
-  encode(message: RepeatedRules, writer: Writer = Writer.create()): Writer {
+  encode(
+    message: RepeatedRules,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
     if (message.minItems !== 0) {
       writer.uint32(8).uint64(message.minItems);
     }
@@ -4087,8 +4144,8 @@ export const RepeatedRules = {
     return writer;
   },
 
-  decode(input: Reader | Uint8Array, length?: number): RepeatedRules {
-    const reader = input instanceof Reader ? input : new Reader(input);
+  decode(input: _m0.Reader | Uint8Array, length?: number): RepeatedRules {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseRepeatedRules();
     while (reader.pos < end) {
@@ -4175,7 +4232,10 @@ function createBaseMapRules(): MapRules {
 }
 
 export const MapRules = {
-  encode(message: MapRules, writer: Writer = Writer.create()): Writer {
+  encode(
+    message: MapRules,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
     if (message.minPairs !== 0) {
       writer.uint32(8).uint64(message.minPairs);
     }
@@ -4197,8 +4257,8 @@ export const MapRules = {
     return writer;
   },
 
-  decode(input: Reader | Uint8Array, length?: number): MapRules {
-    const reader = input instanceof Reader ? input : new Reader(input);
+  decode(input: _m0.Reader | Uint8Array, length?: number): MapRules {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseMapRules();
     while (reader.pos < end) {
@@ -4286,7 +4346,10 @@ function createBaseAnyRules(): AnyRules {
 }
 
 export const AnyRules = {
-  encode(message: AnyRules, writer: Writer = Writer.create()): Writer {
+  encode(
+    message: AnyRules,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
     if (message.required === true) {
       writer.uint32(8).bool(message.required);
     }
@@ -4299,8 +4362,8 @@ export const AnyRules = {
     return writer;
   },
 
-  decode(input: Reader | Uint8Array, length?: number): AnyRules {
-    const reader = input instanceof Reader ? input : new Reader(input);
+  decode(input: _m0.Reader | Uint8Array, length?: number): AnyRules {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseAnyRules();
     while (reader.pos < end) {
@@ -4372,7 +4435,10 @@ function createBaseDurationRules(): DurationRules {
 }
 
 export const DurationRules = {
-  encode(message: DurationRules, writer: Writer = Writer.create()): Writer {
+  encode(
+    message: DurationRules,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
     if (message.required === true) {
       writer.uint32(8).bool(message.required);
     }
@@ -4400,8 +4466,8 @@ export const DurationRules = {
     return writer;
   },
 
-  decode(input: Reader | Uint8Array, length?: number): DurationRules {
-    const reader = input instanceof Reader ? input : new Reader(input);
+  decode(input: _m0.Reader | Uint8Array, length?: number): DurationRules {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseDurationRules();
     while (reader.pos < end) {
@@ -4530,7 +4596,10 @@ function createBaseTimestampRules(): TimestampRules {
 }
 
 export const TimestampRules = {
-  encode(message: TimestampRules, writer: Writer = Writer.create()): Writer {
+  encode(
+    message: TimestampRules,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
     if (message.required === true) {
       writer.uint32(8).bool(message.required);
     }
@@ -4576,8 +4645,8 @@ export const TimestampRules = {
     return writer;
   },
 
-  decode(input: Reader | Uint8Array, length?: number): TimestampRules {
-    const reader = input instanceof Reader ? input : new Reader(input);
+  decode(input: _m0.Reader | Uint8Array, length?: number): TimestampRules {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseTimestampRules();
     while (reader.pos < end) {
@@ -4767,11 +4836,9 @@ function longToNumber(long: Long): number {
   return long.toNumber();
 }
 
-// If you get a compile-error about 'Constructor<Long> and ... have no overlap',
-// add '--ts_proto_opt=esModuleInterop=true' as a flag when calling 'protoc'.
-if (util.Long !== Long) {
-  util.Long = Long as any;
-  configure();
+if (_m0.util.Long !== Long) {
+  _m0.util.Long = Long as any;
+  _m0.configure();
 }
 
 function isSet(value: any): boolean {
