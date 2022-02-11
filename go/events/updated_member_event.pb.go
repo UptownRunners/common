@@ -37,8 +37,8 @@ type Member struct {
 	Email                  string                   `protobuf:"bytes,8,opt,name=email,proto3" json:"email,omitempty"`
 	RenewedDate            *timestamppb.Timestamp   `protobuf:"bytes,9,opt,name=renewed_date,json=renewedDate,proto3" json:"renewed_date,omitempty"`
 	OverrideExpirationDate *timestamppb.Timestamp   `protobuf:"bytes,10,opt,name=override_expiration_date,json=overrideExpirationDate,proto3" json:"override_expiration_date,omitempty"`
-	MembershipType         members.MemberShipType   `protobuf:"varint,11,opt,name=membership_type,json=membershipType,proto3,enum=uptown_runners.members.v1.MemberShipType" json:"membership_type,omitempty"`
-	Status                 members.MembershipStatus `protobuf:"varint,12,opt,name=status,proto3,enum=uptown_runners.members.v1.MembershipStatus" json:"status,omitempty"`
+	MembershipType         members.MembershipType   `protobuf:"varint,11,opt,name=membership_type,json=membershipType,proto3,enum=uptown_runners.members.v2.MembershipType" json:"membership_type,omitempty"`
+	Status                 members.MembershipStatus `protobuf:"varint,12,opt,name=status,proto3,enum=uptown_runners.members.v2.MembershipStatus" json:"status,omitempty"`
 }
 
 func (x *Member) Reset() {
@@ -143,11 +143,11 @@ func (x *Member) GetOverrideExpirationDate() *timestamppb.Timestamp {
 	return nil
 }
 
-func (x *Member) GetMembershipType() members.MemberShipType {
+func (x *Member) GetMembershipType() members.MembershipType {
 	if x != nil {
 		return x.MembershipType
 	}
-	return members.MemberShipType(0)
+	return members.MembershipType(0)
 }
 
 func (x *Member) GetStatus() members.MembershipStatus {
@@ -250,11 +250,11 @@ var file_updated_member_event_proto_rawDesc = []byte{
 	0x6d, 0x65, 0x6d, 0x62, 0x65, 0x72, 0x73, 0x68, 0x69, 0x70, 0x5f, 0x74, 0x79, 0x70, 0x65, 0x18,
 	0x0b, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x29, 0x2e, 0x75, 0x70, 0x74, 0x6f, 0x77, 0x6e, 0x5f, 0x72,
 	0x75, 0x6e, 0x6e, 0x65, 0x72, 0x73, 0x2e, 0x6d, 0x65, 0x6d, 0x62, 0x65, 0x72, 0x73, 0x2e, 0x76,
-	0x31, 0x2e, 0x4d, 0x65, 0x6d, 0x62, 0x65, 0x72, 0x53, 0x68, 0x69, 0x70, 0x54, 0x79, 0x70, 0x65,
+	0x32, 0x2e, 0x4d, 0x65, 0x6d, 0x62, 0x65, 0x72, 0x73, 0x68, 0x69, 0x70, 0x54, 0x79, 0x70, 0x65,
 	0x52, 0x0e, 0x6d, 0x65, 0x6d, 0x62, 0x65, 0x72, 0x73, 0x68, 0x69, 0x70, 0x54, 0x79, 0x70, 0x65,
 	0x12, 0x43, 0x0a, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x18, 0x0c, 0x20, 0x01, 0x28, 0x0e,
 	0x32, 0x2b, 0x2e, 0x75, 0x70, 0x74, 0x6f, 0x77, 0x6e, 0x5f, 0x72, 0x75, 0x6e, 0x6e, 0x65, 0x72,
-	0x73, 0x2e, 0x6d, 0x65, 0x6d, 0x62, 0x65, 0x72, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x65, 0x6d,
+	0x73, 0x2e, 0x6d, 0x65, 0x6d, 0x62, 0x65, 0x72, 0x73, 0x2e, 0x76, 0x32, 0x2e, 0x4d, 0x65, 0x6d,
 	0x62, 0x65, 0x72, 0x73, 0x68, 0x69, 0x70, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x52, 0x06, 0x73,
 	0x74, 0x61, 0x74, 0x75, 0x73, 0x22, 0x85, 0x01, 0x0a, 0x11, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65,
 	0x4d, 0x65, 0x6d, 0x62, 0x65, 0x72, 0x45, 0x76, 0x65, 0x6e, 0x74, 0x12, 0x38, 0x0a, 0x06, 0x62,
@@ -288,14 +288,14 @@ var file_updated_member_event_proto_goTypes = []interface{}{
 	(*Member)(nil),                // 0: uptown_runners.events.v1.Member
 	(*UpdateMemberEvent)(nil),     // 1: uptown_runners.events.v1.UpdateMemberEvent
 	(*timestamppb.Timestamp)(nil), // 2: google.protobuf.Timestamp
-	(members.MemberShipType)(0),   // 3: uptown_runners.members.v1.MemberShipType
-	(members.MembershipStatus)(0), // 4: uptown_runners.members.v1.MembershipStatus
+	(members.MembershipType)(0),   // 3: uptown_runners.members.v2.MembershipType
+	(members.MembershipStatus)(0), // 4: uptown_runners.members.v2.MembershipStatus
 }
 var file_updated_member_event_proto_depIdxs = []int32{
 	2, // 0: uptown_runners.events.v1.Member.renewed_date:type_name -> google.protobuf.Timestamp
 	2, // 1: uptown_runners.events.v1.Member.override_expiration_date:type_name -> google.protobuf.Timestamp
-	3, // 2: uptown_runners.events.v1.Member.membership_type:type_name -> uptown_runners.members.v1.MemberShipType
-	4, // 3: uptown_runners.events.v1.Member.status:type_name -> uptown_runners.members.v1.MembershipStatus
+	3, // 2: uptown_runners.events.v1.Member.membership_type:type_name -> uptown_runners.members.v2.MembershipType
+	4, // 3: uptown_runners.events.v1.Member.status:type_name -> uptown_runners.members.v2.MembershipStatus
 	0, // 4: uptown_runners.events.v1.UpdateMemberEvent.before:type_name -> uptown_runners.events.v1.Member
 	0, // 5: uptown_runners.events.v1.UpdateMemberEvent.after:type_name -> uptown_runners.events.v1.Member
 	6, // [6:6] is the sub-list for method output_type

@@ -1,98 +1,114 @@
 syntax = "proto3";
 
-package uptown_runners.members.v1;
+package uptown_runners.members.v2;
 
 import "google/protobuf/timestamp.proto";
 
 option go_package = "github.com/UptownRunners/common/go/members";
 
 message GetMemberByIdRequest {
-    int64 Id = 1;
+  int64 id = 1;
 }
 
 message GetMemberByEmailRequest {
-    string Email = 1;
+  string email = 1;
 }
 
 message GetMemberByNationalIdentifierRequest {
-    string NationalIdentifier = 1;
+  string national_identifier = 1;
 }
 
 message GetMembersRequest {
-    int64 Skip = 1;
-    int64 Take = 2;
+  optional int64 skip = 1;
+  optional int64 take = 2;
 }
 
 message CreateMemberRequest {
-    string NationalIdentifier = 1;
-    string Email = 2;
-    string FirstName = 3;
-    string LastName = 4;
-    string PhoneNumber = 5;
-    string Address = 6;
-    MemberShipType MemberShipType = 7;
-    google.protobuf.Timestamp RenewedDate = 8;
-    google.protobuf.Timestamp OverrideExpirationDate = 9;
+  string national_identifier = 1;
+  string email = 2;
+  string first_name = 3;
+  string last_name = 4;
+  string phone_number = 5;
+  Address address = 6;
+  MembershipType membership_type = 7;
+  google.protobuf.Timestamp renewed_date = 8;
+  google.protobuf.Timestamp override_expiration_date = 9;
 }
 
 message UpdateMemberRequest {
-    int64 Id = 1;
-    string Email = 2;
-    string FirstName = 3;
-    string LastName = 4;
-    string PhoneNumber = 5;
-    string Address = 6;
-    MemberShipType MemberShipType = 7;
-    google.protobuf.Timestamp RenewedDate = 8;
-    google.protobuf.Timestamp OverrideExpirationDate = 9;
+  int64 id = 1;
+  string email = 2;
+  string first_name = 3;
+  string last_name = 4;
+  string phone_number = 5;
+  Address address = 6;
+  MembershipType membership_type = 7;
+  google.protobuf.Timestamp renewed_date = 8;
+  google.protobuf.Timestamp override_expiration_date = 9;
+  bool deactivated = 10;
 }
 
 message DeleteMemberRequest {
-    int64 MemberId = 1;
+  int64 member_id = 1;
 }
 
-enum MemberShipType {
-    FULL = 0;
-    SUPPORT = 1;
+message UpdateStatusesRequest {}
+
+enum MembershipType {
+  FULL = 0;
+  SUPPORT = 1;
 }
 
 enum MembershipStatus {
-    Active = 0;
-    Inactive = 1;
+    ACTIVE = 0;
+    INACTIVE = 1;
 }
 
 message Member {
-    int64 Id = 1;
-    string NationalIdentifier = 2;
-    string Email = 3;
-    string FirstName = 4;
-    string LastName = 5;
-    string PhoneNumber = 6;
-    string Address = 7;
-    MemberShipType MemberShipType = 8;
-    google.protobuf.Timestamp RenewedDate = 9;
-    google.protobuf.Timestamp OverrideExpirationDate = 10;
-    MembershipStatus Status = 11;
+    int64 id = 1;
+    string national_identifier = 2;
+    string email = 3;
+    string first_name = 4;
+    string last_name = 5;
+    string phone_number = 6;
+    Address address = 7;
+    MembershipType membership_type = 8;
+    google.protobuf.Timestamp renewed_date = 9;
+    google.protobuf.Timestamp override_expiration_date = 10;
+    MembershipStatus status = 11;
+    bool deactivated = 12;
+}
+
+message Address {
+    string street = 1;
+    string postal_code = 2;
+    string city = 3;
+    string country = 4;
 }
 
 message GetMemberResponse {
-    Member Member = 1;
+    Member member = 1;
 }
 
 message UpdateMemberResponse {
-    Member Member = 1;
+    Member member = 1;
 }
 
 message CreateMemberResponse {
-    Member Member = 1;
+    Member member = 1;
 }
 
 message DeleteMemberResponse {
-    Member Member = 1;
+    Member member = 1;
 }
 
 message GetMembersResponse {
-    repeated Member Members = 1;
+    repeated Member members = 1;
+}
+
+message UpdateStatusesResponse {
+  bool success = 1;
+  string error_message = 2;
 }
 
 service MembersService {
@@ -103,4 +119,5 @@ service MembersService {
     rpc Create(CreateMemberRequest) returns (CreateMemberResponse);
     rpc Update(UpdateMemberRequest) returns (UpdateMemberResponse);
     rpc Delete(DeleteMemberRequest) returns (DeleteMemberResponse);
+    rpc UpdateStatuses(UpdateStatusesRequest) returns (UpdateStatusesResponse);
 }
