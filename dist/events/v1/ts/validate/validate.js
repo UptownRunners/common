@@ -1,11 +1,14 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.TimestampRules = exports.DurationRules = exports.AnyRules = exports.MapRules = exports.RepeatedRules = exports.MessageRules = exports.EnumRules = exports.BytesRules = exports.StringRules = exports.BoolRules = exports.SFixed64Rules = exports.SFixed32Rules = exports.Fixed64Rules = exports.Fixed32Rules = exports.SInt64Rules = exports.SInt32Rules = exports.UInt64Rules = exports.UInt32Rules = exports.Int64Rules = exports.Int32Rules = exports.DoubleRules = exports.FloatRules = exports.FieldRules = exports.knownRegexToJSON = exports.knownRegexFromJSON = exports.KnownRegex = exports.protobufPackage = void 0;
 /* eslint-disable */
-import { util, configure, Writer, Reader } from "protobufjs/minimal";
-import * as Long from "long";
-import { Timestamp } from "../google/protobuf/timestamp";
-import { Duration } from "../google/protobuf/duration";
-export const protobufPackage = "validate";
+const minimal_1 = require("protobufjs/minimal");
+const Long = require("long");
+const timestamp_1 = require("../google/protobuf/timestamp");
+const duration_1 = require("../google/protobuf/duration");
+exports.protobufPackage = "validate";
 /** WellKnownRegex contain some well-known patterns. */
-export var KnownRegex;
+var KnownRegex;
 (function (KnownRegex) {
     KnownRegex[KnownRegex["UNKNOWN"] = 0] = "UNKNOWN";
     /** HTTP_HEADER_NAME - HTTP header name as defined by RFC 7230. */
@@ -13,8 +16,8 @@ export var KnownRegex;
     /** HTTP_HEADER_VALUE - HTTP header value as defined by RFC 7230. */
     KnownRegex[KnownRegex["HTTP_HEADER_VALUE"] = 2] = "HTTP_HEADER_VALUE";
     KnownRegex[KnownRegex["UNRECOGNIZED"] = -1] = "UNRECOGNIZED";
-})(KnownRegex || (KnownRegex = {}));
-export function knownRegexFromJSON(object) {
+})(KnownRegex = exports.KnownRegex || (exports.KnownRegex = {}));
+function knownRegexFromJSON(object) {
     switch (object) {
         case 0:
         case "UNKNOWN":
@@ -31,7 +34,8 @@ export function knownRegexFromJSON(object) {
             return KnownRegex.UNRECOGNIZED;
     }
 }
-export function knownRegexToJSON(object) {
+exports.knownRegexFromJSON = knownRegexFromJSON;
+function knownRegexToJSON(object) {
     switch (object) {
         case KnownRegex.UNKNOWN:
             return "UNKNOWN";
@@ -43,6 +47,7 @@ export function knownRegexToJSON(object) {
             return "UNKNOWN";
     }
 }
+exports.knownRegexToJSON = knownRegexToJSON;
 function createBaseFieldRules() {
     return {
         message: undefined,
@@ -69,148 +74,148 @@ function createBaseFieldRules() {
         timestamp: undefined,
     };
 }
-export const FieldRules = {
-    encode(message, writer = Writer.create()) {
+exports.FieldRules = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.message !== undefined) {
-            MessageRules.encode(message.message, writer.uint32(138).fork()).ldelim();
+            exports.MessageRules.encode(message.message, writer.uint32(138).fork()).ldelim();
         }
         if (message.float !== undefined) {
-            FloatRules.encode(message.float, writer.uint32(10).fork()).ldelim();
+            exports.FloatRules.encode(message.float, writer.uint32(10).fork()).ldelim();
         }
         if (message.double !== undefined) {
-            DoubleRules.encode(message.double, writer.uint32(18).fork()).ldelim();
+            exports.DoubleRules.encode(message.double, writer.uint32(18).fork()).ldelim();
         }
         if (message.int32 !== undefined) {
-            Int32Rules.encode(message.int32, writer.uint32(26).fork()).ldelim();
+            exports.Int32Rules.encode(message.int32, writer.uint32(26).fork()).ldelim();
         }
         if (message.int64 !== undefined) {
-            Int64Rules.encode(message.int64, writer.uint32(34).fork()).ldelim();
+            exports.Int64Rules.encode(message.int64, writer.uint32(34).fork()).ldelim();
         }
         if (message.uint32 !== undefined) {
-            UInt32Rules.encode(message.uint32, writer.uint32(42).fork()).ldelim();
+            exports.UInt32Rules.encode(message.uint32, writer.uint32(42).fork()).ldelim();
         }
         if (message.uint64 !== undefined) {
-            UInt64Rules.encode(message.uint64, writer.uint32(50).fork()).ldelim();
+            exports.UInt64Rules.encode(message.uint64, writer.uint32(50).fork()).ldelim();
         }
         if (message.sint32 !== undefined) {
-            SInt32Rules.encode(message.sint32, writer.uint32(58).fork()).ldelim();
+            exports.SInt32Rules.encode(message.sint32, writer.uint32(58).fork()).ldelim();
         }
         if (message.sint64 !== undefined) {
-            SInt64Rules.encode(message.sint64, writer.uint32(66).fork()).ldelim();
+            exports.SInt64Rules.encode(message.sint64, writer.uint32(66).fork()).ldelim();
         }
         if (message.fixed32 !== undefined) {
-            Fixed32Rules.encode(message.fixed32, writer.uint32(74).fork()).ldelim();
+            exports.Fixed32Rules.encode(message.fixed32, writer.uint32(74).fork()).ldelim();
         }
         if (message.fixed64 !== undefined) {
-            Fixed64Rules.encode(message.fixed64, writer.uint32(82).fork()).ldelim();
+            exports.Fixed64Rules.encode(message.fixed64, writer.uint32(82).fork()).ldelim();
         }
         if (message.sfixed32 !== undefined) {
-            SFixed32Rules.encode(message.sfixed32, writer.uint32(90).fork()).ldelim();
+            exports.SFixed32Rules.encode(message.sfixed32, writer.uint32(90).fork()).ldelim();
         }
         if (message.sfixed64 !== undefined) {
-            SFixed64Rules.encode(message.sfixed64, writer.uint32(98).fork()).ldelim();
+            exports.SFixed64Rules.encode(message.sfixed64, writer.uint32(98).fork()).ldelim();
         }
         if (message.bool !== undefined) {
-            BoolRules.encode(message.bool, writer.uint32(106).fork()).ldelim();
+            exports.BoolRules.encode(message.bool, writer.uint32(106).fork()).ldelim();
         }
         if (message.string !== undefined) {
-            StringRules.encode(message.string, writer.uint32(114).fork()).ldelim();
+            exports.StringRules.encode(message.string, writer.uint32(114).fork()).ldelim();
         }
         if (message.bytes !== undefined) {
-            BytesRules.encode(message.bytes, writer.uint32(122).fork()).ldelim();
+            exports.BytesRules.encode(message.bytes, writer.uint32(122).fork()).ldelim();
         }
         if (message.enum !== undefined) {
-            EnumRules.encode(message.enum, writer.uint32(130).fork()).ldelim();
+            exports.EnumRules.encode(message.enum, writer.uint32(130).fork()).ldelim();
         }
         if (message.repeated !== undefined) {
-            RepeatedRules.encode(message.repeated, writer.uint32(146).fork()).ldelim();
+            exports.RepeatedRules.encode(message.repeated, writer.uint32(146).fork()).ldelim();
         }
         if (message.map !== undefined) {
-            MapRules.encode(message.map, writer.uint32(154).fork()).ldelim();
+            exports.MapRules.encode(message.map, writer.uint32(154).fork()).ldelim();
         }
         if (message.any !== undefined) {
-            AnyRules.encode(message.any, writer.uint32(162).fork()).ldelim();
+            exports.AnyRules.encode(message.any, writer.uint32(162).fork()).ldelim();
         }
         if (message.duration !== undefined) {
-            DurationRules.encode(message.duration, writer.uint32(170).fork()).ldelim();
+            exports.DurationRules.encode(message.duration, writer.uint32(170).fork()).ldelim();
         }
         if (message.timestamp !== undefined) {
-            TimestampRules.encode(message.timestamp, writer.uint32(178).fork()).ldelim();
+            exports.TimestampRules.encode(message.timestamp, writer.uint32(178).fork()).ldelim();
         }
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Reader ? input : new Reader(input);
+        const reader = input instanceof minimal_1.Reader ? input : new minimal_1.Reader(input);
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = createBaseFieldRules();
         while (reader.pos < end) {
             const tag = reader.uint32();
             switch (tag >>> 3) {
                 case 17:
-                    message.message = MessageRules.decode(reader, reader.uint32());
+                    message.message = exports.MessageRules.decode(reader, reader.uint32());
                     break;
                 case 1:
-                    message.float = FloatRules.decode(reader, reader.uint32());
+                    message.float = exports.FloatRules.decode(reader, reader.uint32());
                     break;
                 case 2:
-                    message.double = DoubleRules.decode(reader, reader.uint32());
+                    message.double = exports.DoubleRules.decode(reader, reader.uint32());
                     break;
                 case 3:
-                    message.int32 = Int32Rules.decode(reader, reader.uint32());
+                    message.int32 = exports.Int32Rules.decode(reader, reader.uint32());
                     break;
                 case 4:
-                    message.int64 = Int64Rules.decode(reader, reader.uint32());
+                    message.int64 = exports.Int64Rules.decode(reader, reader.uint32());
                     break;
                 case 5:
-                    message.uint32 = UInt32Rules.decode(reader, reader.uint32());
+                    message.uint32 = exports.UInt32Rules.decode(reader, reader.uint32());
                     break;
                 case 6:
-                    message.uint64 = UInt64Rules.decode(reader, reader.uint32());
+                    message.uint64 = exports.UInt64Rules.decode(reader, reader.uint32());
                     break;
                 case 7:
-                    message.sint32 = SInt32Rules.decode(reader, reader.uint32());
+                    message.sint32 = exports.SInt32Rules.decode(reader, reader.uint32());
                     break;
                 case 8:
-                    message.sint64 = SInt64Rules.decode(reader, reader.uint32());
+                    message.sint64 = exports.SInt64Rules.decode(reader, reader.uint32());
                     break;
                 case 9:
-                    message.fixed32 = Fixed32Rules.decode(reader, reader.uint32());
+                    message.fixed32 = exports.Fixed32Rules.decode(reader, reader.uint32());
                     break;
                 case 10:
-                    message.fixed64 = Fixed64Rules.decode(reader, reader.uint32());
+                    message.fixed64 = exports.Fixed64Rules.decode(reader, reader.uint32());
                     break;
                 case 11:
-                    message.sfixed32 = SFixed32Rules.decode(reader, reader.uint32());
+                    message.sfixed32 = exports.SFixed32Rules.decode(reader, reader.uint32());
                     break;
                 case 12:
-                    message.sfixed64 = SFixed64Rules.decode(reader, reader.uint32());
+                    message.sfixed64 = exports.SFixed64Rules.decode(reader, reader.uint32());
                     break;
                 case 13:
-                    message.bool = BoolRules.decode(reader, reader.uint32());
+                    message.bool = exports.BoolRules.decode(reader, reader.uint32());
                     break;
                 case 14:
-                    message.string = StringRules.decode(reader, reader.uint32());
+                    message.string = exports.StringRules.decode(reader, reader.uint32());
                     break;
                 case 15:
-                    message.bytes = BytesRules.decode(reader, reader.uint32());
+                    message.bytes = exports.BytesRules.decode(reader, reader.uint32());
                     break;
                 case 16:
-                    message.enum = EnumRules.decode(reader, reader.uint32());
+                    message.enum = exports.EnumRules.decode(reader, reader.uint32());
                     break;
                 case 18:
-                    message.repeated = RepeatedRules.decode(reader, reader.uint32());
+                    message.repeated = exports.RepeatedRules.decode(reader, reader.uint32());
                     break;
                 case 19:
-                    message.map = MapRules.decode(reader, reader.uint32());
+                    message.map = exports.MapRules.decode(reader, reader.uint32());
                     break;
                 case 20:
-                    message.any = AnyRules.decode(reader, reader.uint32());
+                    message.any = exports.AnyRules.decode(reader, reader.uint32());
                     break;
                 case 21:
-                    message.duration = DurationRules.decode(reader, reader.uint32());
+                    message.duration = exports.DurationRules.decode(reader, reader.uint32());
                     break;
                 case 22:
-                    message.timestamp = TimestampRules.decode(reader, reader.uint32());
+                    message.timestamp = exports.TimestampRules.decode(reader, reader.uint32());
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -222,62 +227,62 @@ export const FieldRules = {
     fromJSON(object) {
         return {
             message: isSet(object.message)
-                ? MessageRules.fromJSON(object.message)
+                ? exports.MessageRules.fromJSON(object.message)
                 : undefined,
             float: isSet(object.float)
-                ? FloatRules.fromJSON(object.float)
+                ? exports.FloatRules.fromJSON(object.float)
                 : undefined,
             double: isSet(object.double)
-                ? DoubleRules.fromJSON(object.double)
+                ? exports.DoubleRules.fromJSON(object.double)
                 : undefined,
             int32: isSet(object.int32)
-                ? Int32Rules.fromJSON(object.int32)
+                ? exports.Int32Rules.fromJSON(object.int32)
                 : undefined,
             int64: isSet(object.int64)
-                ? Int64Rules.fromJSON(object.int64)
+                ? exports.Int64Rules.fromJSON(object.int64)
                 : undefined,
             uint32: isSet(object.uint32)
-                ? UInt32Rules.fromJSON(object.uint32)
+                ? exports.UInt32Rules.fromJSON(object.uint32)
                 : undefined,
             uint64: isSet(object.uint64)
-                ? UInt64Rules.fromJSON(object.uint64)
+                ? exports.UInt64Rules.fromJSON(object.uint64)
                 : undefined,
             sint32: isSet(object.sint32)
-                ? SInt32Rules.fromJSON(object.sint32)
+                ? exports.SInt32Rules.fromJSON(object.sint32)
                 : undefined,
             sint64: isSet(object.sint64)
-                ? SInt64Rules.fromJSON(object.sint64)
+                ? exports.SInt64Rules.fromJSON(object.sint64)
                 : undefined,
             fixed32: isSet(object.fixed32)
-                ? Fixed32Rules.fromJSON(object.fixed32)
+                ? exports.Fixed32Rules.fromJSON(object.fixed32)
                 : undefined,
             fixed64: isSet(object.fixed64)
-                ? Fixed64Rules.fromJSON(object.fixed64)
+                ? exports.Fixed64Rules.fromJSON(object.fixed64)
                 : undefined,
             sfixed32: isSet(object.sfixed32)
-                ? SFixed32Rules.fromJSON(object.sfixed32)
+                ? exports.SFixed32Rules.fromJSON(object.sfixed32)
                 : undefined,
             sfixed64: isSet(object.sfixed64)
-                ? SFixed64Rules.fromJSON(object.sfixed64)
+                ? exports.SFixed64Rules.fromJSON(object.sfixed64)
                 : undefined,
-            bool: isSet(object.bool) ? BoolRules.fromJSON(object.bool) : undefined,
+            bool: isSet(object.bool) ? exports.BoolRules.fromJSON(object.bool) : undefined,
             string: isSet(object.string)
-                ? StringRules.fromJSON(object.string)
+                ? exports.StringRules.fromJSON(object.string)
                 : undefined,
             bytes: isSet(object.bytes)
-                ? BytesRules.fromJSON(object.bytes)
+                ? exports.BytesRules.fromJSON(object.bytes)
                 : undefined,
-            enum: isSet(object.enum) ? EnumRules.fromJSON(object.enum) : undefined,
+            enum: isSet(object.enum) ? exports.EnumRules.fromJSON(object.enum) : undefined,
             repeated: isSet(object.repeated)
-                ? RepeatedRules.fromJSON(object.repeated)
+                ? exports.RepeatedRules.fromJSON(object.repeated)
                 : undefined,
-            map: isSet(object.map) ? MapRules.fromJSON(object.map) : undefined,
-            any: isSet(object.any) ? AnyRules.fromJSON(object.any) : undefined,
+            map: isSet(object.map) ? exports.MapRules.fromJSON(object.map) : undefined,
+            any: isSet(object.any) ? exports.AnyRules.fromJSON(object.any) : undefined,
             duration: isSet(object.duration)
-                ? DurationRules.fromJSON(object.duration)
+                ? exports.DurationRules.fromJSON(object.duration)
                 : undefined,
             timestamp: isSet(object.timestamp)
-                ? TimestampRules.fromJSON(object.timestamp)
+                ? exports.TimestampRules.fromJSON(object.timestamp)
                 : undefined,
         };
     },
@@ -285,83 +290,83 @@ export const FieldRules = {
         const obj = {};
         message.message !== undefined &&
             (obj.message = message.message
-                ? MessageRules.toJSON(message.message)
+                ? exports.MessageRules.toJSON(message.message)
                 : undefined);
         message.float !== undefined &&
             (obj.float = message.float
-                ? FloatRules.toJSON(message.float)
+                ? exports.FloatRules.toJSON(message.float)
                 : undefined);
         message.double !== undefined &&
             (obj.double = message.double
-                ? DoubleRules.toJSON(message.double)
+                ? exports.DoubleRules.toJSON(message.double)
                 : undefined);
         message.int32 !== undefined &&
             (obj.int32 = message.int32
-                ? Int32Rules.toJSON(message.int32)
+                ? exports.Int32Rules.toJSON(message.int32)
                 : undefined);
         message.int64 !== undefined &&
             (obj.int64 = message.int64
-                ? Int64Rules.toJSON(message.int64)
+                ? exports.Int64Rules.toJSON(message.int64)
                 : undefined);
         message.uint32 !== undefined &&
             (obj.uint32 = message.uint32
-                ? UInt32Rules.toJSON(message.uint32)
+                ? exports.UInt32Rules.toJSON(message.uint32)
                 : undefined);
         message.uint64 !== undefined &&
             (obj.uint64 = message.uint64
-                ? UInt64Rules.toJSON(message.uint64)
+                ? exports.UInt64Rules.toJSON(message.uint64)
                 : undefined);
         message.sint32 !== undefined &&
             (obj.sint32 = message.sint32
-                ? SInt32Rules.toJSON(message.sint32)
+                ? exports.SInt32Rules.toJSON(message.sint32)
                 : undefined);
         message.sint64 !== undefined &&
             (obj.sint64 = message.sint64
-                ? SInt64Rules.toJSON(message.sint64)
+                ? exports.SInt64Rules.toJSON(message.sint64)
                 : undefined);
         message.fixed32 !== undefined &&
             (obj.fixed32 = message.fixed32
-                ? Fixed32Rules.toJSON(message.fixed32)
+                ? exports.Fixed32Rules.toJSON(message.fixed32)
                 : undefined);
         message.fixed64 !== undefined &&
             (obj.fixed64 = message.fixed64
-                ? Fixed64Rules.toJSON(message.fixed64)
+                ? exports.Fixed64Rules.toJSON(message.fixed64)
                 : undefined);
         message.sfixed32 !== undefined &&
             (obj.sfixed32 = message.sfixed32
-                ? SFixed32Rules.toJSON(message.sfixed32)
+                ? exports.SFixed32Rules.toJSON(message.sfixed32)
                 : undefined);
         message.sfixed64 !== undefined &&
             (obj.sfixed64 = message.sfixed64
-                ? SFixed64Rules.toJSON(message.sfixed64)
+                ? exports.SFixed64Rules.toJSON(message.sfixed64)
                 : undefined);
         message.bool !== undefined &&
-            (obj.bool = message.bool ? BoolRules.toJSON(message.bool) : undefined);
+            (obj.bool = message.bool ? exports.BoolRules.toJSON(message.bool) : undefined);
         message.string !== undefined &&
             (obj.string = message.string
-                ? StringRules.toJSON(message.string)
+                ? exports.StringRules.toJSON(message.string)
                 : undefined);
         message.bytes !== undefined &&
             (obj.bytes = message.bytes
-                ? BytesRules.toJSON(message.bytes)
+                ? exports.BytesRules.toJSON(message.bytes)
                 : undefined);
         message.enum !== undefined &&
-            (obj.enum = message.enum ? EnumRules.toJSON(message.enum) : undefined);
+            (obj.enum = message.enum ? exports.EnumRules.toJSON(message.enum) : undefined);
         message.repeated !== undefined &&
             (obj.repeated = message.repeated
-                ? RepeatedRules.toJSON(message.repeated)
+                ? exports.RepeatedRules.toJSON(message.repeated)
                 : undefined);
         message.map !== undefined &&
-            (obj.map = message.map ? MapRules.toJSON(message.map) : undefined);
+            (obj.map = message.map ? exports.MapRules.toJSON(message.map) : undefined);
         message.any !== undefined &&
-            (obj.any = message.any ? AnyRules.toJSON(message.any) : undefined);
+            (obj.any = message.any ? exports.AnyRules.toJSON(message.any) : undefined);
         message.duration !== undefined &&
             (obj.duration = message.duration
-                ? DurationRules.toJSON(message.duration)
+                ? exports.DurationRules.toJSON(message.duration)
                 : undefined);
         message.timestamp !== undefined &&
             (obj.timestamp = message.timestamp
-                ? TimestampRules.toJSON(message.timestamp)
+                ? exports.TimestampRules.toJSON(message.timestamp)
                 : undefined);
         return obj;
     },
@@ -369,91 +374,91 @@ export const FieldRules = {
         const message = createBaseFieldRules();
         message.message =
             object.message !== undefined && object.message !== null
-                ? MessageRules.fromPartial(object.message)
+                ? exports.MessageRules.fromPartial(object.message)
                 : undefined;
         message.float =
             object.float !== undefined && object.float !== null
-                ? FloatRules.fromPartial(object.float)
+                ? exports.FloatRules.fromPartial(object.float)
                 : undefined;
         message.double =
             object.double !== undefined && object.double !== null
-                ? DoubleRules.fromPartial(object.double)
+                ? exports.DoubleRules.fromPartial(object.double)
                 : undefined;
         message.int32 =
             object.int32 !== undefined && object.int32 !== null
-                ? Int32Rules.fromPartial(object.int32)
+                ? exports.Int32Rules.fromPartial(object.int32)
                 : undefined;
         message.int64 =
             object.int64 !== undefined && object.int64 !== null
-                ? Int64Rules.fromPartial(object.int64)
+                ? exports.Int64Rules.fromPartial(object.int64)
                 : undefined;
         message.uint32 =
             object.uint32 !== undefined && object.uint32 !== null
-                ? UInt32Rules.fromPartial(object.uint32)
+                ? exports.UInt32Rules.fromPartial(object.uint32)
                 : undefined;
         message.uint64 =
             object.uint64 !== undefined && object.uint64 !== null
-                ? UInt64Rules.fromPartial(object.uint64)
+                ? exports.UInt64Rules.fromPartial(object.uint64)
                 : undefined;
         message.sint32 =
             object.sint32 !== undefined && object.sint32 !== null
-                ? SInt32Rules.fromPartial(object.sint32)
+                ? exports.SInt32Rules.fromPartial(object.sint32)
                 : undefined;
         message.sint64 =
             object.sint64 !== undefined && object.sint64 !== null
-                ? SInt64Rules.fromPartial(object.sint64)
+                ? exports.SInt64Rules.fromPartial(object.sint64)
                 : undefined;
         message.fixed32 =
             object.fixed32 !== undefined && object.fixed32 !== null
-                ? Fixed32Rules.fromPartial(object.fixed32)
+                ? exports.Fixed32Rules.fromPartial(object.fixed32)
                 : undefined;
         message.fixed64 =
             object.fixed64 !== undefined && object.fixed64 !== null
-                ? Fixed64Rules.fromPartial(object.fixed64)
+                ? exports.Fixed64Rules.fromPartial(object.fixed64)
                 : undefined;
         message.sfixed32 =
             object.sfixed32 !== undefined && object.sfixed32 !== null
-                ? SFixed32Rules.fromPartial(object.sfixed32)
+                ? exports.SFixed32Rules.fromPartial(object.sfixed32)
                 : undefined;
         message.sfixed64 =
             object.sfixed64 !== undefined && object.sfixed64 !== null
-                ? SFixed64Rules.fromPartial(object.sfixed64)
+                ? exports.SFixed64Rules.fromPartial(object.sfixed64)
                 : undefined;
         message.bool =
             object.bool !== undefined && object.bool !== null
-                ? BoolRules.fromPartial(object.bool)
+                ? exports.BoolRules.fromPartial(object.bool)
                 : undefined;
         message.string =
             object.string !== undefined && object.string !== null
-                ? StringRules.fromPartial(object.string)
+                ? exports.StringRules.fromPartial(object.string)
                 : undefined;
         message.bytes =
             object.bytes !== undefined && object.bytes !== null
-                ? BytesRules.fromPartial(object.bytes)
+                ? exports.BytesRules.fromPartial(object.bytes)
                 : undefined;
         message.enum =
             object.enum !== undefined && object.enum !== null
-                ? EnumRules.fromPartial(object.enum)
+                ? exports.EnumRules.fromPartial(object.enum)
                 : undefined;
         message.repeated =
             object.repeated !== undefined && object.repeated !== null
-                ? RepeatedRules.fromPartial(object.repeated)
+                ? exports.RepeatedRules.fromPartial(object.repeated)
                 : undefined;
         message.map =
             object.map !== undefined && object.map !== null
-                ? MapRules.fromPartial(object.map)
+                ? exports.MapRules.fromPartial(object.map)
                 : undefined;
         message.any =
             object.any !== undefined && object.any !== null
-                ? AnyRules.fromPartial(object.any)
+                ? exports.AnyRules.fromPartial(object.any)
                 : undefined;
         message.duration =
             object.duration !== undefined && object.duration !== null
-                ? DurationRules.fromPartial(object.duration)
+                ? exports.DurationRules.fromPartial(object.duration)
                 : undefined;
         message.timestamp =
             object.timestamp !== undefined && object.timestamp !== null
-                ? TimestampRules.fromPartial(object.timestamp)
+                ? exports.TimestampRules.fromPartial(object.timestamp)
                 : undefined;
         return message;
     },
@@ -470,8 +475,8 @@ function createBaseFloatRules() {
         ignoreEmpty: false,
     };
 }
-export const FloatRules = {
-    encode(message, writer = Writer.create()) {
+exports.FloatRules = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.const !== 0) {
             writer.uint32(13).float(message.const);
         }
@@ -503,7 +508,7 @@ export const FloatRules = {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Reader ? input : new Reader(input);
+        const reader = input instanceof minimal_1.Reader ? input : new minimal_1.Reader(input);
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = createBaseFloatRules();
         while (reader.pos < end) {
@@ -620,8 +625,8 @@ function createBaseDoubleRules() {
         ignoreEmpty: false,
     };
 }
-export const DoubleRules = {
-    encode(message, writer = Writer.create()) {
+exports.DoubleRules = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.const !== 0) {
             writer.uint32(9).double(message.const);
         }
@@ -653,7 +658,7 @@ export const DoubleRules = {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Reader ? input : new Reader(input);
+        const reader = input instanceof minimal_1.Reader ? input : new minimal_1.Reader(input);
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = createBaseDoubleRules();
         while (reader.pos < end) {
@@ -770,8 +775,8 @@ function createBaseInt32Rules() {
         ignoreEmpty: false,
     };
 }
-export const Int32Rules = {
-    encode(message, writer = Writer.create()) {
+exports.Int32Rules = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.const !== 0) {
             writer.uint32(8).int32(message.const);
         }
@@ -803,7 +808,7 @@ export const Int32Rules = {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Reader ? input : new Reader(input);
+        const reader = input instanceof minimal_1.Reader ? input : new minimal_1.Reader(input);
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = createBaseInt32Rules();
         while (reader.pos < end) {
@@ -920,8 +925,8 @@ function createBaseInt64Rules() {
         ignoreEmpty: false,
     };
 }
-export const Int64Rules = {
-    encode(message, writer = Writer.create()) {
+exports.Int64Rules = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.const !== 0) {
             writer.uint32(8).int64(message.const);
         }
@@ -953,7 +958,7 @@ export const Int64Rules = {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Reader ? input : new Reader(input);
+        const reader = input instanceof minimal_1.Reader ? input : new minimal_1.Reader(input);
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = createBaseInt64Rules();
         while (reader.pos < end) {
@@ -1070,8 +1075,8 @@ function createBaseUInt32Rules() {
         ignoreEmpty: false,
     };
 }
-export const UInt32Rules = {
-    encode(message, writer = Writer.create()) {
+exports.UInt32Rules = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.const !== 0) {
             writer.uint32(8).uint32(message.const);
         }
@@ -1103,7 +1108,7 @@ export const UInt32Rules = {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Reader ? input : new Reader(input);
+        const reader = input instanceof minimal_1.Reader ? input : new minimal_1.Reader(input);
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = createBaseUInt32Rules();
         while (reader.pos < end) {
@@ -1220,8 +1225,8 @@ function createBaseUInt64Rules() {
         ignoreEmpty: false,
     };
 }
-export const UInt64Rules = {
-    encode(message, writer = Writer.create()) {
+exports.UInt64Rules = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.const !== 0) {
             writer.uint32(8).uint64(message.const);
         }
@@ -1253,7 +1258,7 @@ export const UInt64Rules = {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Reader ? input : new Reader(input);
+        const reader = input instanceof minimal_1.Reader ? input : new minimal_1.Reader(input);
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = createBaseUInt64Rules();
         while (reader.pos < end) {
@@ -1370,8 +1375,8 @@ function createBaseSInt32Rules() {
         ignoreEmpty: false,
     };
 }
-export const SInt32Rules = {
-    encode(message, writer = Writer.create()) {
+exports.SInt32Rules = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.const !== 0) {
             writer.uint32(8).sint32(message.const);
         }
@@ -1403,7 +1408,7 @@ export const SInt32Rules = {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Reader ? input : new Reader(input);
+        const reader = input instanceof minimal_1.Reader ? input : new minimal_1.Reader(input);
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = createBaseSInt32Rules();
         while (reader.pos < end) {
@@ -1520,8 +1525,8 @@ function createBaseSInt64Rules() {
         ignoreEmpty: false,
     };
 }
-export const SInt64Rules = {
-    encode(message, writer = Writer.create()) {
+exports.SInt64Rules = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.const !== 0) {
             writer.uint32(8).sint64(message.const);
         }
@@ -1553,7 +1558,7 @@ export const SInt64Rules = {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Reader ? input : new Reader(input);
+        const reader = input instanceof minimal_1.Reader ? input : new minimal_1.Reader(input);
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = createBaseSInt64Rules();
         while (reader.pos < end) {
@@ -1670,8 +1675,8 @@ function createBaseFixed32Rules() {
         ignoreEmpty: false,
     };
 }
-export const Fixed32Rules = {
-    encode(message, writer = Writer.create()) {
+exports.Fixed32Rules = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.const !== 0) {
             writer.uint32(13).fixed32(message.const);
         }
@@ -1703,7 +1708,7 @@ export const Fixed32Rules = {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Reader ? input : new Reader(input);
+        const reader = input instanceof minimal_1.Reader ? input : new minimal_1.Reader(input);
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = createBaseFixed32Rules();
         while (reader.pos < end) {
@@ -1820,8 +1825,8 @@ function createBaseFixed64Rules() {
         ignoreEmpty: false,
     };
 }
-export const Fixed64Rules = {
-    encode(message, writer = Writer.create()) {
+exports.Fixed64Rules = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.const !== 0) {
             writer.uint32(9).fixed64(message.const);
         }
@@ -1853,7 +1858,7 @@ export const Fixed64Rules = {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Reader ? input : new Reader(input);
+        const reader = input instanceof minimal_1.Reader ? input : new minimal_1.Reader(input);
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = createBaseFixed64Rules();
         while (reader.pos < end) {
@@ -1970,8 +1975,8 @@ function createBaseSFixed32Rules() {
         ignoreEmpty: false,
     };
 }
-export const SFixed32Rules = {
-    encode(message, writer = Writer.create()) {
+exports.SFixed32Rules = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.const !== 0) {
             writer.uint32(13).sfixed32(message.const);
         }
@@ -2003,7 +2008,7 @@ export const SFixed32Rules = {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Reader ? input : new Reader(input);
+        const reader = input instanceof minimal_1.Reader ? input : new minimal_1.Reader(input);
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = createBaseSFixed32Rules();
         while (reader.pos < end) {
@@ -2120,8 +2125,8 @@ function createBaseSFixed64Rules() {
         ignoreEmpty: false,
     };
 }
-export const SFixed64Rules = {
-    encode(message, writer = Writer.create()) {
+exports.SFixed64Rules = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.const !== 0) {
             writer.uint32(9).sfixed64(message.const);
         }
@@ -2153,7 +2158,7 @@ export const SFixed64Rules = {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Reader ? input : new Reader(input);
+        const reader = input instanceof minimal_1.Reader ? input : new minimal_1.Reader(input);
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = createBaseSFixed64Rules();
         while (reader.pos < end) {
@@ -2261,15 +2266,15 @@ export const SFixed64Rules = {
 function createBaseBoolRules() {
     return { const: false };
 }
-export const BoolRules = {
-    encode(message, writer = Writer.create()) {
+exports.BoolRules = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.const === true) {
             writer.uint32(8).bool(message.const);
         }
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Reader ? input : new Reader(input);
+        const reader = input instanceof minimal_1.Reader ? input : new minimal_1.Reader(input);
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = createBaseBoolRules();
         while (reader.pos < end) {
@@ -2331,8 +2336,8 @@ function createBaseStringRules() {
         ignoreEmpty: false,
     };
 }
-export const StringRules = {
-    encode(message, writer = Writer.create()) {
+exports.StringRules = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.const !== "") {
             writer.uint32(10).string(message.const);
         }
@@ -2414,7 +2419,7 @@ export const StringRules = {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Reader ? input : new Reader(input);
+        const reader = input instanceof minimal_1.Reader ? input : new minimal_1.Reader(input);
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = createBaseStringRules();
         while (reader.pos < end) {
@@ -2639,8 +2644,8 @@ function createBaseBytesRules() {
         ignoreEmpty: false,
     };
 }
-export const BytesRules = {
-    encode(message, writer = Writer.create()) {
+exports.BytesRules = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.const.length !== 0) {
             writer.uint32(10).bytes(message.const);
         }
@@ -2686,7 +2691,7 @@ export const BytesRules = {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Reader ? input : new Reader(input);
+        const reader = input instanceof minimal_1.Reader ? input : new minimal_1.Reader(input);
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = createBaseBytesRules();
         while (reader.pos < end) {
@@ -2828,8 +2833,8 @@ export const BytesRules = {
 function createBaseEnumRules() {
     return { const: 0, definedOnly: false, in: [], notIn: [] };
 }
-export const EnumRules = {
-    encode(message, writer = Writer.create()) {
+exports.EnumRules = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.const !== 0) {
             writer.uint32(8).int32(message.const);
         }
@@ -2849,7 +2854,7 @@ export const EnumRules = {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Reader ? input : new Reader(input);
+        const reader = input instanceof minimal_1.Reader ? input : new minimal_1.Reader(input);
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = createBaseEnumRules();
         while (reader.pos < end) {
@@ -2933,8 +2938,8 @@ export const EnumRules = {
 function createBaseMessageRules() {
     return { skip: false, required: false };
 }
-export const MessageRules = {
-    encode(message, writer = Writer.create()) {
+exports.MessageRules = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.skip === true) {
             writer.uint32(8).bool(message.skip);
         }
@@ -2944,7 +2949,7 @@ export const MessageRules = {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Reader ? input : new Reader(input);
+        const reader = input instanceof minimal_1.Reader ? input : new minimal_1.Reader(input);
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = createBaseMessageRules();
         while (reader.pos < end) {
@@ -2991,8 +2996,8 @@ function createBaseRepeatedRules() {
         ignoreEmpty: false,
     };
 }
-export const RepeatedRules = {
-    encode(message, writer = Writer.create()) {
+exports.RepeatedRules = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.minItems !== 0) {
             writer.uint32(8).uint64(message.minItems);
         }
@@ -3003,7 +3008,7 @@ export const RepeatedRules = {
             writer.uint32(24).bool(message.unique);
         }
         if (message.items !== undefined) {
-            FieldRules.encode(message.items, writer.uint32(34).fork()).ldelim();
+            exports.FieldRules.encode(message.items, writer.uint32(34).fork()).ldelim();
         }
         if (message.ignoreEmpty === true) {
             writer.uint32(40).bool(message.ignoreEmpty);
@@ -3011,7 +3016,7 @@ export const RepeatedRules = {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Reader ? input : new Reader(input);
+        const reader = input instanceof minimal_1.Reader ? input : new minimal_1.Reader(input);
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = createBaseRepeatedRules();
         while (reader.pos < end) {
@@ -3027,7 +3032,7 @@ export const RepeatedRules = {
                     message.unique = reader.bool();
                     break;
                 case 4:
-                    message.items = FieldRules.decode(reader, reader.uint32());
+                    message.items = exports.FieldRules.decode(reader, reader.uint32());
                     break;
                 case 5:
                     message.ignoreEmpty = reader.bool();
@@ -3045,7 +3050,7 @@ export const RepeatedRules = {
             maxItems: isSet(object.maxItems) ? Number(object.maxItems) : 0,
             unique: isSet(object.unique) ? Boolean(object.unique) : false,
             items: isSet(object.items)
-                ? FieldRules.fromJSON(object.items)
+                ? exports.FieldRules.fromJSON(object.items)
                 : undefined,
             ignoreEmpty: isSet(object.ignoreEmpty)
                 ? Boolean(object.ignoreEmpty)
@@ -3061,7 +3066,7 @@ export const RepeatedRules = {
         message.unique !== undefined && (obj.unique = message.unique);
         message.items !== undefined &&
             (obj.items = message.items
-                ? FieldRules.toJSON(message.items)
+                ? exports.FieldRules.toJSON(message.items)
                 : undefined);
         message.ignoreEmpty !== undefined &&
             (obj.ignoreEmpty = message.ignoreEmpty);
@@ -3074,7 +3079,7 @@ export const RepeatedRules = {
         message.unique = object.unique ?? false;
         message.items =
             object.items !== undefined && object.items !== null
-                ? FieldRules.fromPartial(object.items)
+                ? exports.FieldRules.fromPartial(object.items)
                 : undefined;
         message.ignoreEmpty = object.ignoreEmpty ?? false;
         return message;
@@ -3090,8 +3095,8 @@ function createBaseMapRules() {
         ignoreEmpty: false,
     };
 }
-export const MapRules = {
-    encode(message, writer = Writer.create()) {
+exports.MapRules = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.minPairs !== 0) {
             writer.uint32(8).uint64(message.minPairs);
         }
@@ -3102,10 +3107,10 @@ export const MapRules = {
             writer.uint32(24).bool(message.noSparse);
         }
         if (message.keys !== undefined) {
-            FieldRules.encode(message.keys, writer.uint32(34).fork()).ldelim();
+            exports.FieldRules.encode(message.keys, writer.uint32(34).fork()).ldelim();
         }
         if (message.values !== undefined) {
-            FieldRules.encode(message.values, writer.uint32(42).fork()).ldelim();
+            exports.FieldRules.encode(message.values, writer.uint32(42).fork()).ldelim();
         }
         if (message.ignoreEmpty === true) {
             writer.uint32(48).bool(message.ignoreEmpty);
@@ -3113,7 +3118,7 @@ export const MapRules = {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Reader ? input : new Reader(input);
+        const reader = input instanceof minimal_1.Reader ? input : new minimal_1.Reader(input);
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = createBaseMapRules();
         while (reader.pos < end) {
@@ -3129,10 +3134,10 @@ export const MapRules = {
                     message.noSparse = reader.bool();
                     break;
                 case 4:
-                    message.keys = FieldRules.decode(reader, reader.uint32());
+                    message.keys = exports.FieldRules.decode(reader, reader.uint32());
                     break;
                 case 5:
-                    message.values = FieldRules.decode(reader, reader.uint32());
+                    message.values = exports.FieldRules.decode(reader, reader.uint32());
                     break;
                 case 6:
                     message.ignoreEmpty = reader.bool();
@@ -3149,9 +3154,9 @@ export const MapRules = {
             minPairs: isSet(object.minPairs) ? Number(object.minPairs) : 0,
             maxPairs: isSet(object.maxPairs) ? Number(object.maxPairs) : 0,
             noSparse: isSet(object.noSparse) ? Boolean(object.noSparse) : false,
-            keys: isSet(object.keys) ? FieldRules.fromJSON(object.keys) : undefined,
+            keys: isSet(object.keys) ? exports.FieldRules.fromJSON(object.keys) : undefined,
             values: isSet(object.values)
-                ? FieldRules.fromJSON(object.values)
+                ? exports.FieldRules.fromJSON(object.values)
                 : undefined,
             ignoreEmpty: isSet(object.ignoreEmpty)
                 ? Boolean(object.ignoreEmpty)
@@ -3166,10 +3171,10 @@ export const MapRules = {
             (obj.maxPairs = Math.round(message.maxPairs));
         message.noSparse !== undefined && (obj.noSparse = message.noSparse);
         message.keys !== undefined &&
-            (obj.keys = message.keys ? FieldRules.toJSON(message.keys) : undefined);
+            (obj.keys = message.keys ? exports.FieldRules.toJSON(message.keys) : undefined);
         message.values !== undefined &&
             (obj.values = message.values
-                ? FieldRules.toJSON(message.values)
+                ? exports.FieldRules.toJSON(message.values)
                 : undefined);
         message.ignoreEmpty !== undefined &&
             (obj.ignoreEmpty = message.ignoreEmpty);
@@ -3182,11 +3187,11 @@ export const MapRules = {
         message.noSparse = object.noSparse ?? false;
         message.keys =
             object.keys !== undefined && object.keys !== null
-                ? FieldRules.fromPartial(object.keys)
+                ? exports.FieldRules.fromPartial(object.keys)
                 : undefined;
         message.values =
             object.values !== undefined && object.values !== null
-                ? FieldRules.fromPartial(object.values)
+                ? exports.FieldRules.fromPartial(object.values)
                 : undefined;
         message.ignoreEmpty = object.ignoreEmpty ?? false;
         return message;
@@ -3195,8 +3200,8 @@ export const MapRules = {
 function createBaseAnyRules() {
     return { required: false, in: [], notIn: [] };
 }
-export const AnyRules = {
-    encode(message, writer = Writer.create()) {
+exports.AnyRules = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.required === true) {
             writer.uint32(8).bool(message.required);
         }
@@ -3209,7 +3214,7 @@ export const AnyRules = {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Reader ? input : new Reader(input);
+        const reader = input instanceof minimal_1.Reader ? input : new minimal_1.Reader(input);
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = createBaseAnyRules();
         while (reader.pos < end) {
@@ -3277,36 +3282,36 @@ function createBaseDurationRules() {
         notIn: [],
     };
 }
-export const DurationRules = {
-    encode(message, writer = Writer.create()) {
+exports.DurationRules = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.required === true) {
             writer.uint32(8).bool(message.required);
         }
         if (message.const !== undefined) {
-            Duration.encode(message.const, writer.uint32(18).fork()).ldelim();
+            duration_1.Duration.encode(message.const, writer.uint32(18).fork()).ldelim();
         }
         if (message.lt !== undefined) {
-            Duration.encode(message.lt, writer.uint32(26).fork()).ldelim();
+            duration_1.Duration.encode(message.lt, writer.uint32(26).fork()).ldelim();
         }
         if (message.lte !== undefined) {
-            Duration.encode(message.lte, writer.uint32(34).fork()).ldelim();
+            duration_1.Duration.encode(message.lte, writer.uint32(34).fork()).ldelim();
         }
         if (message.gt !== undefined) {
-            Duration.encode(message.gt, writer.uint32(42).fork()).ldelim();
+            duration_1.Duration.encode(message.gt, writer.uint32(42).fork()).ldelim();
         }
         if (message.gte !== undefined) {
-            Duration.encode(message.gte, writer.uint32(50).fork()).ldelim();
+            duration_1.Duration.encode(message.gte, writer.uint32(50).fork()).ldelim();
         }
         for (const v of message.in) {
-            Duration.encode(v, writer.uint32(58).fork()).ldelim();
+            duration_1.Duration.encode(v, writer.uint32(58).fork()).ldelim();
         }
         for (const v of message.notIn) {
-            Duration.encode(v, writer.uint32(66).fork()).ldelim();
+            duration_1.Duration.encode(v, writer.uint32(66).fork()).ldelim();
         }
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Reader ? input : new Reader(input);
+        const reader = input instanceof minimal_1.Reader ? input : new minimal_1.Reader(input);
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = createBaseDurationRules();
         while (reader.pos < end) {
@@ -3316,25 +3321,25 @@ export const DurationRules = {
                     message.required = reader.bool();
                     break;
                 case 2:
-                    message.const = Duration.decode(reader, reader.uint32());
+                    message.const = duration_1.Duration.decode(reader, reader.uint32());
                     break;
                 case 3:
-                    message.lt = Duration.decode(reader, reader.uint32());
+                    message.lt = duration_1.Duration.decode(reader, reader.uint32());
                     break;
                 case 4:
-                    message.lte = Duration.decode(reader, reader.uint32());
+                    message.lte = duration_1.Duration.decode(reader, reader.uint32());
                     break;
                 case 5:
-                    message.gt = Duration.decode(reader, reader.uint32());
+                    message.gt = duration_1.Duration.decode(reader, reader.uint32());
                     break;
                 case 6:
-                    message.gte = Duration.decode(reader, reader.uint32());
+                    message.gte = duration_1.Duration.decode(reader, reader.uint32());
                     break;
                 case 7:
-                    message.in.push(Duration.decode(reader, reader.uint32()));
+                    message.in.push(duration_1.Duration.decode(reader, reader.uint32()));
                     break;
                 case 8:
-                    message.notIn.push(Duration.decode(reader, reader.uint32()));
+                    message.notIn.push(duration_1.Duration.decode(reader, reader.uint32()));
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -3346,16 +3351,16 @@ export const DurationRules = {
     fromJSON(object) {
         return {
             required: isSet(object.required) ? Boolean(object.required) : false,
-            const: isSet(object.const) ? Duration.fromJSON(object.const) : undefined,
-            lt: isSet(object.lt) ? Duration.fromJSON(object.lt) : undefined,
-            lte: isSet(object.lte) ? Duration.fromJSON(object.lte) : undefined,
-            gt: isSet(object.gt) ? Duration.fromJSON(object.gt) : undefined,
-            gte: isSet(object.gte) ? Duration.fromJSON(object.gte) : undefined,
+            const: isSet(object.const) ? duration_1.Duration.fromJSON(object.const) : undefined,
+            lt: isSet(object.lt) ? duration_1.Duration.fromJSON(object.lt) : undefined,
+            lte: isSet(object.lte) ? duration_1.Duration.fromJSON(object.lte) : undefined,
+            gt: isSet(object.gt) ? duration_1.Duration.fromJSON(object.gt) : undefined,
+            gte: isSet(object.gte) ? duration_1.Duration.fromJSON(object.gte) : undefined,
             in: Array.isArray(object?.in)
-                ? object.in.map((e) => Duration.fromJSON(e))
+                ? object.in.map((e) => duration_1.Duration.fromJSON(e))
                 : [],
             notIn: Array.isArray(object?.notIn)
-                ? object.notIn.map((e) => Duration.fromJSON(e))
+                ? object.notIn.map((e) => duration_1.Duration.fromJSON(e))
                 : [],
         };
     },
@@ -3363,23 +3368,23 @@ export const DurationRules = {
         const obj = {};
         message.required !== undefined && (obj.required = message.required);
         message.const !== undefined &&
-            (obj.const = message.const ? Duration.toJSON(message.const) : undefined);
+            (obj.const = message.const ? duration_1.Duration.toJSON(message.const) : undefined);
         message.lt !== undefined &&
-            (obj.lt = message.lt ? Duration.toJSON(message.lt) : undefined);
+            (obj.lt = message.lt ? duration_1.Duration.toJSON(message.lt) : undefined);
         message.lte !== undefined &&
-            (obj.lte = message.lte ? Duration.toJSON(message.lte) : undefined);
+            (obj.lte = message.lte ? duration_1.Duration.toJSON(message.lte) : undefined);
         message.gt !== undefined &&
-            (obj.gt = message.gt ? Duration.toJSON(message.gt) : undefined);
+            (obj.gt = message.gt ? duration_1.Duration.toJSON(message.gt) : undefined);
         message.gte !== undefined &&
-            (obj.gte = message.gte ? Duration.toJSON(message.gte) : undefined);
+            (obj.gte = message.gte ? duration_1.Duration.toJSON(message.gte) : undefined);
         if (message.in) {
-            obj.in = message.in.map((e) => (e ? Duration.toJSON(e) : undefined));
+            obj.in = message.in.map((e) => (e ? duration_1.Duration.toJSON(e) : undefined));
         }
         else {
             obj.in = [];
         }
         if (message.notIn) {
-            obj.notIn = message.notIn.map((e) => e ? Duration.toJSON(e) : undefined);
+            obj.notIn = message.notIn.map((e) => e ? duration_1.Duration.toJSON(e) : undefined);
         }
         else {
             obj.notIn = [];
@@ -3391,26 +3396,26 @@ export const DurationRules = {
         message.required = object.required ?? false;
         message.const =
             object.const !== undefined && object.const !== null
-                ? Duration.fromPartial(object.const)
+                ? duration_1.Duration.fromPartial(object.const)
                 : undefined;
         message.lt =
             object.lt !== undefined && object.lt !== null
-                ? Duration.fromPartial(object.lt)
+                ? duration_1.Duration.fromPartial(object.lt)
                 : undefined;
         message.lte =
             object.lte !== undefined && object.lte !== null
-                ? Duration.fromPartial(object.lte)
+                ? duration_1.Duration.fromPartial(object.lte)
                 : undefined;
         message.gt =
             object.gt !== undefined && object.gt !== null
-                ? Duration.fromPartial(object.gt)
+                ? duration_1.Duration.fromPartial(object.gt)
                 : undefined;
         message.gte =
             object.gte !== undefined && object.gte !== null
-                ? Duration.fromPartial(object.gte)
+                ? duration_1.Duration.fromPartial(object.gte)
                 : undefined;
-        message.in = object.in?.map((e) => Duration.fromPartial(e)) || [];
-        message.notIn = object.notIn?.map((e) => Duration.fromPartial(e)) || [];
+        message.in = object.in?.map((e) => duration_1.Duration.fromPartial(e)) || [];
+        message.notIn = object.notIn?.map((e) => duration_1.Duration.fromPartial(e)) || [];
         return message;
     },
 };
@@ -3427,25 +3432,25 @@ function createBaseTimestampRules() {
         within: undefined,
     };
 }
-export const TimestampRules = {
-    encode(message, writer = Writer.create()) {
+exports.TimestampRules = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.required === true) {
             writer.uint32(8).bool(message.required);
         }
         if (message.const !== undefined) {
-            Timestamp.encode(toTimestamp(message.const), writer.uint32(18).fork()).ldelim();
+            timestamp_1.Timestamp.encode(toTimestamp(message.const), writer.uint32(18).fork()).ldelim();
         }
         if (message.lt !== undefined) {
-            Timestamp.encode(toTimestamp(message.lt), writer.uint32(26).fork()).ldelim();
+            timestamp_1.Timestamp.encode(toTimestamp(message.lt), writer.uint32(26).fork()).ldelim();
         }
         if (message.lte !== undefined) {
-            Timestamp.encode(toTimestamp(message.lte), writer.uint32(34).fork()).ldelim();
+            timestamp_1.Timestamp.encode(toTimestamp(message.lte), writer.uint32(34).fork()).ldelim();
         }
         if (message.gt !== undefined) {
-            Timestamp.encode(toTimestamp(message.gt), writer.uint32(42).fork()).ldelim();
+            timestamp_1.Timestamp.encode(toTimestamp(message.gt), writer.uint32(42).fork()).ldelim();
         }
         if (message.gte !== undefined) {
-            Timestamp.encode(toTimestamp(message.gte), writer.uint32(50).fork()).ldelim();
+            timestamp_1.Timestamp.encode(toTimestamp(message.gte), writer.uint32(50).fork()).ldelim();
         }
         if (message.ltNow === true) {
             writer.uint32(56).bool(message.ltNow);
@@ -3454,12 +3459,12 @@ export const TimestampRules = {
             writer.uint32(64).bool(message.gtNow);
         }
         if (message.within !== undefined) {
-            Duration.encode(message.within, writer.uint32(74).fork()).ldelim();
+            duration_1.Duration.encode(message.within, writer.uint32(74).fork()).ldelim();
         }
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Reader ? input : new Reader(input);
+        const reader = input instanceof minimal_1.Reader ? input : new minimal_1.Reader(input);
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = createBaseTimestampRules();
         while (reader.pos < end) {
@@ -3469,19 +3474,19 @@ export const TimestampRules = {
                     message.required = reader.bool();
                     break;
                 case 2:
-                    message.const = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+                    message.const = fromTimestamp(timestamp_1.Timestamp.decode(reader, reader.uint32()));
                     break;
                 case 3:
-                    message.lt = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+                    message.lt = fromTimestamp(timestamp_1.Timestamp.decode(reader, reader.uint32()));
                     break;
                 case 4:
-                    message.lte = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+                    message.lte = fromTimestamp(timestamp_1.Timestamp.decode(reader, reader.uint32()));
                     break;
                 case 5:
-                    message.gt = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+                    message.gt = fromTimestamp(timestamp_1.Timestamp.decode(reader, reader.uint32()));
                     break;
                 case 6:
-                    message.gte = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+                    message.gte = fromTimestamp(timestamp_1.Timestamp.decode(reader, reader.uint32()));
                     break;
                 case 7:
                     message.ltNow = reader.bool();
@@ -3490,7 +3495,7 @@ export const TimestampRules = {
                     message.gtNow = reader.bool();
                     break;
                 case 9:
-                    message.within = Duration.decode(reader, reader.uint32());
+                    message.within = duration_1.Duration.decode(reader, reader.uint32());
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -3510,7 +3515,7 @@ export const TimestampRules = {
             ltNow: isSet(object.ltNow) ? Boolean(object.ltNow) : false,
             gtNow: isSet(object.gtNow) ? Boolean(object.gtNow) : false,
             within: isSet(object.within)
-                ? Duration.fromJSON(object.within)
+                ? duration_1.Duration.fromJSON(object.within)
                 : undefined,
         };
     },
@@ -3526,7 +3531,7 @@ export const TimestampRules = {
         message.gtNow !== undefined && (obj.gtNow = message.gtNow);
         message.within !== undefined &&
             (obj.within = message.within
-                ? Duration.toJSON(message.within)
+                ? duration_1.Duration.toJSON(message.within)
                 : undefined);
         return obj;
     },
@@ -3542,7 +3547,7 @@ export const TimestampRules = {
         message.gtNow = object.gtNow ?? false;
         message.within =
             object.within !== undefined && object.within !== null
-                ? Duration.fromPartial(object.within)
+                ? duration_1.Duration.fromPartial(object.within)
                 : undefined;
         return message;
     },
@@ -3578,13 +3583,13 @@ function base64FromBytes(arr) {
     return btoa(bin.join(""));
 }
 function toTimestamp(date) {
-    const seconds = date.getTime() / 1_000;
-    const nanos = (date.getTime() % 1_000) * 1_000_000;
+    const seconds = date.getTime() / 1000;
+    const nanos = (date.getTime() % 1000) * 1000000;
     return { seconds, nanos };
 }
 function fromTimestamp(t) {
-    let millis = t.seconds * 1_000;
-    millis += t.nanos / 1_000_000;
+    let millis = t.seconds * 1000;
+    millis += t.nanos / 1000000;
     return new Date(millis);
 }
 function fromJsonTimestamp(o) {
@@ -3595,7 +3600,7 @@ function fromJsonTimestamp(o) {
         return new Date(o);
     }
     else {
-        return fromTimestamp(Timestamp.fromJSON(o));
+        return fromTimestamp(timestamp_1.Timestamp.fromJSON(o));
     }
 }
 function longToNumber(long) {
@@ -3606,9 +3611,9 @@ function longToNumber(long) {
 }
 // If you get a compile-error about 'Constructor<Long> and ... have no overlap',
 // add '--ts_proto_opt=esModuleInterop=true' as a flag when calling 'protoc'.
-if (util.Long !== Long) {
-    util.Long = Long;
-    configure();
+if (minimal_1.util.Long !== Long) {
+    minimal_1.util.Long = Long;
+    (0, minimal_1.configure)();
 }
 function isSet(value) {
     return value !== null && value !== undefined;

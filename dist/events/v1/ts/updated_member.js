@@ -1,9 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.UpdateMemberEvent = exports.Member = exports.protobufPackage = void 0;
 /* eslint-disable */
-import { util, configure, Writer, Reader } from "protobufjs/minimal";
-import * as Long from "long";
-import { memberShipTypeFromJSON, membershipStatusFromJSON, memberShipTypeToJSON, membershipStatusToJSON, } from "./members/v1/members";
-import { Timestamp } from "./google/protobuf/timestamp";
-export const protobufPackage = "uptown_runners.events.v1";
+const minimal_1 = require("protobufjs/minimal");
+const Long = require("long");
+const members_1 = require("./members/v1/members");
+const timestamp_1 = require("./google/protobuf/timestamp");
+exports.protobufPackage = "uptown_runners.events.v1";
 function createBaseMember() {
     return {
         memberId: 0,
@@ -20,8 +23,8 @@ function createBaseMember() {
         status: 0,
     };
 }
-export const Member = {
-    encode(message, writer = Writer.create()) {
+exports.Member = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.memberId !== 0) {
             writer.uint32(8).int64(message.memberId);
         }
@@ -47,10 +50,10 @@ export const Member = {
             writer.uint32(66).string(message.email);
         }
         if (message.renewedDate !== undefined) {
-            Timestamp.encode(toTimestamp(message.renewedDate), writer.uint32(74).fork()).ldelim();
+            timestamp_1.Timestamp.encode(toTimestamp(message.renewedDate), writer.uint32(74).fork()).ldelim();
         }
         if (message.overrideExpirationDate !== undefined) {
-            Timestamp.encode(toTimestamp(message.overrideExpirationDate), writer.uint32(82).fork()).ldelim();
+            timestamp_1.Timestamp.encode(toTimestamp(message.overrideExpirationDate), writer.uint32(82).fork()).ldelim();
         }
         if (message.membershipType !== 0) {
             writer.uint32(88).int32(message.membershipType);
@@ -61,7 +64,7 @@ export const Member = {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Reader ? input : new Reader(input);
+        const reader = input instanceof minimal_1.Reader ? input : new minimal_1.Reader(input);
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = createBaseMember();
         while (reader.pos < end) {
@@ -92,10 +95,10 @@ export const Member = {
                     message.email = reader.string();
                     break;
                 case 9:
-                    message.renewedDate = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+                    message.renewedDate = fromTimestamp(timestamp_1.Timestamp.decode(reader, reader.uint32()));
                     break;
                 case 10:
-                    message.overrideExpirationDate = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+                    message.overrideExpirationDate = fromTimestamp(timestamp_1.Timestamp.decode(reader, reader.uint32()));
                     break;
                 case 11:
                     message.membershipType = reader.int32();
@@ -129,10 +132,10 @@ export const Member = {
                 ? fromJsonTimestamp(object.overrideExpirationDate)
                 : undefined,
             membershipType: isSet(object.membershipType)
-                ? memberShipTypeFromJSON(object.membershipType)
+                ? (0, members_1.memberShipTypeFromJSON)(object.membershipType)
                 : 0,
             status: isSet(object.status)
-                ? membershipStatusFromJSON(object.status)
+                ? (0, members_1.membershipStatusFromJSON)(object.status)
                 : 0,
         };
     },
@@ -155,9 +158,9 @@ export const Member = {
             (obj.overrideExpirationDate =
                 message.overrideExpirationDate.toISOString());
         message.membershipType !== undefined &&
-            (obj.membershipType = memberShipTypeToJSON(message.membershipType));
+            (obj.membershipType = (0, members_1.memberShipTypeToJSON)(message.membershipType));
         message.status !== undefined &&
-            (obj.status = membershipStatusToJSON(message.status));
+            (obj.status = (0, members_1.membershipStatusToJSON)(message.status));
         return obj;
     },
     fromPartial(object) {
@@ -180,28 +183,28 @@ export const Member = {
 function createBaseUpdateMemberEvent() {
     return { before: undefined, after: undefined };
 }
-export const UpdateMemberEvent = {
-    encode(message, writer = Writer.create()) {
+exports.UpdateMemberEvent = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.before !== undefined) {
-            Member.encode(message.before, writer.uint32(10).fork()).ldelim();
+            exports.Member.encode(message.before, writer.uint32(10).fork()).ldelim();
         }
         if (message.after !== undefined) {
-            Member.encode(message.after, writer.uint32(18).fork()).ldelim();
+            exports.Member.encode(message.after, writer.uint32(18).fork()).ldelim();
         }
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Reader ? input : new Reader(input);
+        const reader = input instanceof minimal_1.Reader ? input : new minimal_1.Reader(input);
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = createBaseUpdateMemberEvent();
         while (reader.pos < end) {
             const tag = reader.uint32();
             switch (tag >>> 3) {
                 case 1:
-                    message.before = Member.decode(reader, reader.uint32());
+                    message.before = exports.Member.decode(reader, reader.uint32());
                     break;
                 case 2:
-                    message.after = Member.decode(reader, reader.uint32());
+                    message.after = exports.Member.decode(reader, reader.uint32());
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -212,27 +215,27 @@ export const UpdateMemberEvent = {
     },
     fromJSON(object) {
         return {
-            before: isSet(object.before) ? Member.fromJSON(object.before) : undefined,
-            after: isSet(object.after) ? Member.fromJSON(object.after) : undefined,
+            before: isSet(object.before) ? exports.Member.fromJSON(object.before) : undefined,
+            after: isSet(object.after) ? exports.Member.fromJSON(object.after) : undefined,
         };
     },
     toJSON(message) {
         const obj = {};
         message.before !== undefined &&
-            (obj.before = message.before ? Member.toJSON(message.before) : undefined);
+            (obj.before = message.before ? exports.Member.toJSON(message.before) : undefined);
         message.after !== undefined &&
-            (obj.after = message.after ? Member.toJSON(message.after) : undefined);
+            (obj.after = message.after ? exports.Member.toJSON(message.after) : undefined);
         return obj;
     },
     fromPartial(object) {
         const message = createBaseUpdateMemberEvent();
         message.before =
             object.before !== undefined && object.before !== null
-                ? Member.fromPartial(object.before)
+                ? exports.Member.fromPartial(object.before)
                 : undefined;
         message.after =
             object.after !== undefined && object.after !== null
-                ? Member.fromPartial(object.after)
+                ? exports.Member.fromPartial(object.after)
                 : undefined;
         return message;
     },
@@ -249,13 +252,13 @@ var globalThis = (() => {
     throw "Unable to locate global object";
 })();
 function toTimestamp(date) {
-    const seconds = date.getTime() / 1_000;
-    const nanos = (date.getTime() % 1_000) * 1_000_000;
+    const seconds = date.getTime() / 1000;
+    const nanos = (date.getTime() % 1000) * 1000000;
     return { seconds, nanos };
 }
 function fromTimestamp(t) {
-    let millis = t.seconds * 1_000;
-    millis += t.nanos / 1_000_000;
+    let millis = t.seconds * 1000;
+    millis += t.nanos / 1000000;
     return new Date(millis);
 }
 function fromJsonTimestamp(o) {
@@ -266,7 +269,7 @@ function fromJsonTimestamp(o) {
         return new Date(o);
     }
     else {
-        return fromTimestamp(Timestamp.fromJSON(o));
+        return fromTimestamp(timestamp_1.Timestamp.fromJSON(o));
     }
 }
 function longToNumber(long) {
@@ -277,9 +280,9 @@ function longToNumber(long) {
 }
 // If you get a compile-error about 'Constructor<Long> and ... have no overlap',
 // add '--ts_proto_opt=esModuleInterop=true' as a flag when calling 'protoc'.
-if (util.Long !== Long) {
-    util.Long = Long;
-    configure();
+if (minimal_1.util.Long !== Long) {
+    minimal_1.util.Long = Long;
+    (0, minimal_1.configure)();
 }
 function isSet(value) {
     return value !== null && value !== undefined;

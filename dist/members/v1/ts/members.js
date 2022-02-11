@@ -1,16 +1,19 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.MembersServiceClient = exports.MembersServiceService = exports.GetMembersResponse = exports.DeleteMemberResponse = exports.CreateMemberResponse = exports.UpdateMemberResponse = exports.GetMemberResponse = exports.Member = exports.DeleteMemberRequest = exports.UpdateMemberRequest = exports.CreateMemberRequest = exports.GetMembersRequest = exports.GetMemberByNationalIdentifierRequest = exports.GetMemberByEmailRequest = exports.GetMemberByIdRequest = exports.membershipStatusToJSON = exports.membershipStatusFromJSON = exports.MembershipStatus = exports.memberShipTypeToJSON = exports.memberShipTypeFromJSON = exports.MemberShipType = exports.protobufPackage = void 0;
 /* eslint-disable */
-import { util, configure, Writer, Reader } from "protobufjs/minimal";
-import * as Long from "long";
-import { makeGenericClientConstructor, } from "@grpc/grpc-js";
-import { Timestamp } from "./google/protobuf/timestamp";
-export const protobufPackage = "uptown_runners.members.v1";
-export var MemberShipType;
+const minimal_1 = require("protobufjs/minimal");
+const Long = require("long");
+const grpc_js_1 = require("@grpc/grpc-js");
+const timestamp_1 = require("./google/protobuf/timestamp");
+exports.protobufPackage = "uptown_runners.members.v1";
+var MemberShipType;
 (function (MemberShipType) {
     MemberShipType[MemberShipType["FULL"] = 0] = "FULL";
     MemberShipType[MemberShipType["SUPPORT"] = 1] = "SUPPORT";
     MemberShipType[MemberShipType["UNRECOGNIZED"] = -1] = "UNRECOGNIZED";
-})(MemberShipType || (MemberShipType = {}));
-export function memberShipTypeFromJSON(object) {
+})(MemberShipType = exports.MemberShipType || (exports.MemberShipType = {}));
+function memberShipTypeFromJSON(object) {
     switch (object) {
         case 0:
         case "FULL":
@@ -24,7 +27,8 @@ export function memberShipTypeFromJSON(object) {
             return MemberShipType.UNRECOGNIZED;
     }
 }
-export function memberShipTypeToJSON(object) {
+exports.memberShipTypeFromJSON = memberShipTypeFromJSON;
+function memberShipTypeToJSON(object) {
     switch (object) {
         case MemberShipType.FULL:
             return "FULL";
@@ -34,13 +38,14 @@ export function memberShipTypeToJSON(object) {
             return "UNKNOWN";
     }
 }
-export var MembershipStatus;
+exports.memberShipTypeToJSON = memberShipTypeToJSON;
+var MembershipStatus;
 (function (MembershipStatus) {
     MembershipStatus[MembershipStatus["Active"] = 0] = "Active";
     MembershipStatus[MembershipStatus["Inactive"] = 1] = "Inactive";
     MembershipStatus[MembershipStatus["UNRECOGNIZED"] = -1] = "UNRECOGNIZED";
-})(MembershipStatus || (MembershipStatus = {}));
-export function membershipStatusFromJSON(object) {
+})(MembershipStatus = exports.MembershipStatus || (exports.MembershipStatus = {}));
+function membershipStatusFromJSON(object) {
     switch (object) {
         case 0:
         case "Active":
@@ -54,7 +59,8 @@ export function membershipStatusFromJSON(object) {
             return MembershipStatus.UNRECOGNIZED;
     }
 }
-export function membershipStatusToJSON(object) {
+exports.membershipStatusFromJSON = membershipStatusFromJSON;
+function membershipStatusToJSON(object) {
     switch (object) {
         case MembershipStatus.Active:
             return "Active";
@@ -64,18 +70,19 @@ export function membershipStatusToJSON(object) {
             return "UNKNOWN";
     }
 }
+exports.membershipStatusToJSON = membershipStatusToJSON;
 function createBaseGetMemberByIdRequest() {
     return { Id: 0 };
 }
-export const GetMemberByIdRequest = {
-    encode(message, writer = Writer.create()) {
+exports.GetMemberByIdRequest = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.Id !== 0) {
             writer.uint32(8).int64(message.Id);
         }
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Reader ? input : new Reader(input);
+        const reader = input instanceof minimal_1.Reader ? input : new minimal_1.Reader(input);
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = createBaseGetMemberByIdRequest();
         while (reader.pos < end) {
@@ -110,15 +117,15 @@ export const GetMemberByIdRequest = {
 function createBaseGetMemberByEmailRequest() {
     return { Email: "" };
 }
-export const GetMemberByEmailRequest = {
-    encode(message, writer = Writer.create()) {
+exports.GetMemberByEmailRequest = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.Email !== "") {
             writer.uint32(10).string(message.Email);
         }
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Reader ? input : new Reader(input);
+        const reader = input instanceof minimal_1.Reader ? input : new minimal_1.Reader(input);
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = createBaseGetMemberByEmailRequest();
         while (reader.pos < end) {
@@ -153,15 +160,15 @@ export const GetMemberByEmailRequest = {
 function createBaseGetMemberByNationalIdentifierRequest() {
     return { NationalIdentifier: "" };
 }
-export const GetMemberByNationalIdentifierRequest = {
-    encode(message, writer = Writer.create()) {
+exports.GetMemberByNationalIdentifierRequest = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.NationalIdentifier !== "") {
             writer.uint32(10).string(message.NationalIdentifier);
         }
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Reader ? input : new Reader(input);
+        const reader = input instanceof minimal_1.Reader ? input : new minimal_1.Reader(input);
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = createBaseGetMemberByNationalIdentifierRequest();
         while (reader.pos < end) {
@@ -199,8 +206,8 @@ export const GetMemberByNationalIdentifierRequest = {
 function createBaseGetMembersRequest() {
     return { Skip: 0, Take: 0 };
 }
-export const GetMembersRequest = {
-    encode(message, writer = Writer.create()) {
+exports.GetMembersRequest = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.Skip !== 0) {
             writer.uint32(8).int64(message.Skip);
         }
@@ -210,7 +217,7 @@ export const GetMembersRequest = {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Reader ? input : new Reader(input);
+        const reader = input instanceof minimal_1.Reader ? input : new minimal_1.Reader(input);
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = createBaseGetMembersRequest();
         while (reader.pos < end) {
@@ -261,8 +268,8 @@ function createBaseCreateMemberRequest() {
         OverrideExpirationDate: undefined,
     };
 }
-export const CreateMemberRequest = {
-    encode(message, writer = Writer.create()) {
+exports.CreateMemberRequest = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.NationalIdentifier !== "") {
             writer.uint32(10).string(message.NationalIdentifier);
         }
@@ -285,15 +292,15 @@ export const CreateMemberRequest = {
             writer.uint32(56).int32(message.MemberShipType);
         }
         if (message.RenewedDate !== undefined) {
-            Timestamp.encode(toTimestamp(message.RenewedDate), writer.uint32(66).fork()).ldelim();
+            timestamp_1.Timestamp.encode(toTimestamp(message.RenewedDate), writer.uint32(66).fork()).ldelim();
         }
         if (message.OverrideExpirationDate !== undefined) {
-            Timestamp.encode(toTimestamp(message.OverrideExpirationDate), writer.uint32(74).fork()).ldelim();
+            timestamp_1.Timestamp.encode(toTimestamp(message.OverrideExpirationDate), writer.uint32(74).fork()).ldelim();
         }
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Reader ? input : new Reader(input);
+        const reader = input instanceof minimal_1.Reader ? input : new minimal_1.Reader(input);
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = createBaseCreateMemberRequest();
         while (reader.pos < end) {
@@ -321,10 +328,10 @@ export const CreateMemberRequest = {
                     message.MemberShipType = reader.int32();
                     break;
                 case 8:
-                    message.RenewedDate = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+                    message.RenewedDate = fromTimestamp(timestamp_1.Timestamp.decode(reader, reader.uint32()));
                     break;
                 case 9:
-                    message.OverrideExpirationDate = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+                    message.OverrideExpirationDate = fromTimestamp(timestamp_1.Timestamp.decode(reader, reader.uint32()));
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -400,8 +407,8 @@ function createBaseUpdateMemberRequest() {
         OverrideExpirationDate: undefined,
     };
 }
-export const UpdateMemberRequest = {
-    encode(message, writer = Writer.create()) {
+exports.UpdateMemberRequest = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.Id !== 0) {
             writer.uint32(8).int64(message.Id);
         }
@@ -424,15 +431,15 @@ export const UpdateMemberRequest = {
             writer.uint32(56).int32(message.MemberShipType);
         }
         if (message.RenewedDate !== undefined) {
-            Timestamp.encode(toTimestamp(message.RenewedDate), writer.uint32(66).fork()).ldelim();
+            timestamp_1.Timestamp.encode(toTimestamp(message.RenewedDate), writer.uint32(66).fork()).ldelim();
         }
         if (message.OverrideExpirationDate !== undefined) {
-            Timestamp.encode(toTimestamp(message.OverrideExpirationDate), writer.uint32(74).fork()).ldelim();
+            timestamp_1.Timestamp.encode(toTimestamp(message.OverrideExpirationDate), writer.uint32(74).fork()).ldelim();
         }
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Reader ? input : new Reader(input);
+        const reader = input instanceof minimal_1.Reader ? input : new minimal_1.Reader(input);
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = createBaseUpdateMemberRequest();
         while (reader.pos < end) {
@@ -460,10 +467,10 @@ export const UpdateMemberRequest = {
                     message.MemberShipType = reader.int32();
                     break;
                 case 8:
-                    message.RenewedDate = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+                    message.RenewedDate = fromTimestamp(timestamp_1.Timestamp.decode(reader, reader.uint32()));
                     break;
                 case 9:
-                    message.OverrideExpirationDate = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+                    message.OverrideExpirationDate = fromTimestamp(timestamp_1.Timestamp.decode(reader, reader.uint32()));
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -526,15 +533,15 @@ export const UpdateMemberRequest = {
 function createBaseDeleteMemberRequest() {
     return { MemberId: 0 };
 }
-export const DeleteMemberRequest = {
-    encode(message, writer = Writer.create()) {
+exports.DeleteMemberRequest = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.MemberId !== 0) {
             writer.uint32(8).int64(message.MemberId);
         }
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Reader ? input : new Reader(input);
+        const reader = input instanceof minimal_1.Reader ? input : new minimal_1.Reader(input);
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = createBaseDeleteMemberRequest();
         while (reader.pos < end) {
@@ -582,8 +589,8 @@ function createBaseMember() {
         Status: 0,
     };
 }
-export const Member = {
-    encode(message, writer = Writer.create()) {
+exports.Member = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.Id !== 0) {
             writer.uint32(8).int64(message.Id);
         }
@@ -609,10 +616,10 @@ export const Member = {
             writer.uint32(64).int32(message.MemberShipType);
         }
         if (message.RenewedDate !== undefined) {
-            Timestamp.encode(toTimestamp(message.RenewedDate), writer.uint32(74).fork()).ldelim();
+            timestamp_1.Timestamp.encode(toTimestamp(message.RenewedDate), writer.uint32(74).fork()).ldelim();
         }
         if (message.OverrideExpirationDate !== undefined) {
-            Timestamp.encode(toTimestamp(message.OverrideExpirationDate), writer.uint32(82).fork()).ldelim();
+            timestamp_1.Timestamp.encode(toTimestamp(message.OverrideExpirationDate), writer.uint32(82).fork()).ldelim();
         }
         if (message.Status !== 0) {
             writer.uint32(88).int32(message.Status);
@@ -620,7 +627,7 @@ export const Member = {
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Reader ? input : new Reader(input);
+        const reader = input instanceof minimal_1.Reader ? input : new minimal_1.Reader(input);
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = createBaseMember();
         while (reader.pos < end) {
@@ -651,10 +658,10 @@ export const Member = {
                     message.MemberShipType = reader.int32();
                     break;
                 case 9:
-                    message.RenewedDate = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+                    message.RenewedDate = fromTimestamp(timestamp_1.Timestamp.decode(reader, reader.uint32()));
                     break;
                 case 10:
-                    message.OverrideExpirationDate = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+                    message.OverrideExpirationDate = fromTimestamp(timestamp_1.Timestamp.decode(reader, reader.uint32()));
                     break;
                 case 11:
                     message.Status = reader.int32();
@@ -732,22 +739,22 @@ export const Member = {
 function createBaseGetMemberResponse() {
     return { Member: undefined };
 }
-export const GetMemberResponse = {
-    encode(message, writer = Writer.create()) {
+exports.GetMemberResponse = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.Member !== undefined) {
-            Member.encode(message.Member, writer.uint32(10).fork()).ldelim();
+            exports.Member.encode(message.Member, writer.uint32(10).fork()).ldelim();
         }
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Reader ? input : new Reader(input);
+        const reader = input instanceof minimal_1.Reader ? input : new minimal_1.Reader(input);
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = createBaseGetMemberResponse();
         while (reader.pos < end) {
             const tag = reader.uint32();
             switch (tag >>> 3) {
                 case 1:
-                    message.Member = Member.decode(reader, reader.uint32());
+                    message.Member = exports.Member.decode(reader, reader.uint32());
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -758,20 +765,20 @@ export const GetMemberResponse = {
     },
     fromJSON(object) {
         return {
-            Member: isSet(object.Member) ? Member.fromJSON(object.Member) : undefined,
+            Member: isSet(object.Member) ? exports.Member.fromJSON(object.Member) : undefined,
         };
     },
     toJSON(message) {
         const obj = {};
         message.Member !== undefined &&
-            (obj.Member = message.Member ? Member.toJSON(message.Member) : undefined);
+            (obj.Member = message.Member ? exports.Member.toJSON(message.Member) : undefined);
         return obj;
     },
     fromPartial(object) {
         const message = createBaseGetMemberResponse();
         message.Member =
             object.Member !== undefined && object.Member !== null
-                ? Member.fromPartial(object.Member)
+                ? exports.Member.fromPartial(object.Member)
                 : undefined;
         return message;
     },
@@ -779,22 +786,22 @@ export const GetMemberResponse = {
 function createBaseUpdateMemberResponse() {
     return { Member: undefined };
 }
-export const UpdateMemberResponse = {
-    encode(message, writer = Writer.create()) {
+exports.UpdateMemberResponse = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.Member !== undefined) {
-            Member.encode(message.Member, writer.uint32(10).fork()).ldelim();
+            exports.Member.encode(message.Member, writer.uint32(10).fork()).ldelim();
         }
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Reader ? input : new Reader(input);
+        const reader = input instanceof minimal_1.Reader ? input : new minimal_1.Reader(input);
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = createBaseUpdateMemberResponse();
         while (reader.pos < end) {
             const tag = reader.uint32();
             switch (tag >>> 3) {
                 case 1:
-                    message.Member = Member.decode(reader, reader.uint32());
+                    message.Member = exports.Member.decode(reader, reader.uint32());
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -805,20 +812,20 @@ export const UpdateMemberResponse = {
     },
     fromJSON(object) {
         return {
-            Member: isSet(object.Member) ? Member.fromJSON(object.Member) : undefined,
+            Member: isSet(object.Member) ? exports.Member.fromJSON(object.Member) : undefined,
         };
     },
     toJSON(message) {
         const obj = {};
         message.Member !== undefined &&
-            (obj.Member = message.Member ? Member.toJSON(message.Member) : undefined);
+            (obj.Member = message.Member ? exports.Member.toJSON(message.Member) : undefined);
         return obj;
     },
     fromPartial(object) {
         const message = createBaseUpdateMemberResponse();
         message.Member =
             object.Member !== undefined && object.Member !== null
-                ? Member.fromPartial(object.Member)
+                ? exports.Member.fromPartial(object.Member)
                 : undefined;
         return message;
     },
@@ -826,22 +833,22 @@ export const UpdateMemberResponse = {
 function createBaseCreateMemberResponse() {
     return { Member: undefined };
 }
-export const CreateMemberResponse = {
-    encode(message, writer = Writer.create()) {
+exports.CreateMemberResponse = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.Member !== undefined) {
-            Member.encode(message.Member, writer.uint32(10).fork()).ldelim();
+            exports.Member.encode(message.Member, writer.uint32(10).fork()).ldelim();
         }
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Reader ? input : new Reader(input);
+        const reader = input instanceof minimal_1.Reader ? input : new minimal_1.Reader(input);
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = createBaseCreateMemberResponse();
         while (reader.pos < end) {
             const tag = reader.uint32();
             switch (tag >>> 3) {
                 case 1:
-                    message.Member = Member.decode(reader, reader.uint32());
+                    message.Member = exports.Member.decode(reader, reader.uint32());
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -852,20 +859,20 @@ export const CreateMemberResponse = {
     },
     fromJSON(object) {
         return {
-            Member: isSet(object.Member) ? Member.fromJSON(object.Member) : undefined,
+            Member: isSet(object.Member) ? exports.Member.fromJSON(object.Member) : undefined,
         };
     },
     toJSON(message) {
         const obj = {};
         message.Member !== undefined &&
-            (obj.Member = message.Member ? Member.toJSON(message.Member) : undefined);
+            (obj.Member = message.Member ? exports.Member.toJSON(message.Member) : undefined);
         return obj;
     },
     fromPartial(object) {
         const message = createBaseCreateMemberResponse();
         message.Member =
             object.Member !== undefined && object.Member !== null
-                ? Member.fromPartial(object.Member)
+                ? exports.Member.fromPartial(object.Member)
                 : undefined;
         return message;
     },
@@ -873,22 +880,22 @@ export const CreateMemberResponse = {
 function createBaseDeleteMemberResponse() {
     return { Member: undefined };
 }
-export const DeleteMemberResponse = {
-    encode(message, writer = Writer.create()) {
+exports.DeleteMemberResponse = {
+    encode(message, writer = minimal_1.Writer.create()) {
         if (message.Member !== undefined) {
-            Member.encode(message.Member, writer.uint32(10).fork()).ldelim();
+            exports.Member.encode(message.Member, writer.uint32(10).fork()).ldelim();
         }
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Reader ? input : new Reader(input);
+        const reader = input instanceof minimal_1.Reader ? input : new minimal_1.Reader(input);
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = createBaseDeleteMemberResponse();
         while (reader.pos < end) {
             const tag = reader.uint32();
             switch (tag >>> 3) {
                 case 1:
-                    message.Member = Member.decode(reader, reader.uint32());
+                    message.Member = exports.Member.decode(reader, reader.uint32());
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -899,20 +906,20 @@ export const DeleteMemberResponse = {
     },
     fromJSON(object) {
         return {
-            Member: isSet(object.Member) ? Member.fromJSON(object.Member) : undefined,
+            Member: isSet(object.Member) ? exports.Member.fromJSON(object.Member) : undefined,
         };
     },
     toJSON(message) {
         const obj = {};
         message.Member !== undefined &&
-            (obj.Member = message.Member ? Member.toJSON(message.Member) : undefined);
+            (obj.Member = message.Member ? exports.Member.toJSON(message.Member) : undefined);
         return obj;
     },
     fromPartial(object) {
         const message = createBaseDeleteMemberResponse();
         message.Member =
             object.Member !== undefined && object.Member !== null
-                ? Member.fromPartial(object.Member)
+                ? exports.Member.fromPartial(object.Member)
                 : undefined;
         return message;
     },
@@ -920,22 +927,22 @@ export const DeleteMemberResponse = {
 function createBaseGetMembersResponse() {
     return { Members: [] };
 }
-export const GetMembersResponse = {
-    encode(message, writer = Writer.create()) {
+exports.GetMembersResponse = {
+    encode(message, writer = minimal_1.Writer.create()) {
         for (const v of message.Members) {
-            Member.encode(v, writer.uint32(10).fork()).ldelim();
+            exports.Member.encode(v, writer.uint32(10).fork()).ldelim();
         }
         return writer;
     },
     decode(input, length) {
-        const reader = input instanceof Reader ? input : new Reader(input);
+        const reader = input instanceof minimal_1.Reader ? input : new minimal_1.Reader(input);
         let end = length === undefined ? reader.len : reader.pos + length;
         const message = createBaseGetMembersResponse();
         while (reader.pos < end) {
             const tag = reader.uint32();
             switch (tag >>> 3) {
                 case 1:
-                    message.Members.push(Member.decode(reader, reader.uint32()));
+                    message.Members.push(exports.Member.decode(reader, reader.uint32()));
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -947,14 +954,14 @@ export const GetMembersResponse = {
     fromJSON(object) {
         return {
             Members: Array.isArray(object?.Members)
-                ? object.Members.map((e) => Member.fromJSON(e))
+                ? object.Members.map((e) => exports.Member.fromJSON(e))
                 : [],
         };
     },
     toJSON(message) {
         const obj = {};
         if (message.Members) {
-            obj.Members = message.Members.map((e) => e ? Member.toJSON(e) : undefined);
+            obj.Members = message.Members.map((e) => e ? exports.Member.toJSON(e) : undefined);
         }
         else {
             obj.Members = [];
@@ -963,76 +970,76 @@ export const GetMembersResponse = {
     },
     fromPartial(object) {
         const message = createBaseGetMembersResponse();
-        message.Members = object.Members?.map((e) => Member.fromPartial(e)) || [];
+        message.Members = object.Members?.map((e) => exports.Member.fromPartial(e)) || [];
         return message;
     },
 };
-export const MembersServiceService = {
+exports.MembersServiceService = {
     getById: {
         path: "/uptown_runners.members.v1.MembersService/GetById",
         requestStream: false,
         responseStream: false,
-        requestSerialize: (value) => Buffer.from(GetMemberByIdRequest.encode(value).finish()),
-        requestDeserialize: (value) => GetMemberByIdRequest.decode(value),
-        responseSerialize: (value) => Buffer.from(GetMemberResponse.encode(value).finish()),
-        responseDeserialize: (value) => GetMemberResponse.decode(value),
+        requestSerialize: (value) => Buffer.from(exports.GetMemberByIdRequest.encode(value).finish()),
+        requestDeserialize: (value) => exports.GetMemberByIdRequest.decode(value),
+        responseSerialize: (value) => Buffer.from(exports.GetMemberResponse.encode(value).finish()),
+        responseDeserialize: (value) => exports.GetMemberResponse.decode(value),
     },
     getByEmail: {
         path: "/uptown_runners.members.v1.MembersService/GetByEmail",
         requestStream: false,
         responseStream: false,
-        requestSerialize: (value) => Buffer.from(GetMemberByEmailRequest.encode(value).finish()),
-        requestDeserialize: (value) => GetMemberByEmailRequest.decode(value),
-        responseSerialize: (value) => Buffer.from(GetMemberResponse.encode(value).finish()),
-        responseDeserialize: (value) => GetMemberResponse.decode(value),
+        requestSerialize: (value) => Buffer.from(exports.GetMemberByEmailRequest.encode(value).finish()),
+        requestDeserialize: (value) => exports.GetMemberByEmailRequest.decode(value),
+        responseSerialize: (value) => Buffer.from(exports.GetMemberResponse.encode(value).finish()),
+        responseDeserialize: (value) => exports.GetMemberResponse.decode(value),
     },
     getByNationalIdentifier: {
         path: "/uptown_runners.members.v1.MembersService/GetByNationalIdentifier",
         requestStream: false,
         responseStream: false,
-        requestSerialize: (value) => Buffer.from(GetMemberByNationalIdentifierRequest.encode(value).finish()),
-        requestDeserialize: (value) => GetMemberByNationalIdentifierRequest.decode(value),
-        responseSerialize: (value) => Buffer.from(GetMemberResponse.encode(value).finish()),
-        responseDeserialize: (value) => GetMemberResponse.decode(value),
+        requestSerialize: (value) => Buffer.from(exports.GetMemberByNationalIdentifierRequest.encode(value).finish()),
+        requestDeserialize: (value) => exports.GetMemberByNationalIdentifierRequest.decode(value),
+        responseSerialize: (value) => Buffer.from(exports.GetMemberResponse.encode(value).finish()),
+        responseDeserialize: (value) => exports.GetMemberResponse.decode(value),
     },
     list: {
         path: "/uptown_runners.members.v1.MembersService/List",
         requestStream: false,
         responseStream: false,
-        requestSerialize: (value) => Buffer.from(GetMembersRequest.encode(value).finish()),
-        requestDeserialize: (value) => GetMembersRequest.decode(value),
-        responseSerialize: (value) => Buffer.from(GetMembersResponse.encode(value).finish()),
-        responseDeserialize: (value) => GetMembersResponse.decode(value),
+        requestSerialize: (value) => Buffer.from(exports.GetMembersRequest.encode(value).finish()),
+        requestDeserialize: (value) => exports.GetMembersRequest.decode(value),
+        responseSerialize: (value) => Buffer.from(exports.GetMembersResponse.encode(value).finish()),
+        responseDeserialize: (value) => exports.GetMembersResponse.decode(value),
     },
     create: {
         path: "/uptown_runners.members.v1.MembersService/Create",
         requestStream: false,
         responseStream: false,
-        requestSerialize: (value) => Buffer.from(CreateMemberRequest.encode(value).finish()),
-        requestDeserialize: (value) => CreateMemberRequest.decode(value),
-        responseSerialize: (value) => Buffer.from(CreateMemberResponse.encode(value).finish()),
-        responseDeserialize: (value) => CreateMemberResponse.decode(value),
+        requestSerialize: (value) => Buffer.from(exports.CreateMemberRequest.encode(value).finish()),
+        requestDeserialize: (value) => exports.CreateMemberRequest.decode(value),
+        responseSerialize: (value) => Buffer.from(exports.CreateMemberResponse.encode(value).finish()),
+        responseDeserialize: (value) => exports.CreateMemberResponse.decode(value),
     },
     update: {
         path: "/uptown_runners.members.v1.MembersService/Update",
         requestStream: false,
         responseStream: false,
-        requestSerialize: (value) => Buffer.from(UpdateMemberRequest.encode(value).finish()),
-        requestDeserialize: (value) => UpdateMemberRequest.decode(value),
-        responseSerialize: (value) => Buffer.from(UpdateMemberResponse.encode(value).finish()),
-        responseDeserialize: (value) => UpdateMemberResponse.decode(value),
+        requestSerialize: (value) => Buffer.from(exports.UpdateMemberRequest.encode(value).finish()),
+        requestDeserialize: (value) => exports.UpdateMemberRequest.decode(value),
+        responseSerialize: (value) => Buffer.from(exports.UpdateMemberResponse.encode(value).finish()),
+        responseDeserialize: (value) => exports.UpdateMemberResponse.decode(value),
     },
     delete: {
         path: "/uptown_runners.members.v1.MembersService/Delete",
         requestStream: false,
         responseStream: false,
-        requestSerialize: (value) => Buffer.from(DeleteMemberRequest.encode(value).finish()),
-        requestDeserialize: (value) => DeleteMemberRequest.decode(value),
-        responseSerialize: (value) => Buffer.from(DeleteMemberResponse.encode(value).finish()),
-        responseDeserialize: (value) => DeleteMemberResponse.decode(value),
+        requestSerialize: (value) => Buffer.from(exports.DeleteMemberRequest.encode(value).finish()),
+        requestDeserialize: (value) => exports.DeleteMemberRequest.decode(value),
+        responseSerialize: (value) => Buffer.from(exports.DeleteMemberResponse.encode(value).finish()),
+        responseDeserialize: (value) => exports.DeleteMemberResponse.decode(value),
     },
 };
-export const MembersServiceClient = makeGenericClientConstructor(MembersServiceService, "uptown_runners.members.v1.MembersService");
+exports.MembersServiceClient = (0, grpc_js_1.makeGenericClientConstructor)(exports.MembersServiceService, "uptown_runners.members.v1.MembersService");
 var globalThis = (() => {
     if (typeof globalThis !== "undefined")
         return globalThis;
@@ -1045,13 +1052,13 @@ var globalThis = (() => {
     throw "Unable to locate global object";
 })();
 function toTimestamp(date) {
-    const seconds = date.getTime() / 1_000;
-    const nanos = (date.getTime() % 1_000) * 1_000_000;
+    const seconds = date.getTime() / 1000;
+    const nanos = (date.getTime() % 1000) * 1000000;
     return { seconds, nanos };
 }
 function fromTimestamp(t) {
-    let millis = t.seconds * 1_000;
-    millis += t.nanos / 1_000_000;
+    let millis = t.seconds * 1000;
+    millis += t.nanos / 1000000;
     return new Date(millis);
 }
 function fromJsonTimestamp(o) {
@@ -1062,7 +1069,7 @@ function fromJsonTimestamp(o) {
         return new Date(o);
     }
     else {
-        return fromTimestamp(Timestamp.fromJSON(o));
+        return fromTimestamp(timestamp_1.Timestamp.fromJSON(o));
     }
 }
 function longToNumber(long) {
@@ -1073,9 +1080,9 @@ function longToNumber(long) {
 }
 // If you get a compile-error about 'Constructor<Long> and ... have no overlap',
 // add '--ts_proto_opt=esModuleInterop=true' as a flag when calling 'protoc'.
-if (util.Long !== Long) {
-    util.Long = Long;
-    configure();
+if (minimal_1.util.Long !== Long) {
+    minimal_1.util.Long = Long;
+    (0, minimal_1.configure)();
 }
 function isSet(value) {
     return value !== null && value !== undefined;
