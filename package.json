@@ -1,8 +1,8 @@
 {
   "name": "@uptown-runners/common",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -18,7 +18,11 @@
   },
   "homepage": "https://github.com/UptownRunners/common#readme",
   "dependencies": {
-    "@google-cloud/pubsub": "^2.18.5"
+    "@google-cloud/pubsub": "^2.18.5",
+    "grpc-tools": "^1.11.2",
+    "protoc-gen-grpc": "^2.0.3",
+    "ts-proto": "^1.104.0",
+    "ts-protoc-gen": "^0.15.0"
   },
   "devDependencies": {
     "typescript": "^4.5.5"

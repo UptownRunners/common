@@ -8,8 +8,8 @@ import {
   membershipStatusFromJSON,
   memberShipTypeToJSON,
   membershipStatusToJSON,
-} from "../../members/v1/members";
-import { Timestamp } from "../../google/protobuf/timestamp";
+} from "./members/v1/members";
+import { Timestamp } from "./google/protobuf/timestamp";
 
 export const protobufPackage = "uptown_runners.events.v1";
 

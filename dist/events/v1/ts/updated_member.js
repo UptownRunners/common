@@ -1,8 +1,8 @@
 /* eslint-disable */
 import { util, configure, Writer, Reader } from "protobufjs/minimal";
 import * as Long from "long";
-import { memberShipTypeFromJSON, membershipStatusFromJSON, memberShipTypeToJSON, membershipStatusToJSON, } from "../../members/v1/members";
-import { Timestamp } from "../../google/protobuf/timestamp";
+import { memberShipTypeFromJSON, membershipStatusFromJSON, memberShipTypeToJSON, membershipStatusToJSON, } from "./members/v1/members";
+import { Timestamp } from "./google/protobuf/timestamp";
 export const protobufPackage = "uptown_runners.events.v1";
 function createBaseMember() {
     return {
