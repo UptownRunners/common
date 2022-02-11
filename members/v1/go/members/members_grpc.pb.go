@@ -313,5 +313,5 @@ var MembersService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "members.proto",
+	Metadata: "members/v1/members.proto",
 }
