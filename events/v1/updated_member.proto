@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package uptown_runners.events.v1;
+
+import "google/protobuf/timestamp.proto";
+import "members/v1/members.proto";
+
+option go_package = "github.com/UptownRunners/common/events/v1/go/events";
+
+message UpdatedMemberEvent {
+    int64 member_id = 1;
+    string user_id = 2;
+    string first_name = 3;
+    string last_name = 4;
+    string address = 5;
+    string phone_number = 6;
+    string national_identifier = 7;
+    string email = 8;
+    google.protobuf.Timestamp renewed_date = 9;
+    google.protobuf.Timestamp override_expiration_date = 10;
+    uptown_runners.members.v1.MemberShipType membership_type = 11;
+    uptown_runners.members.v1.MembershipStatus status = 12;
+}

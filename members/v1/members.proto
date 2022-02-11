@@ -1,11 +1,11 @@
 syntax = "proto3";
 
-package uptown.runners.internal.members.grpc.v1;
+package uptown_runners.members.v1;
 
 import "google/protobuf/timestamp.proto";
 import "validate/validate.proto";
 
-option go_package = "./members";
+option go_package = "github.com/UptownRunners/common/members/v1/go/members";
 
 message GetMemberByIdRequest {
     int64 Id = 1;
