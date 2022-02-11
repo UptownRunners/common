@@ -1,2 +1,2 @@
-export {Member, UpdateMemberEvent} from "./events/v1/ts/updated_member";
-export * from "./members/v1/ts/members";
+export {Member, UpdateMemberEvent} from "./ts/updated_member_event"
+export * from "./ts/members";

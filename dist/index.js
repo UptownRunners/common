@@ -11,7 +11,7 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UpdateMemberEvent = exports.Member = void 0;
-var updated_member_1 = require("./events/v1/ts/updated_member");
-Object.defineProperty(exports, "Member", { enumerable: true, get: function () { return updated_member_1.Member; } });
-Object.defineProperty(exports, "UpdateMemberEvent", { enumerable: true, get: function () { return updated_member_1.UpdateMemberEvent; } });
-__exportStar(require("./members/v1/ts/members"), exports);
+var updated_member_event_1 = require("./ts/updated_member_event");
+Object.defineProperty(exports, "Member", { enumerable: true, get: function () { return updated_member_event_1.Member; } });
+Object.defineProperty(exports, "UpdateMemberEvent", { enumerable: true, get: function () { return updated_member_event_1.UpdateMemberEvent; } });
+__exportStar(require("./ts/members"), exports);

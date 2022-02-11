@@ -7,7 +7,7 @@ exports.UpdateMemberEvent = exports.Member = exports.protobufPackage = void 0;
 /* eslint-disable */
 const long_1 = __importDefault(require("long"));
 const minimal_1 = __importDefault(require("protobufjs/minimal"));
-const members_1 = require("./members/v1/members");
+const members_1 = require("./members");
 const timestamp_1 = require("./google/protobuf/timestamp");
 exports.protobufPackage = "uptown_runners.events.v1";
 function createBaseMember() {
@@ -135,7 +135,7 @@ exports.Member = {
                 ? fromJsonTimestamp(object.overrideExpirationDate)
                 : undefined,
             membershipType: isSet(object.membershipType)
-                ? (0, members_1.memberShipTypeFromJSON)(object.membershipType)
+                ? (0, members_1.membershipTypeFromJSON)(object.membershipType)
                 : 0,
             status: isSet(object.status)
                 ? (0, members_1.membershipStatusFromJSON)(object.status)
@@ -161,7 +161,7 @@ exports.Member = {
             (obj.overrideExpirationDate =
                 message.overrideExpirationDate.toISOString());
         message.membershipType !== undefined &&
-            (obj.membershipType = (0, members_1.memberShipTypeToJSON)(message.membershipType));
+            (obj.membershipType = (0, members_1.membershipTypeToJSON)(message.membershipType));
         message.status !== undefined &&
             (obj.status = (0, members_1.membershipStatusToJSON)(message.status));
         return obj;
