@@ -6,7 +6,7 @@ protoc \
   --go_out="." \
   --validate_out="lang=go:." \
   --go-grpc_out="." \
-  --go_opt=paths=source_relative \
-  --validate_opt=paths=source_relative \
-  --go-grpc_opt=paths=source_relative \
+  --go_opt=module="github.com/UptownRunners/common/events/v1/go" \
+  --validate_opt=module="github.com/UptownRunners/common/events/v1/go" \
+  --go-grpc_opt=module="github.com/UptownRunners/common/events/v1/go" \
   ../updated_member.proto

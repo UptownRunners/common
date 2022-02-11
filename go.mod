@@ -1,4 +1,4 @@
-module common
+module github.com/UptownRunners/common
 
 go 1.17
 
