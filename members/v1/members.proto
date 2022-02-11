@@ -3,7 +3,6 @@ syntax = "proto3";
 package uptown_runners.members.v1;
 
 import "google/protobuf/timestamp.proto";
-import "validate/validate.proto";
 
 option go_package = "github.com/UptownRunners/common/members/v1/go/members";
 
@@ -25,25 +24,25 @@ message GetMembersRequest {
 }
 
 message CreateMemberRequest {
-    string NationalIdentifier = 1 [(validate.rules).string.min_len = 1];
-    string Email = 2 [(validate.rules).string.email = true];
-    string FirstName = 3 [(validate.rules).string.min_len = 1];
-    string LastName = 4 [(validate.rules).string.min_len = 1];
-    string PhoneNumber = 5 [(validate.rules).string.min_len = 1];
-    string Address = 6 [(validate.rules).string.min_len = 1];
-    MemberShipType MemberShipType = 7  [(validate.rules).enum.defined_only = true];
+    string NationalIdentifier = 1;
+    string Email = 2;
+    string FirstName = 3;
+    string LastName = 4;
+    string PhoneNumber = 5;
+    string Address = 6;
+    MemberShipType MemberShipType = 7;
     google.protobuf.Timestamp RenewedDate = 8;
     google.protobuf.Timestamp OverrideExpirationDate = 9;
 }
 
 message UpdateMemberRequest {
     int64 Id = 1;
-    string Email = 2 [(validate.rules).string.email = true];
-    string FirstName = 3 [(validate.rules).string.min_len = 1];
-    string LastName = 4 [(validate.rules).string.min_len = 1];
-    string PhoneNumber = 5 [(validate.rules).string.min_len = 1];
-    string Address = 6 [(validate.rules).string.min_len = 1];
-    MemberShipType MemberShipType = 7  [(validate.rules).enum.defined_only = true];
+    string Email = 2;
+    string FirstName = 3;
+    string LastName = 4;
+    string PhoneNumber = 5;
+    string Address = 6;
+    MemberShipType MemberShipType = 7;
     google.protobuf.Timestamp RenewedDate = 8;
     google.protobuf.Timestamp OverrideExpirationDate = 9;
 }
