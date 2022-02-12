@@ -3,7 +3,7 @@ syntax = "proto3";
 package uptown_runners.events.v1;
 
 import "google/protobuf/timestamp.proto";
-import "members.proto";
+import "v1/members.proto";
 
 option go_package = "github.com/UptownRunners/common/go/events";
 
