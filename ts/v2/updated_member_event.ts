@@ -8,10 +8,10 @@ import {
   membershipStatusFromJSON,
   membershipTypeToJSON,
   membershipStatusToJSON,
-} from "./members";
-import { Timestamp } from "./google/protobuf/timestamp";
+} from "../v2/members";
+import { Timestamp } from "../google/protobuf/timestamp";
 
-export const protobufPackage = "uptown_runners.events.v1";
+export const protobufPackage = "uptown_runners.events.v2";
 
 export interface Member {
   memberId: number;
