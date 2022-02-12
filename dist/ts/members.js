@@ -3,9 +3,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.MembersServiceClientImpl = exports.UpdateStatusesResponse = exports.GetMembersResponse = exports.DeleteMemberResponse = exports.CreateMemberResponse = exports.UpdateMemberResponse = exports.GetMemberResponse = exports.Address = exports.Member = exports.UpdateStatusesRequest = exports.DeleteMemberRequest = exports.UpdateMemberRequest = exports.CreateMemberRequest = exports.GetMembersRequest = exports.GetMemberByNationalIdentifierRequest = exports.GetMemberByEmailRequest = exports.GetMemberByIdRequest = exports.membershipStatusToJSON = exports.membershipStatusFromJSON = exports.MembershipStatus = exports.membershipTypeToJSON = exports.membershipTypeFromJSON = exports.MembershipType = exports.protobufPackage = void 0;
+exports.MembersServiceClient = exports.MembersServiceService = exports.UpdateStatusesResponse = exports.GetMembersResponse = exports.DeleteMemberResponse = exports.CreateMemberResponse = exports.UpdateMemberResponse = exports.GetMemberResponse = exports.Address = exports.Member = exports.UpdateStatusesRequest = exports.DeleteMemberRequest = exports.UpdateMemberRequest = exports.CreateMemberRequest = exports.GetMembersRequest = exports.GetMemberByNationalIdentifierRequest = exports.GetMemberByEmailRequest = exports.GetMemberByIdRequest = exports.membershipStatusToJSON = exports.membershipStatusFromJSON = exports.MembershipStatus = exports.membershipTypeToJSON = exports.membershipTypeFromJSON = exports.MembershipType = exports.protobufPackage = void 0;
 /* eslint-disable */
 const long_1 = __importDefault(require("long"));
+const grpc_js_1 = require("@grpc/grpc-js");
 const minimal_1 = __importDefault(require("protobufjs/minimal"));
 const timestamp_1 = require("./google/protobuf/timestamp");
 exports.protobufPackage = "uptown_runners.members.v2";
@@ -1184,60 +1185,81 @@ exports.UpdateStatusesResponse = {
         return message;
     },
 };
-class MembersServiceClientImpl {
-    constructor(rpc) {
-        this.rpc = rpc;
-        this.GetById = this.GetById.bind(this);
-        this.GetByEmail = this.GetByEmail.bind(this);
-        this.GetByNationalIdentifier = this.GetByNationalIdentifier.bind(this);
-        this.List = this.List.bind(this);
-        this.Create = this.Create.bind(this);
-        this.Update = this.Update.bind(this);
-        this.Delete = this.Delete.bind(this);
-        this.UpdateStatuses = this.UpdateStatuses.bind(this);
-    }
-    GetById(request) {
-        const data = exports.GetMemberByIdRequest.encode(request).finish();
-        const promise = this.rpc.request("uptown_runners.members.v2.MembersService", "GetById", data);
-        return promise.then((data) => exports.GetMemberResponse.decode(new minimal_1.default.Reader(data)));
-    }
-    GetByEmail(request) {
-        const data = exports.GetMemberByEmailRequest.encode(request).finish();
-        const promise = this.rpc.request("uptown_runners.members.v2.MembersService", "GetByEmail", data);
-        return promise.then((data) => exports.GetMemberResponse.decode(new minimal_1.default.Reader(data)));
-    }
-    GetByNationalIdentifier(request) {
-        const data = exports.GetMemberByNationalIdentifierRequest.encode(request).finish();
-        const promise = this.rpc.request("uptown_runners.members.v2.MembersService", "GetByNationalIdentifier", data);
-        return promise.then((data) => exports.GetMemberResponse.decode(new minimal_1.default.Reader(data)));
-    }
-    List(request) {
-        const data = exports.GetMembersRequest.encode(request).finish();
-        const promise = this.rpc.request("uptown_runners.members.v2.MembersService", "List", data);
-        return promise.then((data) => exports.GetMembersResponse.decode(new minimal_1.default.Reader(data)));
-    }
-    Create(request) {
-        const data = exports.CreateMemberRequest.encode(request).finish();
-        const promise = this.rpc.request("uptown_runners.members.v2.MembersService", "Create", data);
-        return promise.then((data) => exports.CreateMemberResponse.decode(new minimal_1.default.Reader(data)));
-    }
-    Update(request) {
-        const data = exports.UpdateMemberRequest.encode(request).finish();
-        const promise = this.rpc.request("uptown_runners.members.v2.MembersService", "Update", data);
-        return promise.then((data) => exports.UpdateMemberResponse.decode(new minimal_1.default.Reader(data)));
-    }
-    Delete(request) {
-        const data = exports.DeleteMemberRequest.encode(request).finish();
-        const promise = this.rpc.request("uptown_runners.members.v2.MembersService", "Delete", data);
-        return promise.then((data) => exports.DeleteMemberResponse.decode(new minimal_1.default.Reader(data)));
-    }
-    UpdateStatuses(request) {
-        const data = exports.UpdateStatusesRequest.encode(request).finish();
-        const promise = this.rpc.request("uptown_runners.members.v2.MembersService", "UpdateStatuses", data);
-        return promise.then((data) => exports.UpdateStatusesResponse.decode(new minimal_1.default.Reader(data)));
-    }
-}
-exports.MembersServiceClientImpl = MembersServiceClientImpl;
+exports.MembersServiceService = {
+    getById: {
+        path: "/uptown_runners.members.v2.MembersService/GetById",
+        requestStream: false,
+        responseStream: false,
+        requestSerialize: (value) => Buffer.from(exports.GetMemberByIdRequest.encode(value).finish()),
+        requestDeserialize: (value) => exports.GetMemberByIdRequest.decode(value),
+        responseSerialize: (value) => Buffer.from(exports.GetMemberResponse.encode(value).finish()),
+        responseDeserialize: (value) => exports.GetMemberResponse.decode(value),
+    },
+    getByEmail: {
+        path: "/uptown_runners.members.v2.MembersService/GetByEmail",
+        requestStream: false,
+        responseStream: false,
+        requestSerialize: (value) => Buffer.from(exports.GetMemberByEmailRequest.encode(value).finish()),
+        requestDeserialize: (value) => exports.GetMemberByEmailRequest.decode(value),
+        responseSerialize: (value) => Buffer.from(exports.GetMemberResponse.encode(value).finish()),
+        responseDeserialize: (value) => exports.GetMemberResponse.decode(value),
+    },
+    getByNationalIdentifier: {
+        path: "/uptown_runners.members.v2.MembersService/GetByNationalIdentifier",
+        requestStream: false,
+        responseStream: false,
+        requestSerialize: (value) => Buffer.from(exports.GetMemberByNationalIdentifierRequest.encode(value).finish()),
+        requestDeserialize: (value) => exports.GetMemberByNationalIdentifierRequest.decode(value),
+        responseSerialize: (value) => Buffer.from(exports.GetMemberResponse.encode(value).finish()),
+        responseDeserialize: (value) => exports.GetMemberResponse.decode(value),
+    },
+    list: {
+        path: "/uptown_runners.members.v2.MembersService/List",
+        requestStream: false,
+        responseStream: false,
+        requestSerialize: (value) => Buffer.from(exports.GetMembersRequest.encode(value).finish()),
+        requestDeserialize: (value) => exports.GetMembersRequest.decode(value),
+        responseSerialize: (value) => Buffer.from(exports.GetMembersResponse.encode(value).finish()),
+        responseDeserialize: (value) => exports.GetMembersResponse.decode(value),
+    },
+    create: {
+        path: "/uptown_runners.members.v2.MembersService/Create",
+        requestStream: false,
+        responseStream: false,
+        requestSerialize: (value) => Buffer.from(exports.CreateMemberRequest.encode(value).finish()),
+        requestDeserialize: (value) => exports.CreateMemberRequest.decode(value),
+        responseSerialize: (value) => Buffer.from(exports.CreateMemberResponse.encode(value).finish()),
+        responseDeserialize: (value) => exports.CreateMemberResponse.decode(value),
+    },
+    update: {
+        path: "/uptown_runners.members.v2.MembersService/Update",
+        requestStream: false,
+        responseStream: false,
+        requestSerialize: (value) => Buffer.from(exports.UpdateMemberRequest.encode(value).finish()),
+        requestDeserialize: (value) => exports.UpdateMemberRequest.decode(value),
+        responseSerialize: (value) => Buffer.from(exports.UpdateMemberResponse.encode(value).finish()),
+        responseDeserialize: (value) => exports.UpdateMemberResponse.decode(value),
+    },
+    delete: {
+        path: "/uptown_runners.members.v2.MembersService/Delete",
+        requestStream: false,
+        responseStream: false,
+        requestSerialize: (value) => Buffer.from(exports.DeleteMemberRequest.encode(value).finish()),
+        requestDeserialize: (value) => exports.DeleteMemberRequest.decode(value),
+        responseSerialize: (value) => Buffer.from(exports.DeleteMemberResponse.encode(value).finish()),
+        responseDeserialize: (value) => exports.DeleteMemberResponse.decode(value),
+    },
+    updateStatuses: {
+        path: "/uptown_runners.members.v2.MembersService/UpdateStatuses",
+        requestStream: false,
+        responseStream: false,
+        requestSerialize: (value) => Buffer.from(exports.UpdateStatusesRequest.encode(value).finish()),
+        requestDeserialize: (value) => exports.UpdateStatusesRequest.decode(value),
+        responseSerialize: (value) => Buffer.from(exports.UpdateStatusesResponse.encode(value).finish()),
+        responseDeserialize: (value) => exports.UpdateStatusesResponse.decode(value),
+    },
+};
+exports.MembersServiceClient = (0, grpc_js_1.makeGenericClientConstructor)(exports.MembersServiceService, "uptown_runners.members.v2.MembersService");
 var globalThis = (() => {
     if (typeof globalThis !== "undefined")
         return globalThis;
