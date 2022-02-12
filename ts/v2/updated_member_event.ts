@@ -157,24 +157,26 @@ export const Member = {
 
   fromJSON(object: any): Member {
     return {
-      memberId: isSet(object.memberId) ? Number(object.memberId) : 0,
-      userId: isSet(object.userId) ? String(object.userId) : "",
-      firstName: isSet(object.firstName) ? String(object.firstName) : "",
-      lastName: isSet(object.lastName) ? String(object.lastName) : "",
+      memberId: isSet(object.member_id) ? Number(object.member_id) : 0,
+      userId: isSet(object.user_id) ? String(object.user_id) : "",
+      firstName: isSet(object.first_name) ? String(object.first_name) : "",
+      lastName: isSet(object.last_name) ? String(object.last_name) : "",
       address: isSet(object.address) ? String(object.address) : "",
-      phoneNumber: isSet(object.phoneNumber) ? String(object.phoneNumber) : "",
-      nationalIdentifier: isSet(object.nationalIdentifier)
-        ? String(object.nationalIdentifier)
+      phoneNumber: isSet(object.phone_number)
+        ? String(object.phone_number)
+        : "",
+      nationalIdentifier: isSet(object.national_identifier)
+        ? String(object.national_identifier)
         : "",
       email: isSet(object.email) ? String(object.email) : "",
-      renewedDate: isSet(object.renewedDate)
-        ? fromJsonTimestamp(object.renewedDate)
+      renewedDate: isSet(object.renewed_date)
+        ? fromJsonTimestamp(object.renewed_date)
         : undefined,
-      overrideExpirationDate: isSet(object.overrideExpirationDate)
-        ? fromJsonTimestamp(object.overrideExpirationDate)
+      overrideExpirationDate: isSet(object.override_expiration_date)
+        ? fromJsonTimestamp(object.override_expiration_date)
         : undefined,
-      membershipType: isSet(object.membershipType)
-        ? membershipTypeFromJSON(object.membershipType)
+      membershipType: isSet(object.membership_type)
+        ? membershipTypeFromJSON(object.membership_type)
         : 0,
       status: isSet(object.status)
         ? membershipStatusFromJSON(object.status)
@@ -185,23 +187,23 @@ export const Member = {
   toJSON(message: Member): unknown {
     const obj: any = {};
     message.memberId !== undefined &&
-      (obj.memberId = Math.round(message.memberId));
-    message.userId !== undefined && (obj.userId = message.userId);
-    message.firstName !== undefined && (obj.firstName = message.firstName);
-    message.lastName !== undefined && (obj.lastName = message.lastName);
+      (obj.member_id = Math.round(message.memberId));
+    message.userId !== undefined && (obj.user_id = message.userId);
+    message.firstName !== undefined && (obj.first_name = message.firstName);
+    message.lastName !== undefined && (obj.last_name = message.lastName);
     message.address !== undefined && (obj.address = message.address);
     message.phoneNumber !== undefined &&
-      (obj.phoneNumber = message.phoneNumber);
+      (obj.phone_number = message.phoneNumber);
     message.nationalIdentifier !== undefined &&
-      (obj.nationalIdentifier = message.nationalIdentifier);
+      (obj.national_identifier = message.nationalIdentifier);
     message.email !== undefined && (obj.email = message.email);
     message.renewedDate !== undefined &&
-      (obj.renewedDate = message.renewedDate.toISOString());
+      (obj.renewed_date = message.renewedDate.toISOString());
     message.overrideExpirationDate !== undefined &&
-      (obj.overrideExpirationDate =
+      (obj.override_expiration_date =
         message.overrideExpirationDate.toISOString());
     message.membershipType !== undefined &&
-      (obj.membershipType = membershipTypeToJSON(message.membershipType));
+      (obj.membership_type = membershipTypeToJSON(message.membershipType));
     message.status !== undefined &&
       (obj.status = membershipStatusToJSON(message.status));
     return obj;

@@ -328,8 +328,8 @@ export const GetMemberByNationalIdentifierRequest = {
 
   fromJSON(object: any): GetMemberByNationalIdentifierRequest {
     return {
-      nationalIdentifier: isSet(object.nationalIdentifier)
-        ? String(object.nationalIdentifier)
+      nationalIdentifier: isSet(object.national_identifier)
+        ? String(object.national_identifier)
         : "",
     };
   },
@@ -337,7 +337,7 @@ export const GetMemberByNationalIdentifierRequest = {
   toJSON(message: GetMemberByNationalIdentifierRequest): unknown {
     const obj: any = {};
     message.nationalIdentifier !== undefined &&
-      (obj.nationalIdentifier = message.nationalIdentifier);
+      (obj.national_identifier = message.nationalIdentifier);
     return obj;
   },
 
@@ -516,24 +516,26 @@ export const CreateMemberRequest = {
 
   fromJSON(object: any): CreateMemberRequest {
     return {
-      nationalIdentifier: isSet(object.nationalIdentifier)
-        ? String(object.nationalIdentifier)
+      nationalIdentifier: isSet(object.national_identifier)
+        ? String(object.national_identifier)
         : "",
       email: isSet(object.email) ? String(object.email) : "",
-      firstName: isSet(object.firstName) ? String(object.firstName) : "",
-      lastName: isSet(object.lastName) ? String(object.lastName) : "",
-      phoneNumber: isSet(object.phoneNumber) ? String(object.phoneNumber) : "",
+      firstName: isSet(object.first_name) ? String(object.first_name) : "",
+      lastName: isSet(object.last_name) ? String(object.last_name) : "",
+      phoneNumber: isSet(object.phone_number)
+        ? String(object.phone_number)
+        : "",
       address: isSet(object.address)
         ? Address.fromJSON(object.address)
         : undefined,
-      membershipType: isSet(object.membershipType)
-        ? membershipTypeFromJSON(object.membershipType)
+      membershipType: isSet(object.membership_type)
+        ? membershipTypeFromJSON(object.membership_type)
         : 0,
-      renewedDate: isSet(object.renewedDate)
-        ? fromJsonTimestamp(object.renewedDate)
+      renewedDate: isSet(object.renewed_date)
+        ? fromJsonTimestamp(object.renewed_date)
         : undefined,
-      overrideExpirationDate: isSet(object.overrideExpirationDate)
-        ? fromJsonTimestamp(object.overrideExpirationDate)
+      overrideExpirationDate: isSet(object.override_expiration_date)
+        ? fromJsonTimestamp(object.override_expiration_date)
         : undefined,
     };
   },
@@ -541,22 +543,22 @@ export const CreateMemberRequest = {
   toJSON(message: CreateMemberRequest): unknown {
     const obj: any = {};
     message.nationalIdentifier !== undefined &&
-      (obj.nationalIdentifier = message.nationalIdentifier);
+      (obj.national_identifier = message.nationalIdentifier);
     message.email !== undefined && (obj.email = message.email);
-    message.firstName !== undefined && (obj.firstName = message.firstName);
-    message.lastName !== undefined && (obj.lastName = message.lastName);
+    message.firstName !== undefined && (obj.first_name = message.firstName);
+    message.lastName !== undefined && (obj.last_name = message.lastName);
     message.phoneNumber !== undefined &&
-      (obj.phoneNumber = message.phoneNumber);
+      (obj.phone_number = message.phoneNumber);
     message.address !== undefined &&
       (obj.address = message.address
         ? Address.toJSON(message.address)
         : undefined);
     message.membershipType !== undefined &&
-      (obj.membershipType = membershipTypeToJSON(message.membershipType));
+      (obj.membership_type = membershipTypeToJSON(message.membershipType));
     message.renewedDate !== undefined &&
-      (obj.renewedDate = message.renewedDate.toISOString());
+      (obj.renewed_date = message.renewedDate.toISOString());
     message.overrideExpirationDate !== undefined &&
-      (obj.overrideExpirationDate =
+      (obj.override_expiration_date =
         message.overrideExpirationDate.toISOString());
     return obj;
   },
@@ -693,20 +695,22 @@ export const UpdateMemberRequest = {
     return {
       id: isSet(object.id) ? Number(object.id) : 0,
       email: isSet(object.email) ? String(object.email) : "",
-      firstName: isSet(object.firstName) ? String(object.firstName) : "",
-      lastName: isSet(object.lastName) ? String(object.lastName) : "",
-      phoneNumber: isSet(object.phoneNumber) ? String(object.phoneNumber) : "",
+      firstName: isSet(object.first_name) ? String(object.first_name) : "",
+      lastName: isSet(object.last_name) ? String(object.last_name) : "",
+      phoneNumber: isSet(object.phone_number)
+        ? String(object.phone_number)
+        : "",
       address: isSet(object.address)
         ? Address.fromJSON(object.address)
         : undefined,
-      membershipType: isSet(object.membershipType)
-        ? membershipTypeFromJSON(object.membershipType)
+      membershipType: isSet(object.membership_type)
+        ? membershipTypeFromJSON(object.membership_type)
         : 0,
-      renewedDate: isSet(object.renewedDate)
-        ? fromJsonTimestamp(object.renewedDate)
+      renewedDate: isSet(object.renewed_date)
+        ? fromJsonTimestamp(object.renewed_date)
         : undefined,
-      overrideExpirationDate: isSet(object.overrideExpirationDate)
-        ? fromJsonTimestamp(object.overrideExpirationDate)
+      overrideExpirationDate: isSet(object.override_expiration_date)
+        ? fromJsonTimestamp(object.override_expiration_date)
         : undefined,
       deactivated: isSet(object.deactivated)
         ? Boolean(object.deactivated)
@@ -718,20 +722,20 @@ export const UpdateMemberRequest = {
     const obj: any = {};
     message.id !== undefined && (obj.id = Math.round(message.id));
     message.email !== undefined && (obj.email = message.email);
-    message.firstName !== undefined && (obj.firstName = message.firstName);
-    message.lastName !== undefined && (obj.lastName = message.lastName);
+    message.firstName !== undefined && (obj.first_name = message.firstName);
+    message.lastName !== undefined && (obj.last_name = message.lastName);
     message.phoneNumber !== undefined &&
-      (obj.phoneNumber = message.phoneNumber);
+      (obj.phone_number = message.phoneNumber);
     message.address !== undefined &&
       (obj.address = message.address
         ? Address.toJSON(message.address)
         : undefined);
     message.membershipType !== undefined &&
-      (obj.membershipType = membershipTypeToJSON(message.membershipType));
+      (obj.membership_type = membershipTypeToJSON(message.membershipType));
     message.renewedDate !== undefined &&
-      (obj.renewedDate = message.renewedDate.toISOString());
+      (obj.renewed_date = message.renewedDate.toISOString());
     message.overrideExpirationDate !== undefined &&
-      (obj.overrideExpirationDate =
+      (obj.override_expiration_date =
         message.overrideExpirationDate.toISOString());
     message.deactivated !== undefined &&
       (obj.deactivated = message.deactivated);
@@ -794,14 +798,14 @@ export const DeleteMemberRequest = {
 
   fromJSON(object: any): DeleteMemberRequest {
     return {
-      memberId: isSet(object.memberId) ? Number(object.memberId) : 0,
+      memberId: isSet(object.member_id) ? Number(object.member_id) : 0,
     };
   },
 
   toJSON(message: DeleteMemberRequest): unknown {
     const obj: any = {};
     message.memberId !== undefined &&
-      (obj.memberId = Math.round(message.memberId));
+      (obj.member_id = Math.round(message.memberId));
     return obj;
   },
 
@@ -986,24 +990,26 @@ export const Member = {
   fromJSON(object: any): Member {
     return {
       id: isSet(object.id) ? Number(object.id) : 0,
-      nationalIdentifier: isSet(object.nationalIdentifier)
-        ? String(object.nationalIdentifier)
+      nationalIdentifier: isSet(object.national_identifier)
+        ? String(object.national_identifier)
         : "",
       email: isSet(object.email) ? String(object.email) : "",
-      firstName: isSet(object.firstName) ? String(object.firstName) : "",
-      lastName: isSet(object.lastName) ? String(object.lastName) : "",
-      phoneNumber: isSet(object.phoneNumber) ? String(object.phoneNumber) : "",
+      firstName: isSet(object.first_name) ? String(object.first_name) : "",
+      lastName: isSet(object.last_name) ? String(object.last_name) : "",
+      phoneNumber: isSet(object.phone_number)
+        ? String(object.phone_number)
+        : "",
       address: isSet(object.address)
         ? Address.fromJSON(object.address)
         : undefined,
-      membershipType: isSet(object.membershipType)
-        ? membershipTypeFromJSON(object.membershipType)
+      membershipType: isSet(object.membership_type)
+        ? membershipTypeFromJSON(object.membership_type)
         : 0,
-      renewedDate: isSet(object.renewedDate)
-        ? fromJsonTimestamp(object.renewedDate)
+      renewedDate: isSet(object.renewed_date)
+        ? fromJsonTimestamp(object.renewed_date)
         : undefined,
-      overrideExpirationDate: isSet(object.overrideExpirationDate)
-        ? fromJsonTimestamp(object.overrideExpirationDate)
+      overrideExpirationDate: isSet(object.override_expiration_date)
+        ? fromJsonTimestamp(object.override_expiration_date)
         : undefined,
       status: isSet(object.status)
         ? membershipStatusFromJSON(object.status)
@@ -1018,22 +1024,22 @@ export const Member = {
     const obj: any = {};
     message.id !== undefined && (obj.id = Math.round(message.id));
     message.nationalIdentifier !== undefined &&
-      (obj.nationalIdentifier = message.nationalIdentifier);
+      (obj.national_identifier = message.nationalIdentifier);
     message.email !== undefined && (obj.email = message.email);
-    message.firstName !== undefined && (obj.firstName = message.firstName);
-    message.lastName !== undefined && (obj.lastName = message.lastName);
+    message.firstName !== undefined && (obj.first_name = message.firstName);
+    message.lastName !== undefined && (obj.last_name = message.lastName);
     message.phoneNumber !== undefined &&
-      (obj.phoneNumber = message.phoneNumber);
+      (obj.phone_number = message.phoneNumber);
     message.address !== undefined &&
       (obj.address = message.address
         ? Address.toJSON(message.address)
         : undefined);
     message.membershipType !== undefined &&
-      (obj.membershipType = membershipTypeToJSON(message.membershipType));
+      (obj.membership_type = membershipTypeToJSON(message.membershipType));
     message.renewedDate !== undefined &&
-      (obj.renewedDate = message.renewedDate.toISOString());
+      (obj.renewed_date = message.renewedDate.toISOString());
     message.overrideExpirationDate !== undefined &&
-      (obj.overrideExpirationDate =
+      (obj.override_expiration_date =
         message.overrideExpirationDate.toISOString());
     message.status !== undefined &&
       (obj.status = membershipStatusToJSON(message.status));
@@ -1117,7 +1123,7 @@ export const Address = {
   fromJSON(object: any): Address {
     return {
       street: isSet(object.street) ? String(object.street) : "",
-      postalCode: isSet(object.postalCode) ? String(object.postalCode) : "",
+      postalCode: isSet(object.postal_code) ? String(object.postal_code) : "",
       city: isSet(object.city) ? String(object.city) : "",
       country: isSet(object.country) ? String(object.country) : "",
     };
@@ -1126,7 +1132,7 @@ export const Address = {
   toJSON(message: Address): unknown {
     const obj: any = {};
     message.street !== undefined && (obj.street = message.street);
-    message.postalCode !== undefined && (obj.postalCode = message.postalCode);
+    message.postalCode !== undefined && (obj.postal_code = message.postalCode);
     message.city !== undefined && (obj.city = message.city);
     message.country !== undefined && (obj.country = message.country);
     return obj;
@@ -1490,8 +1496,8 @@ export const UpdateStatusesResponse = {
   fromJSON(object: any): UpdateStatusesResponse {
     return {
       success: isSet(object.success) ? Boolean(object.success) : false,
-      errorMessage: isSet(object.errorMessage)
-        ? String(object.errorMessage)
+      errorMessage: isSet(object.error_message)
+        ? String(object.error_message)
         : "",
     };
   },
@@ -1500,7 +1506,7 @@ export const UpdateStatusesResponse = {
     const obj: any = {};
     message.success !== undefined && (obj.success = message.success);
     message.errorMessage !== undefined &&
-      (obj.errorMessage = message.errorMessage);
+      (obj.error_message = message.errorMessage);
     return obj;
   },
 
