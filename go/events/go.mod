@@ -3,7 +3,7 @@ module github.com/UptownRunners/common/go/events
 go 1.17
 
 require (
-	github.com/UptownRunners/common/go/members v0.0.0-20220211221529-6b02b71f9d7a
+	github.com/UptownRunners/common/go/members v0.0.0-20220212011659-2e5bb638de8f
 	google.golang.org/protobuf v1.27.1
 )
 
