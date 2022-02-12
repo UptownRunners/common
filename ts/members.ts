@@ -1,5 +1,17 @@
 /* eslint-disable */
 import Long from "long";
+import {
+  makeGenericClientConstructor,
+  ChannelCredentials,
+  ChannelOptions,
+  UntypedServiceImplementation,
+  handleUnaryCall,
+  Client,
+  ClientUnaryCall,
+  Metadata,
+  CallOptions,
+  ServiceError,
+} from "@grpc/grpc-js";
 import _m0 from "protobufjs/minimal";
 import { Timestamp } from "./google/protobuf/timestamp";
 
@@ -1502,142 +1514,287 @@ export const UpdateStatusesResponse = {
   },
 };
 
-export interface MembersService {
-  GetById(request: GetMemberByIdRequest): Promise<GetMemberResponse>;
-  GetByEmail(request: GetMemberByEmailRequest): Promise<GetMemberResponse>;
-  GetByNationalIdentifier(
-    request: GetMemberByNationalIdentifierRequest
-  ): Promise<GetMemberResponse>;
-  List(request: GetMembersRequest): Promise<GetMembersResponse>;
-  Create(request: CreateMemberRequest): Promise<CreateMemberResponse>;
-  Update(request: UpdateMemberRequest): Promise<UpdateMemberResponse>;
-  Delete(request: DeleteMemberRequest): Promise<DeleteMemberResponse>;
-  UpdateStatuses(
-    request: UpdateStatusesRequest
-  ): Promise<UpdateStatusesResponse>;
+export const MembersServiceService = {
+  getById: {
+    path: "/uptown_runners.members.v2.MembersService/GetById",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: GetMemberByIdRequest) =>
+      Buffer.from(GetMemberByIdRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => GetMemberByIdRequest.decode(value),
+    responseSerialize: (value: GetMemberResponse) =>
+      Buffer.from(GetMemberResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => GetMemberResponse.decode(value),
+  },
+  getByEmail: {
+    path: "/uptown_runners.members.v2.MembersService/GetByEmail",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: GetMemberByEmailRequest) =>
+      Buffer.from(GetMemberByEmailRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) =>
+      GetMemberByEmailRequest.decode(value),
+    responseSerialize: (value: GetMemberResponse) =>
+      Buffer.from(GetMemberResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => GetMemberResponse.decode(value),
+  },
+  getByNationalIdentifier: {
+    path: "/uptown_runners.members.v2.MembersService/GetByNationalIdentifier",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: GetMemberByNationalIdentifierRequest) =>
+      Buffer.from(GetMemberByNationalIdentifierRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) =>
+      GetMemberByNationalIdentifierRequest.decode(value),
+    responseSerialize: (value: GetMemberResponse) =>
+      Buffer.from(GetMemberResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => GetMemberResponse.decode(value),
+  },
+  list: {
+    path: "/uptown_runners.members.v2.MembersService/List",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: GetMembersRequest) =>
+      Buffer.from(GetMembersRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => GetMembersRequest.decode(value),
+    responseSerialize: (value: GetMembersResponse) =>
+      Buffer.from(GetMembersResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => GetMembersResponse.decode(value),
+  },
+  create: {
+    path: "/uptown_runners.members.v2.MembersService/Create",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: CreateMemberRequest) =>
+      Buffer.from(CreateMemberRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => CreateMemberRequest.decode(value),
+    responseSerialize: (value: CreateMemberResponse) =>
+      Buffer.from(CreateMemberResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => CreateMemberResponse.decode(value),
+  },
+  update: {
+    path: "/uptown_runners.members.v2.MembersService/Update",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: UpdateMemberRequest) =>
+      Buffer.from(UpdateMemberRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => UpdateMemberRequest.decode(value),
+    responseSerialize: (value: UpdateMemberResponse) =>
+      Buffer.from(UpdateMemberResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => UpdateMemberResponse.decode(value),
+  },
+  delete: {
+    path: "/uptown_runners.members.v2.MembersService/Delete",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: DeleteMemberRequest) =>
+      Buffer.from(DeleteMemberRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => DeleteMemberRequest.decode(value),
+    responseSerialize: (value: DeleteMemberResponse) =>
+      Buffer.from(DeleteMemberResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => DeleteMemberResponse.decode(value),
+  },
+  updateStatuses: {
+    path: "/uptown_runners.members.v2.MembersService/UpdateStatuses",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: UpdateStatusesRequest) =>
+      Buffer.from(UpdateStatusesRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => UpdateStatusesRequest.decode(value),
+    responseSerialize: (value: UpdateStatusesResponse) =>
+      Buffer.from(UpdateStatusesResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) =>
+      UpdateStatusesResponse.decode(value),
+  },
+} as const;
+
+export interface MembersServiceServer extends UntypedServiceImplementation {
+  getById: handleUnaryCall<GetMemberByIdRequest, GetMemberResponse>;
+  getByEmail: handleUnaryCall<GetMemberByEmailRequest, GetMemberResponse>;
+  getByNationalIdentifier: handleUnaryCall<
+    GetMemberByNationalIdentifierRequest,
+    GetMemberResponse
+  >;
+  list: handleUnaryCall<GetMembersRequest, GetMembersResponse>;
+  create: handleUnaryCall<CreateMemberRequest, CreateMemberResponse>;
+  update: handleUnaryCall<UpdateMemberRequest, UpdateMemberResponse>;
+  delete: handleUnaryCall<DeleteMemberRequest, DeleteMemberResponse>;
+  updateStatuses: handleUnaryCall<
+    UpdateStatusesRequest,
+    UpdateStatusesResponse
+  >;
 }
 
-export class MembersServiceClientImpl implements MembersService {
-  private readonly rpc: Rpc;
-  constructor(rpc: Rpc) {
-    this.rpc = rpc;
-    this.GetById = this.GetById.bind(this);
-    this.GetByEmail = this.GetByEmail.bind(this);
-    this.GetByNationalIdentifier = this.GetByNationalIdentifier.bind(this);
-    this.List = this.List.bind(this);
-    this.Create = this.Create.bind(this);
-    this.Update = this.Update.bind(this);
-    this.Delete = this.Delete.bind(this);
-    this.UpdateStatuses = this.UpdateStatuses.bind(this);
-  }
-  GetById(request: GetMemberByIdRequest): Promise<GetMemberResponse> {
-    const data = GetMemberByIdRequest.encode(request).finish();
-    const promise = this.rpc.request(
-      "uptown_runners.members.v2.MembersService",
-      "GetById",
-      data
-    );
-    return promise.then((data) =>
-      GetMemberResponse.decode(new _m0.Reader(data))
-    );
-  }
-
-  GetByEmail(request: GetMemberByEmailRequest): Promise<GetMemberResponse> {
-    const data = GetMemberByEmailRequest.encode(request).finish();
-    const promise = this.rpc.request(
-      "uptown_runners.members.v2.MembersService",
-      "GetByEmail",
-      data
-    );
-    return promise.then((data) =>
-      GetMemberResponse.decode(new _m0.Reader(data))
-    );
-  }
-
-  GetByNationalIdentifier(
-    request: GetMemberByNationalIdentifierRequest
-  ): Promise<GetMemberResponse> {
-    const data = GetMemberByNationalIdentifierRequest.encode(request).finish();
-    const promise = this.rpc.request(
-      "uptown_runners.members.v2.MembersService",
-      "GetByNationalIdentifier",
-      data
-    );
-    return promise.then((data) =>
-      GetMemberResponse.decode(new _m0.Reader(data))
-    );
-  }
-
-  List(request: GetMembersRequest): Promise<GetMembersResponse> {
-    const data = GetMembersRequest.encode(request).finish();
-    const promise = this.rpc.request(
-      "uptown_runners.members.v2.MembersService",
-      "List",
-      data
-    );
-    return promise.then((data) =>
-      GetMembersResponse.decode(new _m0.Reader(data))
-    );
-  }
-
-  Create(request: CreateMemberRequest): Promise<CreateMemberResponse> {
-    const data = CreateMemberRequest.encode(request).finish();
-    const promise = this.rpc.request(
-      "uptown_runners.members.v2.MembersService",
-      "Create",
-      data
-    );
-    return promise.then((data) =>
-      CreateMemberResponse.decode(new _m0.Reader(data))
-    );
-  }
-
-  Update(request: UpdateMemberRequest): Promise<UpdateMemberResponse> {
-    const data = UpdateMemberRequest.encode(request).finish();
-    const promise = this.rpc.request(
-      "uptown_runners.members.v2.MembersService",
-      "Update",
-      data
-    );
-    return promise.then((data) =>
-      UpdateMemberResponse.decode(new _m0.Reader(data))
-    );
-  }
-
-  Delete(request: DeleteMemberRequest): Promise<DeleteMemberResponse> {
-    const data = DeleteMemberRequest.encode(request).finish();
-    const promise = this.rpc.request(
-      "uptown_runners.members.v2.MembersService",
-      "Delete",
-      data
-    );
-    return promise.then((data) =>
-      DeleteMemberResponse.decode(new _m0.Reader(data))
-    );
-  }
-
-  UpdateStatuses(
-    request: UpdateStatusesRequest
-  ): Promise<UpdateStatusesResponse> {
-    const data = UpdateStatusesRequest.encode(request).finish();
-    const promise = this.rpc.request(
-      "uptown_runners.members.v2.MembersService",
-      "UpdateStatuses",
-      data
-    );
-    return promise.then((data) =>
-      UpdateStatusesResponse.decode(new _m0.Reader(data))
-    );
-  }
+export interface MembersServiceClient extends Client {
+  getById(
+    request: GetMemberByIdRequest,
+    callback: (error: ServiceError | null, response: GetMemberResponse) => void
+  ): ClientUnaryCall;
+  getById(
+    request: GetMemberByIdRequest,
+    metadata: Metadata,
+    callback: (error: ServiceError | null, response: GetMemberResponse) => void
+  ): ClientUnaryCall;
+  getById(
+    request: GetMemberByIdRequest,
+    metadata: Metadata,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: GetMemberResponse) => void
+  ): ClientUnaryCall;
+  getByEmail(
+    request: GetMemberByEmailRequest,
+    callback: (error: ServiceError | null, response: GetMemberResponse) => void
+  ): ClientUnaryCall;
+  getByEmail(
+    request: GetMemberByEmailRequest,
+    metadata: Metadata,
+    callback: (error: ServiceError | null, response: GetMemberResponse) => void
+  ): ClientUnaryCall;
+  getByEmail(
+    request: GetMemberByEmailRequest,
+    metadata: Metadata,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: GetMemberResponse) => void
+  ): ClientUnaryCall;
+  getByNationalIdentifier(
+    request: GetMemberByNationalIdentifierRequest,
+    callback: (error: ServiceError | null, response: GetMemberResponse) => void
+  ): ClientUnaryCall;
+  getByNationalIdentifier(
+    request: GetMemberByNationalIdentifierRequest,
+    metadata: Metadata,
+    callback: (error: ServiceError | null, response: GetMemberResponse) => void
+  ): ClientUnaryCall;
+  getByNationalIdentifier(
+    request: GetMemberByNationalIdentifierRequest,
+    metadata: Metadata,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: GetMemberResponse) => void
+  ): ClientUnaryCall;
+  list(
+    request: GetMembersRequest,
+    callback: (error: ServiceError | null, response: GetMembersResponse) => void
+  ): ClientUnaryCall;
+  list(
+    request: GetMembersRequest,
+    metadata: Metadata,
+    callback: (error: ServiceError | null, response: GetMembersResponse) => void
+  ): ClientUnaryCall;
+  list(
+    request: GetMembersRequest,
+    metadata: Metadata,
+    options: Partial<CallOptions>,
+    callback: (error: ServiceError | null, response: GetMembersResponse) => void
+  ): ClientUnaryCall;
+  create(
+    request: CreateMemberRequest,
+    callback: (
+      error: ServiceError | null,
+      response: CreateMemberResponse
+    ) => void
+  ): ClientUnaryCall;
+  create(
+    request: CreateMemberRequest,
+    metadata: Metadata,
+    callback: (
+      error: ServiceError | null,
+      response: CreateMemberResponse
+    ) => void
+  ): ClientUnaryCall;
+  create(
+    request: CreateMemberRequest,
+    metadata: Metadata,
+    options: Partial<CallOptions>,
+    callback: (
+      error: ServiceError | null,
+      response: CreateMemberResponse
+    ) => void
+  ): ClientUnaryCall;
+  update(
+    request: UpdateMemberRequest,
+    callback: (
+      error: ServiceError | null,
+      response: UpdateMemberResponse
+    ) => void
+  ): ClientUnaryCall;
+  update(
+    request: UpdateMemberRequest,
+    metadata: Metadata,
+    callback: (
+      error: ServiceError | null,
+      response: UpdateMemberResponse
+    ) => void
+  ): ClientUnaryCall;
+  update(
+    request: UpdateMemberRequest,
+    metadata: Metadata,
+    options: Partial<CallOptions>,
+    callback: (
+      error: ServiceError | null,
+      response: UpdateMemberResponse
+    ) => void
+  ): ClientUnaryCall;
+  delete(
+    request: DeleteMemberRequest,
+    callback: (
+      error: ServiceError | null,
+      response: DeleteMemberResponse
+    ) => void
+  ): ClientUnaryCall;
+  delete(
+    request: DeleteMemberRequest,
+    metadata: Metadata,
+    callback: (
+      error: ServiceError | null,
+      response: DeleteMemberResponse
+    ) => void
+  ): ClientUnaryCall;
+  delete(
+    request: DeleteMemberRequest,
+    metadata: Metadata,
+    options: Partial<CallOptions>,
+    callback: (
+      error: ServiceError | null,
+      response: DeleteMemberResponse
+    ) => void
+  ): ClientUnaryCall;
+  updateStatuses(
+    request: UpdateStatusesRequest,
+    callback: (
+      error: ServiceError | null,
+      response: UpdateStatusesResponse
+    ) => void
+  ): ClientUnaryCall;
+  updateStatuses(
+    request: UpdateStatusesRequest,
+    metadata: Metadata,
+    callback: (
+      error: ServiceError | null,
+      response: UpdateStatusesResponse
+    ) => void
+  ): ClientUnaryCall;
+  updateStatuses(
+    request: UpdateStatusesRequest,
+    metadata: Metadata,
+    options: Partial<CallOptions>,
+    callback: (
+      error: ServiceError | null,
+      response: UpdateStatusesResponse
+    ) => void
+  ): ClientUnaryCall;
 }
 
-interface Rpc {
-  request(
-    service: string,
-    method: string,
-    data: Uint8Array
-  ): Promise<Uint8Array>;
-}
+export const MembersServiceClient = makeGenericClientConstructor(
+  MembersServiceService,
+  "uptown_runners.members.v2.MembersService"
+) as unknown as {
+  new (
+    address: string,
+    credentials: ChannelCredentials,
+    options?: Partial<ChannelOptions>
+  ): MembersServiceClient;
+  service: typeof MembersServiceService;
+};
 
 declare var self: any | undefined;
 declare var window: any | undefined;
