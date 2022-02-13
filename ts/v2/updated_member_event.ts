@@ -22,8 +22,8 @@ export interface Member {
   phone_number: string;
   national_identifier: string;
   email: string;
-  renewed_date: Date | undefined;
-  override_expiration_date: Date | undefined;
+  renewed_date: Timestamp | undefined;
+  override_expiration_date: Timestamp | undefined;
   membership_type: MembershipType;
   status: MembershipStatus;
 }
@@ -80,14 +80,11 @@ export const Member = {
       writer.uint32(66).string(message.email);
     }
     if (message.renewed_date !== undefined) {
-      Timestamp.encode(
-        toTimestamp(message.renewed_date),
-        writer.uint32(74).fork()
-      ).ldelim();
+      Timestamp.encode(message.renewed_date, writer.uint32(74).fork()).ldelim();
     }
     if (message.override_expiration_date !== undefined) {
       Timestamp.encode(
-        toTimestamp(message.override_expiration_date),
+        message.override_expiration_date,
         writer.uint32(82).fork()
       ).ldelim();
     }
@@ -132,13 +129,12 @@ export const Member = {
           message.email = reader.string();
           break;
         case 9:
-          message.renewed_date = fromTimestamp(
-            Timestamp.decode(reader, reader.uint32())
-          );
+          message.renewed_date = Timestamp.decode(reader, reader.uint32());
           break;
         case 10:
-          message.override_expiration_date = fromTimestamp(
-            Timestamp.decode(reader, reader.uint32())
+          message.override_expiration_date = Timestamp.decode(
+            reader,
+            reader.uint32()
           );
           break;
         case 11:
@@ -198,10 +194,11 @@ export const Member = {
       (obj.national_identifier = message.national_identifier);
     message.email !== undefined && (obj.email = message.email);
     message.renewed_date !== undefined &&
-      (obj.renewed_date = message.renewed_date.toISOString());
+      (obj.renewed_date = fromTimestamp(message.renewed_date).toISOString());
     message.override_expiration_date !== undefined &&
-      (obj.override_expiration_date =
-        message.override_expiration_date.toISOString());
+      (obj.override_expiration_date = fromTimestamp(
+        message.override_expiration_date
+      ).toISOString());
     message.membership_type !== undefined &&
       (obj.membership_type = membershipTypeToJSON(message.membership_type));
     message.status !== undefined &&
@@ -219,9 +216,15 @@ export const Member = {
     message.phone_number = object.phone_number ?? "";
     message.national_identifier = object.national_identifier ?? "";
     message.email = object.email ?? "";
-    message.renewed_date = object.renewed_date ?? undefined;
+    message.renewed_date =
+      object.renewed_date !== undefined && object.renewed_date !== null
+        ? Timestamp.fromPartial(object.renewed_date)
+        : undefined;
     message.override_expiration_date =
-      object.override_expiration_date ?? undefined;
+      object.override_expiration_date !== undefined &&
+      object.override_expiration_date !== null
+        ? Timestamp.fromPartial(object.override_expiration_date)
+        : undefined;
     message.membership_type = object.membership_type ?? 0;
     message.status = object.status ?? 0;
     return message;
@@ -349,13 +352,13 @@ function fromTimestamp(t: Timestamp): Date {
   return new Date(millis);
 }
 
-function fromJsonTimestamp(o: any): Date {
+function fromJsonTimestamp(o: any): Timestamp {
   if (o instanceof Date) {
-    return o;
+    return toTimestamp(o);
   } else if (typeof o === "string") {
-    return new Date(o);
+    return toTimestamp(new Date(o));
   } else {
-    return fromTimestamp(Timestamp.fromJSON(o));
+    return Timestamp.fromJSON(o);
   }
 }
 

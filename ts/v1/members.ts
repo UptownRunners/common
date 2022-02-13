@@ -106,8 +106,8 @@ export interface CreateMemberRequest {
   PhoneNumber: string;
   Address: string;
   MemberShipType: MemberShipType;
-  RenewedDate: Date | undefined;
-  OverrideExpirationDate: Date | undefined;
+  RenewedDate: Timestamp | undefined;
+  OverrideExpirationDate: Timestamp | undefined;
 }
 
 export interface UpdateMemberRequest {
@@ -118,8 +118,8 @@ export interface UpdateMemberRequest {
   PhoneNumber: string;
   Address: string;
   MemberShipType: MemberShipType;
-  RenewedDate: Date | undefined;
-  OverrideExpirationDate: Date | undefined;
+  RenewedDate: Timestamp | undefined;
+  OverrideExpirationDate: Timestamp | undefined;
 }
 
 export interface DeleteMemberRequest {
@@ -135,8 +135,8 @@ export interface Member {
   PhoneNumber: string;
   Address: string;
   MemberShipType: MemberShipType;
-  RenewedDate: Date | undefined;
-  OverrideExpirationDate: Date | undefined;
+  RenewedDate: Timestamp | undefined;
+  OverrideExpirationDate: Timestamp | undefined;
   Status: MembershipStatus;
 }
 
@@ -438,14 +438,11 @@ export const CreateMemberRequest = {
       writer.uint32(56).int32(message.MemberShipType);
     }
     if (message.RenewedDate !== undefined) {
-      Timestamp.encode(
-        toTimestamp(message.RenewedDate),
-        writer.uint32(66).fork()
-      ).ldelim();
+      Timestamp.encode(message.RenewedDate, writer.uint32(66).fork()).ldelim();
     }
     if (message.OverrideExpirationDate !== undefined) {
       Timestamp.encode(
-        toTimestamp(message.OverrideExpirationDate),
+        message.OverrideExpirationDate,
         writer.uint32(74).fork()
       ).ldelim();
     }
@@ -481,13 +478,12 @@ export const CreateMemberRequest = {
           message.MemberShipType = reader.int32() as any;
           break;
         case 8:
-          message.RenewedDate = fromTimestamp(
-            Timestamp.decode(reader, reader.uint32())
-          );
+          message.RenewedDate = Timestamp.decode(reader, reader.uint32());
           break;
         case 9:
-          message.OverrideExpirationDate = fromTimestamp(
-            Timestamp.decode(reader, reader.uint32())
+          message.OverrideExpirationDate = Timestamp.decode(
+            reader,
+            reader.uint32()
           );
           break;
         default:
@@ -533,10 +529,11 @@ export const CreateMemberRequest = {
     message.MemberShipType !== undefined &&
       (obj.MemberShipType = memberShipTypeToJSON(message.MemberShipType));
     message.RenewedDate !== undefined &&
-      (obj.RenewedDate = message.RenewedDate.toISOString());
+      (obj.RenewedDate = fromTimestamp(message.RenewedDate).toISOString());
     message.OverrideExpirationDate !== undefined &&
-      (obj.OverrideExpirationDate =
-        message.OverrideExpirationDate.toISOString());
+      (obj.OverrideExpirationDate = fromTimestamp(
+        message.OverrideExpirationDate
+      ).toISOString());
     return obj;
   },
 
@@ -551,8 +548,15 @@ export const CreateMemberRequest = {
     message.PhoneNumber = object.PhoneNumber ?? "";
     message.Address = object.Address ?? "";
     message.MemberShipType = object.MemberShipType ?? 0;
-    message.RenewedDate = object.RenewedDate ?? undefined;
-    message.OverrideExpirationDate = object.OverrideExpirationDate ?? undefined;
+    message.RenewedDate =
+      object.RenewedDate !== undefined && object.RenewedDate !== null
+        ? Timestamp.fromPartial(object.RenewedDate)
+        : undefined;
+    message.OverrideExpirationDate =
+      object.OverrideExpirationDate !== undefined &&
+      object.OverrideExpirationDate !== null
+        ? Timestamp.fromPartial(object.OverrideExpirationDate)
+        : undefined;
     return message;
   },
 };
@@ -598,14 +602,11 @@ export const UpdateMemberRequest = {
       writer.uint32(56).int32(message.MemberShipType);
     }
     if (message.RenewedDate !== undefined) {
-      Timestamp.encode(
-        toTimestamp(message.RenewedDate),
-        writer.uint32(66).fork()
-      ).ldelim();
+      Timestamp.encode(message.RenewedDate, writer.uint32(66).fork()).ldelim();
     }
     if (message.OverrideExpirationDate !== undefined) {
       Timestamp.encode(
-        toTimestamp(message.OverrideExpirationDate),
+        message.OverrideExpirationDate,
         writer.uint32(74).fork()
       ).ldelim();
     }
@@ -641,13 +642,12 @@ export const UpdateMemberRequest = {
           message.MemberShipType = reader.int32() as any;
           break;
         case 8:
-          message.RenewedDate = fromTimestamp(
-            Timestamp.decode(reader, reader.uint32())
-          );
+          message.RenewedDate = Timestamp.decode(reader, reader.uint32());
           break;
         case 9:
-          message.OverrideExpirationDate = fromTimestamp(
-            Timestamp.decode(reader, reader.uint32())
+          message.OverrideExpirationDate = Timestamp.decode(
+            reader,
+            reader.uint32()
           );
           break;
         default:
@@ -690,10 +690,11 @@ export const UpdateMemberRequest = {
     message.MemberShipType !== undefined &&
       (obj.MemberShipType = memberShipTypeToJSON(message.MemberShipType));
     message.RenewedDate !== undefined &&
-      (obj.RenewedDate = message.RenewedDate.toISOString());
+      (obj.RenewedDate = fromTimestamp(message.RenewedDate).toISOString());
     message.OverrideExpirationDate !== undefined &&
-      (obj.OverrideExpirationDate =
-        message.OverrideExpirationDate.toISOString());
+      (obj.OverrideExpirationDate = fromTimestamp(
+        message.OverrideExpirationDate
+      ).toISOString());
     return obj;
   },
 
@@ -708,8 +709,15 @@ export const UpdateMemberRequest = {
     message.PhoneNumber = object.PhoneNumber ?? "";
     message.Address = object.Address ?? "";
     message.MemberShipType = object.MemberShipType ?? 0;
-    message.RenewedDate = object.RenewedDate ?? undefined;
-    message.OverrideExpirationDate = object.OverrideExpirationDate ?? undefined;
+    message.RenewedDate =
+      object.RenewedDate !== undefined && object.RenewedDate !== null
+        ? Timestamp.fromPartial(object.RenewedDate)
+        : undefined;
+    message.OverrideExpirationDate =
+      object.OverrideExpirationDate !== undefined &&
+      object.OverrideExpirationDate !== null
+        ? Timestamp.fromPartial(object.OverrideExpirationDate)
+        : undefined;
     return message;
   },
 };
@@ -815,14 +823,11 @@ export const Member = {
       writer.uint32(64).int32(message.MemberShipType);
     }
     if (message.RenewedDate !== undefined) {
-      Timestamp.encode(
-        toTimestamp(message.RenewedDate),
-        writer.uint32(74).fork()
-      ).ldelim();
+      Timestamp.encode(message.RenewedDate, writer.uint32(74).fork()).ldelim();
     }
     if (message.OverrideExpirationDate !== undefined) {
       Timestamp.encode(
-        toTimestamp(message.OverrideExpirationDate),
+        message.OverrideExpirationDate,
         writer.uint32(82).fork()
       ).ldelim();
     }
@@ -864,13 +869,12 @@ export const Member = {
           message.MemberShipType = reader.int32() as any;
           break;
         case 9:
-          message.RenewedDate = fromTimestamp(
-            Timestamp.decode(reader, reader.uint32())
-          );
+          message.RenewedDate = Timestamp.decode(reader, reader.uint32());
           break;
         case 10:
-          message.OverrideExpirationDate = fromTimestamp(
-            Timestamp.decode(reader, reader.uint32())
+          message.OverrideExpirationDate = Timestamp.decode(
+            reader,
+            reader.uint32()
           );
           break;
         case 11:
@@ -924,10 +928,11 @@ export const Member = {
     message.MemberShipType !== undefined &&
       (obj.MemberShipType = memberShipTypeToJSON(message.MemberShipType));
     message.RenewedDate !== undefined &&
-      (obj.RenewedDate = message.RenewedDate.toISOString());
+      (obj.RenewedDate = fromTimestamp(message.RenewedDate).toISOString());
     message.OverrideExpirationDate !== undefined &&
-      (obj.OverrideExpirationDate =
-        message.OverrideExpirationDate.toISOString());
+      (obj.OverrideExpirationDate = fromTimestamp(
+        message.OverrideExpirationDate
+      ).toISOString());
     message.Status !== undefined &&
       (obj.Status = membershipStatusToJSON(message.Status));
     return obj;
@@ -943,8 +948,15 @@ export const Member = {
     message.PhoneNumber = object.PhoneNumber ?? "";
     message.Address = object.Address ?? "";
     message.MemberShipType = object.MemberShipType ?? 0;
-    message.RenewedDate = object.RenewedDate ?? undefined;
-    message.OverrideExpirationDate = object.OverrideExpirationDate ?? undefined;
+    message.RenewedDate =
+      object.RenewedDate !== undefined && object.RenewedDate !== null
+        ? Timestamp.fromPartial(object.RenewedDate)
+        : undefined;
+    message.OverrideExpirationDate =
+      object.OverrideExpirationDate !== undefined &&
+      object.OverrideExpirationDate !== null
+        ? Timestamp.fromPartial(object.OverrideExpirationDate)
+        : undefined;
     message.Status = object.Status ?? 0;
     return message;
   },
@@ -1545,13 +1557,13 @@ function fromTimestamp(t: Timestamp): Date {
   return new Date(millis);
 }
 
-function fromJsonTimestamp(o: any): Date {
+function fromJsonTimestamp(o: any): Timestamp {
   if (o instanceof Date) {
-    return o;
+    return toTimestamp(o);
   } else if (typeof o === "string") {
-    return new Date(o);
+    return toTimestamp(new Date(o));
   } else {
-    return fromTimestamp(Timestamp.fromJSON(o));
+    return Timestamp.fromJSON(o);
   }
 }
 
