@@ -14,17 +14,17 @@ import { Timestamp } from "../google/protobuf/timestamp";
 export const protobufPackage = "uptown_runners.events.v1";
 
 export interface Member {
-  memberId: number;
-  userId: string;
-  firstName: string;
-  lastName: string;
+  member_id: number;
+  user_id: string;
+  first_name: string;
+  last_name: string;
   address: string;
-  phoneNumber: string;
-  nationalIdentifier: string;
+  phone_number: string;
+  national_identifier: string;
   email: string;
-  renewedDate: Date | undefined;
-  overrideExpirationDate: Date | undefined;
-  membershipType: MemberShipType;
+  renewed_date: Date | undefined;
+  override_expiration_date: Date | undefined;
+  membership_type: MemberShipType;
   status: MembershipStatus;
 }
 
@@ -35,17 +35,17 @@ export interface UpdateMemberEvent {
 
 function createBaseMember(): Member {
   return {
-    memberId: 0,
-    userId: "",
-    firstName: "",
-    lastName: "",
+    member_id: 0,
+    user_id: "",
+    first_name: "",
+    last_name: "",
     address: "",
-    phoneNumber: "",
-    nationalIdentifier: "",
+    phone_number: "",
+    national_identifier: "",
     email: "",
-    renewedDate: undefined,
-    overrideExpirationDate: undefined,
-    membershipType: 0,
+    renewed_date: undefined,
+    override_expiration_date: undefined,
+    membership_type: 0,
     status: 0,
   };
 }
@@ -55,44 +55,44 @@ export const Member = {
     message: Member,
     writer: _m0.Writer = _m0.Writer.create()
   ): _m0.Writer {
-    if (message.memberId !== 0) {
-      writer.uint32(8).int64(message.memberId);
+    if (message.member_id !== 0) {
+      writer.uint32(8).int64(message.member_id);
     }
-    if (message.userId !== "") {
-      writer.uint32(18).string(message.userId);
+    if (message.user_id !== "") {
+      writer.uint32(18).string(message.user_id);
     }
-    if (message.firstName !== "") {
-      writer.uint32(26).string(message.firstName);
+    if (message.first_name !== "") {
+      writer.uint32(26).string(message.first_name);
     }
-    if (message.lastName !== "") {
-      writer.uint32(34).string(message.lastName);
+    if (message.last_name !== "") {
+      writer.uint32(34).string(message.last_name);
     }
     if (message.address !== "") {
       writer.uint32(42).string(message.address);
     }
-    if (message.phoneNumber !== "") {
-      writer.uint32(50).string(message.phoneNumber);
+    if (message.phone_number !== "") {
+      writer.uint32(50).string(message.phone_number);
     }
-    if (message.nationalIdentifier !== "") {
-      writer.uint32(58).string(message.nationalIdentifier);
+    if (message.national_identifier !== "") {
+      writer.uint32(58).string(message.national_identifier);
     }
     if (message.email !== "") {
       writer.uint32(66).string(message.email);
     }
-    if (message.renewedDate !== undefined) {
+    if (message.renewed_date !== undefined) {
       Timestamp.encode(
-        toTimestamp(message.renewedDate),
+        toTimestamp(message.renewed_date),
         writer.uint32(74).fork()
       ).ldelim();
     }
-    if (message.overrideExpirationDate !== undefined) {
+    if (message.override_expiration_date !== undefined) {
       Timestamp.encode(
-        toTimestamp(message.overrideExpirationDate),
+        toTimestamp(message.override_expiration_date),
         writer.uint32(82).fork()
       ).ldelim();
     }
-    if (message.membershipType !== 0) {
-      writer.uint32(88).int32(message.membershipType);
+    if (message.membership_type !== 0) {
+      writer.uint32(88).int32(message.membership_type);
     }
     if (message.status !== 0) {
       writer.uint32(96).int32(message.status);
@@ -108,41 +108,41 @@ export const Member = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.memberId = longToNumber(reader.int64() as Long);
+          message.member_id = longToNumber(reader.int64() as Long);
           break;
         case 2:
-          message.userId = reader.string();
+          message.user_id = reader.string();
           break;
         case 3:
-          message.firstName = reader.string();
+          message.first_name = reader.string();
           break;
         case 4:
-          message.lastName = reader.string();
+          message.last_name = reader.string();
           break;
         case 5:
           message.address = reader.string();
           break;
         case 6:
-          message.phoneNumber = reader.string();
+          message.phone_number = reader.string();
           break;
         case 7:
-          message.nationalIdentifier = reader.string();
+          message.national_identifier = reader.string();
           break;
         case 8:
           message.email = reader.string();
           break;
         case 9:
-          message.renewedDate = fromTimestamp(
+          message.renewed_date = fromTimestamp(
             Timestamp.decode(reader, reader.uint32())
           );
           break;
         case 10:
-          message.overrideExpirationDate = fromTimestamp(
+          message.override_expiration_date = fromTimestamp(
             Timestamp.decode(reader, reader.uint32())
           );
           break;
         case 11:
-          message.membershipType = reader.int32() as any;
+          message.membership_type = reader.int32() as any;
           break;
         case 12:
           message.status = reader.int32() as any;
@@ -157,25 +157,25 @@ export const Member = {
 
   fromJSON(object: any): Member {
     return {
-      memberId: isSet(object.member_id) ? Number(object.member_id) : 0,
-      userId: isSet(object.user_id) ? String(object.user_id) : "",
-      firstName: isSet(object.first_name) ? String(object.first_name) : "",
-      lastName: isSet(object.last_name) ? String(object.last_name) : "",
+      member_id: isSet(object.member_id) ? Number(object.member_id) : 0,
+      user_id: isSet(object.user_id) ? String(object.user_id) : "",
+      first_name: isSet(object.first_name) ? String(object.first_name) : "",
+      last_name: isSet(object.last_name) ? String(object.last_name) : "",
       address: isSet(object.address) ? String(object.address) : "",
-      phoneNumber: isSet(object.phone_number)
+      phone_number: isSet(object.phone_number)
         ? String(object.phone_number)
         : "",
-      nationalIdentifier: isSet(object.national_identifier)
+      national_identifier: isSet(object.national_identifier)
         ? String(object.national_identifier)
         : "",
       email: isSet(object.email) ? String(object.email) : "",
-      renewedDate: isSet(object.renewed_date)
+      renewed_date: isSet(object.renewed_date)
         ? fromJsonTimestamp(object.renewed_date)
         : undefined,
-      overrideExpirationDate: isSet(object.override_expiration_date)
+      override_expiration_date: isSet(object.override_expiration_date)
         ? fromJsonTimestamp(object.override_expiration_date)
         : undefined,
-      membershipType: isSet(object.membership_type)
+      membership_type: isSet(object.membership_type)
         ? memberShipTypeFromJSON(object.membership_type)
         : 0,
       status: isSet(object.status)
@@ -186,24 +186,24 @@ export const Member = {
 
   toJSON(message: Member): unknown {
     const obj: any = {};
-    message.memberId !== undefined &&
-      (obj.member_id = Math.round(message.memberId));
-    message.userId !== undefined && (obj.user_id = message.userId);
-    message.firstName !== undefined && (obj.first_name = message.firstName);
-    message.lastName !== undefined && (obj.last_name = message.lastName);
+    message.member_id !== undefined &&
+      (obj.member_id = Math.round(message.member_id));
+    message.user_id !== undefined && (obj.user_id = message.user_id);
+    message.first_name !== undefined && (obj.first_name = message.first_name);
+    message.last_name !== undefined && (obj.last_name = message.last_name);
     message.address !== undefined && (obj.address = message.address);
-    message.phoneNumber !== undefined &&
-      (obj.phone_number = message.phoneNumber);
-    message.nationalIdentifier !== undefined &&
-      (obj.national_identifier = message.nationalIdentifier);
+    message.phone_number !== undefined &&
+      (obj.phone_number = message.phone_number);
+    message.national_identifier !== undefined &&
+      (obj.national_identifier = message.national_identifier);
     message.email !== undefined && (obj.email = message.email);
-    message.renewedDate !== undefined &&
-      (obj.renewed_date = message.renewedDate.toISOString());
-    message.overrideExpirationDate !== undefined &&
+    message.renewed_date !== undefined &&
+      (obj.renewed_date = message.renewed_date.toISOString());
+    message.override_expiration_date !== undefined &&
       (obj.override_expiration_date =
-        message.overrideExpirationDate.toISOString());
-    message.membershipType !== undefined &&
-      (obj.membership_type = memberShipTypeToJSON(message.membershipType));
+        message.override_expiration_date.toISOString());
+    message.membership_type !== undefined &&
+      (obj.membership_type = memberShipTypeToJSON(message.membership_type));
     message.status !== undefined &&
       (obj.status = membershipStatusToJSON(message.status));
     return obj;
@@ -211,17 +211,18 @@ export const Member = {
 
   fromPartial<I extends Exact<DeepPartial<Member>, I>>(object: I): Member {
     const message = createBaseMember();
-    message.memberId = object.memberId ?? 0;
-    message.userId = object.userId ?? "";
-    message.firstName = object.firstName ?? "";
-    message.lastName = object.lastName ?? "";
+    message.member_id = object.member_id ?? 0;
+    message.user_id = object.user_id ?? "";
+    message.first_name = object.first_name ?? "";
+    message.last_name = object.last_name ?? "";
     message.address = object.address ?? "";
-    message.phoneNumber = object.phoneNumber ?? "";
-    message.nationalIdentifier = object.nationalIdentifier ?? "";
+    message.phone_number = object.phone_number ?? "";
+    message.national_identifier = object.national_identifier ?? "";
     message.email = object.email ?? "";
-    message.renewedDate = object.renewedDate ?? undefined;
-    message.overrideExpirationDate = object.overrideExpirationDate ?? undefined;
-    message.membershipType = object.membershipType ?? 0;
+    message.renewed_date = object.renewed_date ?? undefined;
+    message.override_expiration_date =
+      object.override_expiration_date ?? undefined;
+    message.membership_type = object.membership_type ?? 0;
     message.status = object.status ?? 0;
     return message;
   },
