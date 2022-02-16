@@ -54,6 +54,10 @@ message DeleteMemberRequest {
 
 message UpdateStatusesRequest {}
 
+message FindMembersRequest {
+  string search_value = 1;
+}
+
 enum MembershipType {
   FULL = 0;
   SUPPORT = 1;
@@ -111,6 +115,10 @@ message UpdateStatusesResponse {
   string error_message = 2;
 }
 
+message FindMembersResponse {
+  repeated Member members = 1;
+}
+
 service MembersService {
     rpc GetById(GetMemberByIdRequest) returns (GetMemberResponse);
     rpc GetByEmail(GetMemberByEmailRequest) returns (GetMemberResponse);
@@ -120,4 +128,5 @@ service MembersService {
     rpc Update(UpdateMemberRequest) returns (UpdateMemberResponse);
     rpc Delete(DeleteMemberRequest) returns (DeleteMemberResponse);
     rpc UpdateStatuses(UpdateStatusesRequest) returns (UpdateStatusesResponse);
+    rpc FindMembers(FindMembersRequest) returns (FindMembersResponse);
 }

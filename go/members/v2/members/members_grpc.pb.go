@@ -26,6 +26,7 @@ type MembersServiceClient interface {
 	Update(ctx context.Context, in *UpdateMemberRequest, opts ...grpc.CallOption) (*UpdateMemberResponse, error)
 	Delete(ctx context.Context, in *DeleteMemberRequest, opts ...grpc.CallOption) (*DeleteMemberResponse, error)
 	UpdateStatuses(ctx context.Context, in *UpdateStatusesRequest, opts ...grpc.CallOption) (*UpdateStatusesResponse, error)
+	FindMembers(ctx context.Context, in *FindMembersRequest, opts ...grpc.CallOption) (*FindMembersResponse, error)
 }
 
 type membersServiceClient struct {
@@ -108,6 +109,15 @@ func (c *membersServiceClient) UpdateStatuses(ctx context.Context, in *UpdateSta
 	return out, nil
 }
 
+func (c *membersServiceClient) FindMembers(ctx context.Context, in *FindMembersRequest, opts ...grpc.CallOption) (*FindMembersResponse, error) {
+	out := new(FindMembersResponse)
+	err := c.cc.Invoke(ctx, "/uptown_runners.members.v2.MembersService/FindMembers", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MembersServiceServer is the server API for MembersService service.
 // All implementations must embed UnimplementedMembersServiceServer
 // for forward compatibility
@@ -120,6 +130,7 @@ type MembersServiceServer interface {
 	Update(context.Context, *UpdateMemberRequest) (*UpdateMemberResponse, error)
 	Delete(context.Context, *DeleteMemberRequest) (*DeleteMemberResponse, error)
 	UpdateStatuses(context.Context, *UpdateStatusesRequest) (*UpdateStatusesResponse, error)
+	FindMembers(context.Context, *FindMembersRequest) (*FindMembersResponse, error)
 	mustEmbedUnimplementedMembersServiceServer()
 }
 
@@ -150,6 +161,9 @@ func (UnimplementedMembersServiceServer) Delete(context.Context, *DeleteMemberRe
 }
 func (UnimplementedMembersServiceServer) UpdateStatuses(context.Context, *UpdateStatusesRequest) (*UpdateStatusesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateStatuses not implemented")
+}
+func (UnimplementedMembersServiceServer) FindMembers(context.Context, *FindMembersRequest) (*FindMembersResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FindMembers not implemented")
 }
 func (UnimplementedMembersServiceServer) mustEmbedUnimplementedMembersServiceServer() {}
 
@@ -308,6 +322,24 @@ func _MembersService_UpdateStatuses_Handler(srv interface{}, ctx context.Context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _MembersService_FindMembers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FindMembersRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MembersServiceServer).FindMembers(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/uptown_runners.members.v2.MembersService/FindMembers",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MembersServiceServer).FindMembers(ctx, req.(*FindMembersRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // MembersService_ServiceDesc is the grpc.ServiceDesc for MembersService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -346,6 +378,10 @@ var MembersService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateStatuses",
 			Handler:    _MembersService_UpdateStatuses_Handler,
+		},
+		{
+			MethodName: "FindMembers",
+			Handler:    _MembersService_FindMembers_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
