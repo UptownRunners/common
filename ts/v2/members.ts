@@ -129,6 +129,10 @@ export interface DeleteMemberRequest {
 
 export interface UpdateStatusesRequest {}
 
+export interface FindMembersRequest {
+  search_value: string;
+}
+
 export interface Member {
   id: number;
   national_identifier: string;
@@ -174,6 +178,10 @@ export interface GetMembersResponse {
 export interface UpdateStatusesResponse {
   success: boolean;
   error_message: string;
+}
+
+export interface FindMembersResponse {
+  members: Member[];
 }
 
 function createBaseGetMemberByIdRequest(): GetMemberByIdRequest {
@@ -873,6 +881,63 @@ export const UpdateStatusesRequest = {
   },
 };
 
+function createBaseFindMembersRequest(): FindMembersRequest {
+  return { search_value: "" };
+}
+
+export const FindMembersRequest = {
+  encode(
+    message: FindMembersRequest,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
+    if (message.search_value !== "") {
+      writer.uint32(10).string(message.search_value);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): FindMembersRequest {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseFindMembersRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.search_value = reader.string();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): FindMembersRequest {
+    return {
+      search_value: isSet(object.search_value)
+        ? String(object.search_value)
+        : "",
+    };
+  },
+
+  toJSON(message: FindMembersRequest): unknown {
+    const obj: any = {};
+    message.search_value !== undefined &&
+      (obj.search_value = message.search_value);
+    return obj;
+  },
+
+  fromPartial<I extends Exact<DeepPartial<FindMembersRequest>, I>>(
+    object: I
+  ): FindMembersRequest {
+    const message = createBaseFindMembersRequest();
+    message.search_value = object.search_value ?? "";
+    return message;
+  },
+};
+
 function createBaseMember(): Member {
   return {
     id: 0,
@@ -1533,6 +1598,68 @@ export const UpdateStatusesResponse = {
   },
 };
 
+function createBaseFindMembersResponse(): FindMembersResponse {
+  return { members: [] };
+}
+
+export const FindMembersResponse = {
+  encode(
+    message: FindMembersResponse,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
+    for (const v of message.members) {
+      Member.encode(v!, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): FindMembersResponse {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseFindMembersResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.members.push(Member.decode(reader, reader.uint32()));
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): FindMembersResponse {
+    return {
+      members: Array.isArray(object?.members)
+        ? object.members.map((e: any) => Member.fromJSON(e))
+        : [],
+    };
+  },
+
+  toJSON(message: FindMembersResponse): unknown {
+    const obj: any = {};
+    if (message.members) {
+      obj.members = message.members.map((e) =>
+        e ? Member.toJSON(e) : undefined
+      );
+    } else {
+      obj.members = [];
+    }
+    return obj;
+  },
+
+  fromPartial<I extends Exact<DeepPartial<FindMembersResponse>, I>>(
+    object: I
+  ): FindMembersResponse {
+    const message = createBaseFindMembersResponse();
+    message.members = object.members?.map((e) => Member.fromPartial(e)) || [];
+    return message;
+  },
+};
+
 export const MembersServiceService = {
   getById: {
     path: "/uptown_runners.members.v2.MembersService/GetById",
@@ -1625,6 +1752,17 @@ export const MembersServiceService = {
     responseDeserialize: (value: Buffer) =>
       UpdateStatusesResponse.decode(value),
   },
+  findMembers: {
+    path: "/uptown_runners.members.v2.MembersService/FindMembers",
+    requestStream: false,
+    responseStream: false,
+    requestSerialize: (value: FindMembersRequest) =>
+      Buffer.from(FindMembersRequest.encode(value).finish()),
+    requestDeserialize: (value: Buffer) => FindMembersRequest.decode(value),
+    responseSerialize: (value: FindMembersResponse) =>
+      Buffer.from(FindMembersResponse.encode(value).finish()),
+    responseDeserialize: (value: Buffer) => FindMembersResponse.decode(value),
+  },
 } as const;
 
 export interface MembersServiceServer extends UntypedServiceImplementation {
@@ -1642,6 +1780,7 @@ export interface MembersServiceServer extends UntypedServiceImplementation {
     UpdateStatusesRequest,
     UpdateStatusesResponse
   >;
+  findMembers: handleUnaryCall<FindMembersRequest, FindMembersResponse>;
 }
 
 export interface MembersServiceClient extends Client {
@@ -1799,6 +1938,30 @@ export interface MembersServiceClient extends Client {
     callback: (
       error: ServiceError | null,
       response: UpdateStatusesResponse
+    ) => void
+  ): ClientUnaryCall;
+  findMembers(
+    request: FindMembersRequest,
+    callback: (
+      error: ServiceError | null,
+      response: FindMembersResponse
+    ) => void
+  ): ClientUnaryCall;
+  findMembers(
+    request: FindMembersRequest,
+    metadata: Metadata,
+    callback: (
+      error: ServiceError | null,
+      response: FindMembersResponse
+    ) => void
+  ): ClientUnaryCall;
+  findMembers(
+    request: FindMembersRequest,
+    metadata: Metadata,
+    options: Partial<CallOptions>,
+    callback: (
+      error: ServiceError | null,
+      response: FindMembersResponse
     ) => void
   ): ClientUnaryCall;
 }
