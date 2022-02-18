@@ -36,6 +36,9 @@ message Payment {
     string status = 1;
     google.protobuf.Timestamp created_at = 2;
     google.protobuf.Timestamp paid_at = 3;
+    Money amount = 4;
+    string payment_provider = 5;
+    string provider_reference = 6;
 }
 
 service PaymentsService {
