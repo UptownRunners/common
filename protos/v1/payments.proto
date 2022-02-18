@@ -19,7 +19,7 @@ message CreateSwishPaymentRequest {
 
 message CreateSwishMobilePaymentResponse {
     string payment_reference = 1;
-    string open_url = 2;
+    string token = 2;
 }
 
 message CreateSwishWebPaymentResponse {
