@@ -14,6 +14,7 @@ message Money {
 message CreateSwishPaymentRequest {
     Money amount = 1;
     string message = 2;
+    optional string payer_alias = 3;
 }
 
 message CreateSwishMobilePaymentResponse {
